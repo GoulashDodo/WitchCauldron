@@ -18,11 +18,10 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
 
         private GameEntryPoint()
         {
-            _coroutines = new GameObject("[COURUTINES]").AddComponent<Coroutines>();
+            _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
             Object.DontDestroyOnLoad(_coroutines.gameObject);
             
-            //GameRegistrations.Register(_rootContainer);
-            
+            GlobalRegistrations.Register(_rootContainer);
         }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
