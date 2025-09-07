@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WitchCauldron.Scripts.Gameplay
+namespace WitchCauldron.Scripts.Feature.Gameplay
 {
     public class CauldronView : MonoBehaviour
     {

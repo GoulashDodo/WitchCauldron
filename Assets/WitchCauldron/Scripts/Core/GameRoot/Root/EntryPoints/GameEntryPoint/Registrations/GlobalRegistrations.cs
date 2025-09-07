@@ -4,7 +4,7 @@ using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
 using WitchCauldron.Scripts.Core.GameRoot.View;
 using Zenject;
 
-namespace WitchCauldron.Scripts.Core.GameRoot.Root
+namespace WitchCauldron.Scripts.Core.GameRoot.Root.EntryPoints.GameEntryPoint.Registrations
 {
     public static class GlobalRegistrations
     {

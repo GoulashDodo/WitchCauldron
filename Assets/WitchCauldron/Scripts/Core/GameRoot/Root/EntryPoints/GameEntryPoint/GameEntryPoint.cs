@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
+using WitchCauldron.Scripts.Core.GameRoot.Root.EntryPoints.GameEntryPoint.Registrations;
 using Zenject;
 
-namespace WitchCauldron.Scripts.Core.GameRoot.Root
+namespace WitchCauldron.Scripts.Core.GameRoot.Root.EntryPoints.GameEntryPoint
 {
     public class GameEntryPoint
     {
