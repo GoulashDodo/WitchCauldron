@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 3538665766456501860}
   - component: {fileID: 4523035902368681525}
   - component: {fileID: 296124235553691405}
+  - component: {fileID: 2106171840853056054}
   m_Layer: 0
   m_Name: UILoadingScreen
   m_TagString: Untagged
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
+  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -223,6 +224,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2106171840853056054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110916407516789471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496b685392eb1774ebe19dc80cb7eaf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &5455544706791978468
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324030361763120069}
+  - component: {fileID: 7982425273475016226}
   m_Layer: 0
   m_Name: __UI__
   m_TagString: Untagged
@@ -392,6 +406,19 @@ Transform:
   - {fileID: 5210207938781854843}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7982425273475016226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972772637434284260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d6c3dfb84f409c93c699fc42c5fd3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Core.GameRoot.View.UIRootView
+  _loadingScreen: {fileID: 2106171840853056054}
 --- !u!1 &7438097980247894694
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,5 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using WitchCauldron.Scripts.Common.Utilits;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
 using Zenject;
 
@@ -10,18 +8,16 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
     public class GameEntryPoint
     {
         private static GameEntryPoint _instance;
-        private readonly Coroutines _coroutines;
-
-
         private readonly DiContainer _rootContainer = new();
 
 
+        private readonly SceneLoader _sceneLoader;
+
         private GameEntryPoint()
         {
-            _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
-            Object.DontDestroyOnLoad(_coroutines.gameObject);
-            
             GlobalRegistrations.Register(_rootContainer);
+            
+            _sceneLoader = _rootContainer.Resolve<SceneLoader>();
         }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -45,10 +41,10 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
             switch (sceneName)
             {
                 case Scenes.Gameplay:
-                    _coroutines.StartCoroutine(LoadAndStartGameplay());
+                    _sceneLoader.LoadScene(Scenes.Gameplay);
                     return;
                 case Scenes.MainMenu:
-                    _coroutines.StartCoroutine(LoadAndStartMainMenu());
+                    _sceneLoader.LoadScene(Scenes.MainMenu);
                     return;
             }
 
@@ -58,44 +54,11 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
             }
 
 #endif
-            _coroutines.StartCoroutine(LoadAndStartMainMenu());
 
+            _sceneLoader.LoadScene(Scenes.MainMenu);
+            
         }
         
-        
-        
-        private IEnumerator LoadAndStartMainMenu()
-        {
-            
-            yield return LoadSceneAsync(Scenes.Boot);
-            yield return LoadSceneAsync(Scenes.MainMenu);
-
-        
-            //Simulating loading
-            yield return new WaitForSeconds(0.5f);
-            
-
-        }
-        
-        private IEnumerator LoadAndStartGameplay()
-        {
-
-            yield return LoadSceneAsync(Scenes.Boot);
-            yield return LoadSceneAsync(Scenes.Gameplay);
-
-        
-            //Simulating loading
-            yield return new WaitForSeconds(0.5f);
-            
-            
-
-        }
-
-        
-        private static IEnumerator LoadSceneAsync(string sceneName)
-        {
-            yield return SceneManager.LoadSceneAsync(sceneName);
-        }
         
         
         
