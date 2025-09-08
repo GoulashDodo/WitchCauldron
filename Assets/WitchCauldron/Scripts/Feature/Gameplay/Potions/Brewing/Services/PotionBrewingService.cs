@@ -8,7 +8,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
     public class PotionBrewingService
     {
 
-        private readonly Queue<PotionIngredient> _ingredients = new();
+        private readonly Queue<BrewingIngredient> _ingredients = new();
         
         
         public PotionBrewingService(ReceiptService receiptService)
@@ -18,7 +18,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
 
         }
 
-        private void SetIngredientsQueue(List<PotionIngredient> ingredients)
+        private void SetIngredientsQueue(List<BrewingIngredient> ingredients)
         {
             _ingredients.Clear();
             
@@ -28,7 +28,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
             }
         }
 
-        public void TryDequeueIngredient(PotionIngredient ingredient)
+        public void TryDequeueIngredient(BrewingIngredient ingredient)
         {
             if (ingredient == _ingredients.Peek())
             {

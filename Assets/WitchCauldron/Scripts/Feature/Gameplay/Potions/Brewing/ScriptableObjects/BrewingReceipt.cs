@@ -4,10 +4,10 @@ using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Structures;
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "Potion Receipt", menuName = "Game/Potions/Brewing/Reciept")]
-    public class PotionReceipt : ScriptableObject
+    public class BrewingReceipt : ScriptableObject
     {
         
-        [field: SerializeField] public PotionReceiptPart[] Parts { get; private set; }
+        [field: SerializeField] public BrewingReceiptPart[] Parts { get; private set; }
         
     }
 }

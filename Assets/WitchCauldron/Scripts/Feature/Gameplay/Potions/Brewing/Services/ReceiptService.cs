@@ -13,11 +13,11 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
         //TODO: Refactor this
         private readonly PotionReceiptList _receiptList;
         
-        private readonly ReactiveProperty<PotionReceipt> _currentReceipt = new();
+        private readonly ReactiveProperty<BrewingReceipt> _currentReceipt = new();
         
-        private readonly Subject<List<PotionIngredient>> _ingredientsSelected = new();
+        private readonly Subject<List<BrewingIngredient>> _ingredientsSelected = new();
 
-        public Observable<List<PotionIngredient>> IngredientsSelected => _ingredientsSelected;
+        public Observable<List<BrewingIngredient>> IngredientsSelected => _ingredientsSelected;
         
         
         
@@ -43,7 +43,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
                 return;
             }
 
-            PotionReceipt newReceipt;
+            BrewingReceipt newReceipt;
             do
             {
                 newReceipt = _receiptList.Receipts[
@@ -54,9 +54,9 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
 
             _currentReceipt.Value = newReceipt;
         }
-        private void SetIngredientsList(PotionReceipt receipt)
+        private void SetIngredientsList(BrewingReceipt receipt)
         {
-            var ingredients = new List<PotionIngredient>();
+            var ingredients = new List<BrewingIngredient>();
             
 
             foreach (var part in receipt.Parts)
