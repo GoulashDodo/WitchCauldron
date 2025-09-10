@@ -12,7 +12,7 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.EntryPoints.GameplayEntryPoin
             
             container.Bind<ReceiptService>().AsSingle();
 
-            container.Bind<PotionBrewingService>().AsSingle();
+            container.Bind<BrewingService>().AsSingle();
 
         }
         

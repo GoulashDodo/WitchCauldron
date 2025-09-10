@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Core.GameRoot.View.UIRootView
   _loadingScreen: {fileID: 2106171840853056054}
+  _uiSceneContainer: {fileID: 4090972834649122}
 --- !u!1 &7438097980247894694
 GameObject:
   m_ObjectHideFlags: 0

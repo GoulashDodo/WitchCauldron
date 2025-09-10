@@ -4,23 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using WitchCauldron.Scripts.Common.Utilits;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
+using WitchCauldron.Scripts.Core.GameRoot.Root.EntryPoints;
+using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
+using Zenject;
 
 namespace WitchCauldron.Scripts.Core.GameRoot.Root
 {
     public class SceneLoader
     {
-        
+        private readonly DiContainer _rootContainer;
+        private readonly IGameStateProvider _gameStateProvider;
+
         private readonly Coroutines _coroutines;
         
-        private readonly Subject<Unit> _onSceneLoadingStarted = new Subject<Unit>();
-        private readonly Subject<Unit> _onSceneLoadingEnded = new Subject<Unit>();
+        private readonly Subject<Unit> _onSceneLoadingStarted = new();
+        private readonly Subject<Unit> _onSceneLoadingEnded = new();
 
         public Observable<Unit> OnSceneLoadingStarted => _onSceneLoadingStarted;
         public Observable<Unit> OnSceneLoadingEnded => _onSceneLoadingEnded;        
         
         
-        private SceneLoader()
+        public SceneLoader(DiContainer rootContainer,IGameStateProvider gameStateProvider)
         {
+            _rootContainer = rootContainer;
+            _gameStateProvider = gameStateProvider;
+
             _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
             Object.DontDestroyOnLoad(_coroutines.gameObject);
         }
@@ -38,7 +46,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
                     return;
             }
             
-            
         }
         
         private IEnumerator LoadAndStartMainMenu()
@@ -54,6 +61,8 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
             yield return new WaitForSeconds(0.5f);
             
             
+            
+            
             _onSceneLoadingEnded.OnNext(Unit.Default);
 
         }
@@ -66,6 +75,21 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.Gameplay);
 
+            
+            var isGameStateLoaded = false;
+            _rootContainer.Resolve<IGameStateProvider>().LoadGameState().Subscribe(_ => isGameStateLoaded = true);
+            yield return new WaitUntil(() => isGameStateLoaded);
+            
+
+            var sceneEntryPoint = Object.FindFirstObjectByType<SceneEntryPoint>();
+            if (!sceneEntryPoint)
+            {
+                Debug.LogError($"{Scenes.Gameplay}: entry point not found!!");
+            }
+            
+            var sceneContainer = new DiContainer(_rootContainer);
+            sceneEntryPoint.Run(sceneContainer);
+            
         
             //Simulating loading
             yield return new WaitForSeconds(0.5f);

@@ -7,6 +7,8 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjec
     public class BrewingReceipt : ScriptableObject
     {
         
+        [field: SerializeField] public string Name { get; private set; }
+        
         [field: SerializeField] public BrewingReceiptPart[] Parts { get; private set; }
         
     }

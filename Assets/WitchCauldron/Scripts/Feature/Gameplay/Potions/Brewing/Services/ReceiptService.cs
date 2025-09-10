@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using R3;
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands.Parameters;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
@@ -15,18 +15,13 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
         
         private readonly ReactiveProperty<BrewingReceipt> _currentReceipt = new();
         
-        private readonly Subject<List<BrewingIngredient>> _ingredientsSelected = new();
-
-        public Observable<List<BrewingIngredient>> IngredientsSelected => _ingredientsSelected;
-        
-        
         
         public ReceiptService(ICommandProcessor cmd,  PotionReceiptList receiptList)
         {
             _cmd = cmd;
             _receiptList = receiptList;
             
-            _currentReceipt.Subscribe(SetIngredientsList);
+            _currentReceipt.Subscribe(CreateBrewingSession);
         }
         
         public void SelectRandomReceipt()
@@ -36,38 +31,13 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
             ]; 
         }
         
-        public void SelectRandomOtherReceipt()
+        
+        private void CreateBrewingSession(BrewingReceipt receipt)
         {
-            if (_receiptList.Receipts.Length <= 1)
-            {
-                return;
-            }
 
-            BrewingReceipt newReceipt;
-            do
-            {
-                newReceipt = _receiptList.Receipts[
-                    Random.Range(0, _receiptList.Receipts.Length)
-                ];
-            }
-            while (newReceipt == _currentReceipt.CurrentValue);
-
-            _currentReceipt.Value = newReceipt;
-        }
-        private void SetIngredientsList(BrewingReceipt receipt)
-        {
-            var ingredients = new List<BrewingIngredient>();
+            var cmdParameters = new CmdCreateBrewingSessionParameters(receipt);
             
-
-            foreach (var part in receipt.Parts)
-            {
-                for (int i = 0; i < part.Quantity; i++)
-                {
-                    ingredients.Add(part.Ingredient);
-                }
-            }
-
-            _ingredientsSelected.OnNext(ingredients);
+            _cmd.Process(cmdParameters);
             
         }
         
