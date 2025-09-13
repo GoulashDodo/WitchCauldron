@@ -1,6 +1,6 @@
 namespace WitchCauldron.Scripts.Core.GameRoot.Data
 {
-    public class Scenes
+    public static class Scenes
     {
         public const string Boot = "Boot";
         public const string MainMenu = "MainMenu";

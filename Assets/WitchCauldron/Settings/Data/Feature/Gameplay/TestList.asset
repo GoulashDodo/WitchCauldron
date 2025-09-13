@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestList
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects.PotionReceiptList
   <Receipts>k__BackingField:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 635bfbd49e34166448fdd3c0005e8572, type: 2}
+  - {fileID: 11400000, guid: 8caeee808c2929342806d5d0b9b08be3, type: 2}

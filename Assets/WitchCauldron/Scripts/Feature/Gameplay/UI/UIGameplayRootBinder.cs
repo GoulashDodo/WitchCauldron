@@ -1,6 +1,5 @@
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
-using WitchCauldron.Scripts.Core.GameRoot.State.Root;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.UI;
 using Zenject;
 
@@ -18,7 +17,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.UI
             //REFACTOR THIS
             var gameState =  container.Resolve<IGameStateProvider>().GameState;
             
-            _namePanel.Initialze(gameState.Cauldron);
+            _namePanel.Initialze();
             
         }
         

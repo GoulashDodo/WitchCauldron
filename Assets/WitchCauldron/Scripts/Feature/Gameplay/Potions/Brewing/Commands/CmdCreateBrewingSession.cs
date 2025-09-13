@@ -1,7 +1,7 @@
 using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
 using WitchCauldron.Scripts.Core.GameRoot.State.Root;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Cauldron;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands.Parameters;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Model;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands
 {
@@ -19,7 +19,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands
 
             var session = new BrewingSession(commandParameter.Receipt);
             
-            _gameState.Cauldron.SetBrewingSession(session);
+            //_gameState.MainCauldronViewModel.SetBrewingSession(session);
             
             return true;
         }

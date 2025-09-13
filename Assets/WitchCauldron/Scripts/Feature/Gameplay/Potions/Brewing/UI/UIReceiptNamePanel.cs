@@ -1,7 +1,6 @@
 using R3;
 using TMPro;
 using UnityEngine;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Model;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.UI
 {
@@ -10,9 +9,9 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.UI
         
         [SerializeField] private TextMeshProUGUI _nameText;
 
-        public void Initialze(Cauldron cauldron)
+        public void Initialze()
         {
-            cauldron.BrewingSession.Skip(1).Subscribe(session =>  DisplayReceiptName(session.Receipt.Name));
+            //cauldronViewModel.BrewingSession.Skip(1).Subscribe(session =>  DisplayReceiptName(session.Receipt.Name));
         }
 
         private void DisplayReceiptName(string receiptName)

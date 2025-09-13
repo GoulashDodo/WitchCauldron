@@ -13,7 +13,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
         //TODO: Refactor this
         private readonly PotionReceiptList _receiptList;
         
-        private readonly ReactiveProperty<BrewingReceipt> _currentReceipt = new();
+        private readonly Subject<BrewingReceipt> _currentReceiptChanged = new();
         
         
         public ReceiptService(ICommandProcessor cmd,  PotionReceiptList receiptList)
@@ -21,24 +21,26 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
             _cmd = cmd;
             _receiptList = receiptList;
             
-            _currentReceipt.Subscribe(CreateBrewingSession);
+            _currentReceiptChanged.Skip(1).Subscribe(receipt => CreateBrewingSession(receipt));
         }
         
         public void SelectRandomReceipt()
         {
-            _currentReceipt.Value =  _receiptList.Receipts[
+            _currentReceiptChanged.OnNext(_receiptList.Receipts[
                 Random.Range(0, _receiptList.Receipts.Length)
-            ]; 
+            ]);
         }
         
         
-        private void CreateBrewingSession(BrewingReceipt receipt)
+        private bool CreateBrewingSession(BrewingReceipt receipt)
         {
 
             var cmdParameters = new CmdCreateBrewingSessionParameters(receipt);
             
-            _cmd.Process(cmdParameters);
-            
+            var result = _cmd.Process(cmdParameters);
+
+
+            return result;
         }
         
         

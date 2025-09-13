@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Cauldron;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands.Parameters;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
 
@@ -19,10 +20,12 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services
         }
         
         
-        public void TryDequeueIngredient(BrewingIngredient ingredient)
+        public bool TryDequeueIngredient(BrewingSession session,BrewingIngredient ingredient)
         {
-            var cmdParameters = new CmdTryAddIngredientParameters(ingredient);
-            _cmd.Process(cmdParameters);
+            var cmdParameters = new CmdTryAddIngredientParameters(session, ingredient);
+            var result = _cmd.Process(cmdParameters);
+
+            return result;
         }
         
         

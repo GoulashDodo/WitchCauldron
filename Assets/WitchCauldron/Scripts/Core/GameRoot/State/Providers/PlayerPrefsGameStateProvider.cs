@@ -2,7 +2,6 @@ using System;
 using R3;
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.State.Root;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Model;
 
 namespace WitchCauldron.Scripts.Core.GameRoot.State.Providers
 {
@@ -49,7 +48,7 @@ namespace WitchCauldron.Scripts.Core.GameRoot.State.Providers
         
         private GameState CreateGameStateFromSettings()
         {
-            var state = new GameState(new Cauldron());
+            var state = new GameState();
 
             return state;
         }

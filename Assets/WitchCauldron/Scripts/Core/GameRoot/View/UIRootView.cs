@@ -1,6 +1,7 @@
 using R3;
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.Root;
+using WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game;
 
 namespace WitchCauldron.Scripts.Core.GameRoot.View
 {

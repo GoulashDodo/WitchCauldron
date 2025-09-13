@@ -15,8 +15,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands
 
         public bool Handle(CmdTryAddIngredientParameters commandParameter)
         {
-            _gameState.Cauldron.TryAddIngredient(commandParameter.Ingredient);
-            return true;
+            return commandParameter.BrewingSession.TryAddIngredient(commandParameter.Ingredient);
         }
     }
 }

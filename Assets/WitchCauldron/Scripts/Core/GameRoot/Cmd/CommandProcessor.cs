@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
 
 namespace WitchCauldron.Scripts.Core.GameRoot.Cmd
@@ -22,8 +23,9 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Cmd
                 var commandSucceeded = typedParameter.Handle(commandParameter);
                 
                 return commandSucceeded;
-            }
+            } 
             
+            Debug.LogError($"[CMD] Command of {typeof(TCommandParameter)} not found!");
             return false;
         }
     }
