@@ -151,6 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 184857863}
   - {fileID: 838282326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -223,6 +224,7 @@ GameObject:
   - component: {fileID: 184857863}
   - component: {fileID: 184857862}
   - component: {fileID: 184857861}
+  - component: {fileID: 184857864}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -342,13 +344,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184857860}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.59, y: 2.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 109975211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &184857864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184857860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e451eed281b4d12ac5a312189038009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Spawners.ItemSpawner
+  _itemToSpawn: {fileID: 7549001251446908704, guid: 99eef5e0e4477604fae54f679a52b043, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,4 +655,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1238592033}
   - {fileID: 109975211}
-  - {fileID: 184857863}

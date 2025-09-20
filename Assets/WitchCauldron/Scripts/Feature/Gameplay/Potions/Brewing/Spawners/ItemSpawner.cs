@@ -2,6 +2,7 @@ using UnityEngine;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
+using Zenject;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Spawners
 {
@@ -12,7 +13,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Spawners
 
         private DraggableItemService _service;
         
-        
+        [Inject]
         public void Initialize(DraggableItemService service)
         {
             _service = service;

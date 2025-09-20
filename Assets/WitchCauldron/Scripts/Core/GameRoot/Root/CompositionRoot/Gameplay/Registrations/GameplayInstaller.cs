@@ -1,11 +1,7 @@
 using UnityEngine;
-using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
-using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
 using WitchCauldron.Scripts.Core.GameRoot.View;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Cmd;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.UI;
@@ -32,8 +28,15 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
                 .AsSingle()
                 .NonLazy();
 
+            
+            
             InstallSceneUI();
-            RegisterCommands();
+            
+           
+            Container.BindInterfacesTo<GameplayCommandsRegistrator>()
+                .AsSingle()
+                .NonLazy();
+            
         }
 
         private void InstallSceneUI()
@@ -50,16 +53,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
                 })
                 .NonLazy();
         }
-        
-        private void RegisterCommands()
-        {
-            var commandProcessor = Container.Resolve<ICommandProcessor>();
-            var gameStateProvider = Container.Resolve<IGameStateProvider>();
-
-            commandProcessor.RegisterCommand(new CmdCreateBrewingSession(gameStateProvider.GameState));
-            commandProcessor.RegisterCommand(new CmdTryAddIngredient(gameStateProvider.GameState));
-            commandProcessor.RegisterCommand(new CmdSetMainCauldron(gameStateProvider.GameState));
-            commandProcessor.RegisterCommand(new CmdTrySpawnDraggableItem(Container.Resolve<MouseClickHandler>()));
-        }
+     
     }
 }
