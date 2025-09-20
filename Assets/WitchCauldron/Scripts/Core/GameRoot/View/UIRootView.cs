@@ -1,6 +1,5 @@
 using R3;
 using UnityEngine;
-using WitchCauldron.Scripts.Core.GameRoot.Root;
 using WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game;
 
 namespace WitchCauldron.Scripts.Core.GameRoot.View
@@ -13,6 +12,7 @@ namespace WitchCauldron.Scripts.Core.GameRoot.View
 
         public void Initialize(SceneLoader sceneLoader)
         {
+            Debug.Log("Initializing UIRootView");
             sceneLoader.OnSceneLoadingStarted.Subscribe(_ => EnableLoadingScreen());
             sceneLoader.OnSceneLoadingEnded.Subscribe(_ => DisableLoadingScreen());
         }

@@ -1,0 +1,65 @@
+using UnityEngine;
+using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
+using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
+using WitchCauldron.Scripts.Core.GameRoot.View;
+using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
+using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Cmd;
+using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Commands;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.UI;
+using Zenject;
+
+namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Registrations
+{
+    public sealed class GameplayInstaller : MonoInstaller
+    {
+        [Header("Configs")]
+        [SerializeField] private UIGameplayRootBinder _sceneRootBinderPrefab;
+        [SerializeField] private PotionReceiptList _receiptList;
+
+        public override void InstallBindings()
+        {
+            Container.BindInstance(_receiptList).AsSingle();
+
+            Container.Bind<ReceiptService>().AsSingle();
+            Container.Bind<BrewingService>().AsSingle();
+            Container.Bind<DraggableItemService>().AsSingle();
+
+            Container.Bind<MouseClickHandler>()
+                .FromMethod(_ => new MouseClickHandler(Container.Resolve<GameInput>()))
+                .AsSingle()
+                .NonLazy();
+
+            InstallSceneUI();
+            RegisterCommands();
+        }
+
+        private void InstallSceneUI()
+        {
+            Container.Bind<UIGameplayRootBinder>()
+                .FromComponentInNewPrefab(_sceneRootBinderPrefab)
+                .AsSingle()
+                .OnInstantiated<UIGameplayRootBinder>((ctx, binder) =>
+                {
+                    var uiRoot = ctx.Container.Resolve<UIRootView>();
+                    uiRoot.AttachSceneUI(binder.gameObject);
+
+                    binder.InitializeUI(ctx.Container);
+                })
+                .NonLazy();
+        }
+        
+        private void RegisterCommands()
+        {
+            var commandProcessor = Container.Resolve<ICommandProcessor>();
+            var gameStateProvider = Container.Resolve<IGameStateProvider>();
+
+            commandProcessor.RegisterCommand(new CmdCreateBrewingSession(gameStateProvider.GameState));
+            commandProcessor.RegisterCommand(new CmdTryAddIngredient(gameStateProvider.GameState));
+            commandProcessor.RegisterCommand(new CmdSetMainCauldron(gameStateProvider.GameState));
+            commandProcessor.RegisterCommand(new CmdTrySpawnDraggableItem(Container.Resolve<MouseClickHandler>()));
+        }
+    }
+}

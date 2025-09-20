@@ -128,8 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 109975211}
-  - component: {fileID: 109975212}
   - component: {fileID: 109975213}
+  - component: {fileID: 109975215}
+  - component: {fileID: 109975214}
   m_Layer: 0
   m_Name: __SCENE__
   m_TagString: Untagged
@@ -153,20 +154,6 @@ Transform:
   - {fileID: 838282326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &109975212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109975210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b797ea5c48c564f884421d1e7c2644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameplayEntryPoint
-  _sceneRootBinderPrefab: {fileID: 7403211245335291435, guid: 0e4ecaddeee375246896571c24ac3f3d, type: 3}
-  _receipts: {fileID: 11400000, guid: d452170b439da4341b9b5db8dff2fa10, type: 2}
 --- !u!114 &109975213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +165,53 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5482a7ab207df2342bd3717e3a9e2570, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Common.Utilits.Debugging.ReceiptServiceInvoker
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Common.Utilits.Debugging.DebugReceiptServiceInvoker
+--- !u!114 &109975214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109975210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b04a3c3fb168a4fbd3c6aa77c2f68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _sceneRootBinderPrefab: {fileID: 7403211245335291435, guid: 0e4ecaddeee375246896571c24ac3f3d, type: 3}
+  _receiptList: {fileID: 11400000, guid: d452170b439da4341b9b5db8dff2fa10, type: 2}
+--- !u!114 &109975215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109975210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.SceneContext
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 109975214}
+  _installerPrefabs: []
+  _autoRun: 0
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &184857860
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +223,6 @@ GameObject:
   - component: {fileID: 184857863}
   - component: {fileID: 184857862}
   - component: {fileID: 184857861}
-  - component: {fileID: 184857864}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -317,18 +349,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &184857864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184857860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba847c7606ab49fcbbe6f67e54fc23ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Interfaces.Clickable
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,20 +2,20 @@ using UnityEngine;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services;
 using Zenject;
 
-namespace WitchCauldron.Scripts.Common.Utilits.Debugging
+namespace WitchCauldron.Scripts.Common.Utils.Debugging
 {
     public sealed class DebugReceiptServiceInvoker : MonoBehaviour
     {
         private ReceiptService _service;
 
-        
+        [Inject]
         public void Initialize(ReceiptService service)
         {
             _service = service;
         }
 
 
-        public void SelectRandomReceipt()
+        private void SelectRandomReceipt()
         {
             if (_service == null)
             {
@@ -26,6 +26,7 @@ namespace WitchCauldron.Scripts.Common.Utilits.Debugging
             _service.SelectRandomReceipt();
         }
 
+        
 #if UNITY_EDITOR
         [ContextMenu("Brewing/Select Random Receipt")]
         private void Ctx_SelectRandomReceipt()

@@ -2,9 +2,8 @@ using System.Collections;
 using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using WitchCauldron.Scripts.Common.Utilits;
+using WitchCauldron.Scripts.Common.Utils;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
-using WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Abstract;
 using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
 using Zenject;
 
@@ -13,7 +12,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game
     public class SceneLoader
     {
         private readonly DiContainer _rootContainer;
-        private readonly IGameStateProvider _gameStateProvider;
 
         private readonly Coroutines _coroutines;
         
@@ -24,13 +22,13 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game
         public Observable<Unit> OnSceneLoadingEnded => _onSceneLoadingEnded;        
         
         
-        public SceneLoader(DiContainer rootContainer,IGameStateProvider gameStateProvider)
+        public SceneLoader(DiContainer rootContainer)
         {
             _rootContainer = rootContainer;
-            _gameStateProvider = gameStateProvider;
 
             _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
             Object.DontDestroyOnLoad(_coroutines.gameObject);
+            
         }
 
         public void LoadScene(string sceneName)
@@ -54,8 +52,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.MainMenu);
 
-        
-            //Simulating loading
             yield return new WaitForSeconds(0.5f);
             
             
@@ -77,15 +73,14 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game
             yield return new WaitUntil(() => isGameStateLoaded);
             
 
-            var sceneEntryPoint = Object.FindFirstObjectByType<SceneEntryPoint>();
+            var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
             if (!sceneEntryPoint)
             {
                 Debug.LogError($"{Scenes.Gameplay}: entry point not found!!");
             }
             
             
-            var sceneContainer = new DiContainer(_rootContainer);
-            sceneEntryPoint.Run(sceneContainer);
+            sceneEntryPoint.Run();
             
     
             _onSceneLoadingEnded.OnNext(Unit.Default);
