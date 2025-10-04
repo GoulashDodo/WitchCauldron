@@ -1,9 +1,9 @@
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.View;
+using WitchCauldron.Scripts.Feature.Gameplay.Brewing.ScriptableObjects;
+using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.UI;
 using Zenject;
 
@@ -19,8 +19,10 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
         {
             Container.BindInstance(_receiptList).AsSingle();
 
+
             Container.Bind<ReceiptService>().AsSingle();
             Container.Bind<BrewingService>().AsSingle();
+            Container.Bind<CauldronService>().AsSingle();
             Container.Bind<DraggableItemService>().AsSingle();
 
             Container.Bind<MouseClickHandler>()
@@ -31,11 +33,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
             
             
             InstallSceneUI();
-            
-           
-            Container.BindInterfacesTo<GameplayCommandsRegistrator>()
-                .AsSingle()
-                .NonLazy();
             
         }
 

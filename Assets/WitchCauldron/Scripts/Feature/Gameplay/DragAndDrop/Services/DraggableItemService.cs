@@ -1,22 +1,24 @@
 using UnityEngine;
-using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
-using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Cmd.Parameters;
+using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services
 {
     public class DraggableItemService
     {
-        private readonly ICommandProcessor _cmd;
 
-        public DraggableItemService(ICommandProcessor cmd)
+        private readonly MouseClickHandler _mouseClickHandler;
+        
+        public DraggableItemService(MouseClickHandler mouseClickHandler)
         {
-            _cmd = cmd;
+            _mouseClickHandler = mouseClickHandler;
         }
-
-        public bool TrySpawnDraggableItem(DraggableItem itemToSpawn, Vector3 initialPosition)
+       
+        public void SpawnDraggableItem(DraggableItem itemToSpawn, Vector3 initialPosition)
         {
-            return _cmd.Process(new CmdTrySpawnDraggableItemParameters(itemToSpawn, initialPosition));
+            var item = Object.Instantiate(itemToSpawn, initialPosition, Quaternion.identity);
+            
+            item.Initialize(_mouseClickHandler.MouseToWorldPosition);
         }
         
     }

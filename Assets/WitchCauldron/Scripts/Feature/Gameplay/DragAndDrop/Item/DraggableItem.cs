@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using R3;
 using UnityEngine;
+using WitchCauldron.Scripts.Core.GameRoot.Data;
+using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Cauldrons;
+using WitchCauldron.Scripts.Feature.Gameplay.Brewing.ScriptableObjects;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item
 {
@@ -14,6 +17,7 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item
         private bool _isDragging;
         private IDisposable _positionSubscription;
 
+        
         private void Awake()
         {
             _transform = transform;
@@ -34,10 +38,31 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item
 
         private void Drop()
         {
-
             _isDragging = false;
-            _positionSubscription?.Dispose();
+            
+            float radius = 0.5f; 
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position,
+                radius,
+                LayerMask.GetMask(Layers.Cauldron));
 
+            if (hits != null)
+            {
+
+                Cauldron[] cauldrons = { };
+                
+                foreach (Collider2D hit in hits)
+                {
+                    cauldrons = hit.gameObject.GetComponents<Cauldron>();
+                }
+                
+                if (cauldrons.Length != 0)
+                {
+                    cauldrons.FirstOrDefault()?.TryAddItem(_brewingIngredient);
+                }
+                
+            }
+
+            _positionSubscription?.Dispose();
             Destroy(gameObject);
         }
 
@@ -50,10 +75,13 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item
         {
             _positionSubscription?.Dispose();
         }
-
         private void OnDestroy()
         {
             Dispose();
         }
+
+
+
+        
     }
 }

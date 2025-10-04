@@ -1,6 +1,4 @@
 using UnityEngine;
-using WitchCauldron.Scripts.Core.GameRoot.Cmd;
-using WitchCauldron.Scripts.Core.GameRoot.Cmd.Interfaces;
 using WitchCauldron.Scripts.Core.GameRoot.State.Providers;
 using WitchCauldron.Scripts.Core.GameRoot.View;
 using Zenject;
@@ -14,7 +12,6 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game.Registra
 
         public override void InstallBindings()
         {
-            Container.Bind<ICommandProcessor>().To<CommandProcessor>().AsSingle();
             Container.Bind<IGameStateProvider>().To<PlayerPrefsGameStateProvider>().AsSingle();
             Container.Bind<SceneLoader>().AsSingle();
 
