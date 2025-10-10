@@ -18,6 +18,12 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services
             
             return enemy;
         }
+
+
+        public void DamageEnemy(int enemyId, int damage)
+        {
+            var enemy = _allEnemies[enemyId];
+        }
         
     }
 }

@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2719d638fd1649b2811ce63d7e42ea04, type: 3}
-  m_Name: foo
+  m_Name: loo
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects.BrewingReceipt
-  <Name>k__BackingField: foo
+  <TypeId>k__BackingField: Loo
+  <TitleLid>k__BackingField: Loo
+  <ResultPotionSettings>k__BackingField: {fileID: 11400000, guid: d16402383f12144478db5358c137889d, type: 2}
   <Parts>k__BackingField:
   - <Ingredient>k__BackingField: {fileID: 11400000, guid: c3c6702a209a90f4c961be195cc5204f, type: 2}
-    <Quantity>k__BackingField: 1
+    <Quantity>k__BackingField: 2

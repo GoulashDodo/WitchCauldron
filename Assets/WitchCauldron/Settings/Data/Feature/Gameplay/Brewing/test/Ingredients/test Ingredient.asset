@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1bb6ebde384c2aa9064fde9f048455, type: 3}
   m_Name: test Ingredient
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.ScriptableObjects.BrewingIngredient
-  <Name>k__BackingField: 
-  <Description>k__BackingField: 
+  <TypeId>k__BackingField: Candle
+  <TitleLid>k__BackingField: Candle
+  <DescriptionLid>k__BackingField: It burns...

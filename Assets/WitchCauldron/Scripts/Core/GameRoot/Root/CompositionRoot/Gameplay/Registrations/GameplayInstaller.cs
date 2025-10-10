@@ -4,6 +4,7 @@ using WitchCauldron.Scripts.Feature.Gameplay.Brewing.ScriptableObjects;
 using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.Potions.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.UI;
 using Zenject;
 
@@ -23,11 +24,12 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
             Container.Bind<ReceiptService>().AsSingle();
             Container.Bind<BrewingService>().AsSingle();
             Container.Bind<CauldronService>().AsSingle();
+            Container.Bind<PotionService>().AsSingle().NonLazy();
             Container.Bind<DraggableItemService>().AsSingle();
 
             Container.Bind<MouseClickHandler>()
                 .FromMethod(_ => new MouseClickHandler(Container.Resolve<GameInput>()))
-                .AsSingle()
+                .AsSingle()     
                 .NonLazy();
 
             

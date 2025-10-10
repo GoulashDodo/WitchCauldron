@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Brewing.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "Receipt Lists", menuName = "Game/Potions/Brewing/Receipt Lists")]
+    [CreateAssetMenu(fileName = "Receipt Lists", menuName = "Game/Brewing/Receipt Lists")]
     public class PotionReceiptList : ScriptableObject
     {
         [field:SerializeField] public BrewingReceipt[] Receipts { get; private set; }
