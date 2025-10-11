@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using ObservableCollections;
-using R3;
 using UnityEngine;
-using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Cauldrons;
-using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Settings;
 
 
@@ -17,14 +13,8 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Potions.Services
         
         private readonly PotionInventory _inventory;
 
-        public PotionService(CauldronService cauldronService)
-        {
-            cauldronService.AllCauldrons.ObserveAdd().Subscribe(cauldronE =>
-            {
-                var cauldron = cauldronE.Value;
-
-                cauldron.BrewingSessionFinished.Subscribe(AddPotion);
-            });
+        public PotionService()
+        {   
             
             _inventory = new PotionInventory(new List<Potion>(), 5);
             

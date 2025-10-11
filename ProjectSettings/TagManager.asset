@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Cauldron
-  - 
+  - Item
+  - Battleground
   - 
   - 
   - 
@@ -38,8 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2181330957
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 353519729
     locked: 0
   m_RenderingLayers:
   - Default

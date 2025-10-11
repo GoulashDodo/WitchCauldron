@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474920a752b40ecb93009bd5d4e62bd, type: 3}
+  m_Name: MoonRock
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item.Settings.ItemSettings
+  <TypeId>k__BackingField: MoonRock
+  <ItemPf>k__BackingField: {fileID: 7170681095631192947, guid: f8d557a44255e3a42883cce4576d0c63, type: 3}
+  <TitleLid>k__BackingField: Moon Rock!
+  <Icon>k__BackingField: {fileID: 2029542551908640097, guid: 0e8125f6d56ef67479bf6bb25eb63c88, type: 3}

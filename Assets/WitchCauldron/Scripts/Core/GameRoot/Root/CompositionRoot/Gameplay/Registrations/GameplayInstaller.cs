@@ -1,9 +1,10 @@
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.View;
-using WitchCauldron.Scripts.Feature.Gameplay.Brewing.ScriptableObjects;
-using WitchCauldron.Scripts.Feature.Gameplay.Brewing.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.Combination.ScriptableObjects;
+using WitchCauldron.Scripts.Feature.Gameplay.Combination.Service;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.Potions.Services;
 using WitchCauldron.Scripts.Feature.Gameplay.UI;
 using Zenject;
@@ -14,24 +15,25 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Gameplay.Regi
     {
         [Header("Configs")]
         [SerializeField] private UIGameplayRootBinder _sceneRootBinderPrefab;
-        [SerializeField] private PotionReceiptList _receiptList;
-
+        [SerializeField] private AllItemSettings _allItemSettings;
+        [SerializeField] private CombinationRuleList  _combinationRuleList;
+        
         public override void InstallBindings()
         {
-            Container.BindInstance(_receiptList).AsSingle();
-
-
-            Container.Bind<ReceiptService>().AsSingle();
-            Container.Bind<BrewingService>().AsSingle();
-            Container.Bind<CauldronService>().AsSingle();
+            Container.BindInstance(_allItemSettings);
+            Container.BindInstance(_combinationRuleList);
+    
             Container.Bind<PotionService>().AsSingle().NonLazy();
-            Container.Bind<DraggableItemService>().AsSingle();
+            Container.Bind<CombinationService>().AsSingle().NonLazy();
+            Container.Bind<ItemService>().AsSingle();
 
             Container.Bind<MouseClickHandler>()
                 .FromMethod(_ => new MouseClickHandler(Container.Resolve<GameInput>()))
                 .AsSingle()     
                 .NonLazy();
 
+            
+       
             
             
             InstallSceneUI();

@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/WitchCauldron/Scenes/Main/MainMenu.unity
     guid: fde74a06b34a4db44887586c7297343b
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 4e877f0d37e614140938c420d2f7995a, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

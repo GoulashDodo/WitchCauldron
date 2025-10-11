@@ -3,6 +3,7 @@ using WitchCauldron.Scripts.Feature.Gameplay.Potions.Settings;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Potions
 {
+    
     public abstract class Potion : MonoBehaviour
     {
 
