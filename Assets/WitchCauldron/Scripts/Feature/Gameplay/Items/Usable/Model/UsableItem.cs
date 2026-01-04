@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
 using WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Model;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Model
 {
     public abstract class UsableItem : CombinableItem
     {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using WitchCauldron.Scripts.Core.GameRoot.Data;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Model
 {
     public class CombinableItem : DraggableItem 
     {

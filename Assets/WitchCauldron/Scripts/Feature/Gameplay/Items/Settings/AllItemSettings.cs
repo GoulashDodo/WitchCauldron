@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Settings
 {
     [CreateAssetMenu(fileName = "All Item Settings", menuName = "Game/Items/All Item Settings", order = 0)]
     public class AllItemSettings : ScriptableObject

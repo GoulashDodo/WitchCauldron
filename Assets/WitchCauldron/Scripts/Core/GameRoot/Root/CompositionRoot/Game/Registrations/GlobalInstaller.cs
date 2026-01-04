@@ -26,6 +26,8 @@ namespace WitchCauldron.Scripts.Core.GameRoot.Root.CompositionRoot.Game.Registra
                 .AsSingle()
                 .NonLazy();
 
+            
+            
             InstallUiRoot();
             
             Container.BindInterfacesTo<StartupLoader>()

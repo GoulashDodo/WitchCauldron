@@ -1,7 +1,9 @@
 using UnityEngine;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model;
+using WitchCauldron.Scripts.Common.Extensions.UnityInspector;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Model;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Settings
 {
     [CreateAssetMenu(fileName = "Item Settings", menuName = "Game/Items/Settings", order = 0)]
     public class ItemSettings : ScriptableObject
@@ -14,6 +16,8 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings
         [field: SerializeField] public Sprite Icon { get; private set; }
    
         
+        [field: Space(10)][Header("On Item use")]
+        [field: SerializeField, Expandable] public UseCommandParameters[] OnUseCommands { get; private set; }
         
     }
 }

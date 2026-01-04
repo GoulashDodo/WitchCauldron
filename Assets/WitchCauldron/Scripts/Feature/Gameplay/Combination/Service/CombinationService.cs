@@ -1,6 +1,6 @@
 using System.Linq;
 using WitchCauldron.Scripts.Feature.Gameplay.Combination.ScriptableObjects;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Combination.Service
 {

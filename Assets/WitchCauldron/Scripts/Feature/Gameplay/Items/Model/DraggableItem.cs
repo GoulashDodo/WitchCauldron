@@ -2,10 +2,10 @@ using System;
 using R3;
 using UnityEngine;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings;
 using WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Model
 {
     public class DraggableItem : MonoBehaviour, ILeftButtonPressable,ILeftButtonReleasable, IDisposable
     {
@@ -81,9 +81,8 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model
         public void OnLeftButtonPressed(Vector3 mousePosition) => Drag();
         
         public void OnLeftButtonReleased(Vector3 mousePosition) => OnDrop();
-
-
-
+        
         
     }
+
 }

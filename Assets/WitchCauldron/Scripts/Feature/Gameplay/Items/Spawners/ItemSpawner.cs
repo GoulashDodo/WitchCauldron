@@ -1,10 +1,10 @@
 using UnityEngine;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings;
 using WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
 using Zenject;
 
-namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Spawners
+namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Spawners
 {
     public class ItemSpawner : MonoBehaviour, ILeftButtonPressable
     {

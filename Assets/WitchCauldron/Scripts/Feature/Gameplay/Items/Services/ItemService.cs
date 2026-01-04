@@ -2,25 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using WitchCauldron.Scripts.Feature.Gameplay.Combination.Service;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model;
-using WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Settings;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Model;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor;
+using WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Model;
 
 namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Services
 {
     public class ItemService
     {
 
-        private readonly MouseClickHandler _mouseClickHandler;
+        private readonly IUseCommandProcessor _useCommandProcessor;
         
+        private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
         
         private readonly Dictionary<string, ItemSettings> _allItemSettings;        
         
         
-        public ItemService(MouseClickHandler mouseClickHandler, CombinationService combinationService, AllItemSettings allItemSettings)
+        public ItemService(MouseClickHandler mouseClickHandler, CombinationService combinationService, AllItemSettings allItemSettings, IUseCommandProcessor useCommandProcessor)
         {
             _mouseClickHandler = mouseClickHandler;
             _combinationService = combinationService;
+            _useCommandProcessor = useCommandProcessor;
 
 
             _allItemSettings = new Dictionary<string, ItemSettings>();
@@ -30,6 +34,8 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Services
             }
             
         }
+        
+        
         public DraggableItem SpawnDraggableItem(ItemSettings itemSettings,  Vector3 initialPosition, bool startDragging = false)
         {
             
@@ -76,13 +82,18 @@ namespace WitchCauldron.Scripts.Feature.Gameplay.Items.Services
 
         public void UseItem(UsableItem usableItem, Vector2 position)
         {
+            var itemSettings = _allItemSettings[usableItem.TypeId];
             Debug.Log($"[Item service]: Using {usableItem.TypeId}");
+
+
+            foreach (var commandParameters in itemSettings.OnUseCommands)
+            {
+                _useCommandProcessor.Process(commandParameters, position);
+            }
             
             DespawnDraggableItem(usableItem);
-            usableItem.Use(position);
+            
+            
         }
-        
-        
-        
     }
 }

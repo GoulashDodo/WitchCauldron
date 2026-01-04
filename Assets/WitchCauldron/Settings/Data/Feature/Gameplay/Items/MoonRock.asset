@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MoonRock
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item.Settings.ItemSettings
   <TypeId>k__BackingField: MoonRock
-  <ItemPf>k__BackingField: {fileID: 7170681095631192947, guid: f8d557a44255e3a42883cce4576d0c63, type: 3}
+  <ItemPf>k__BackingField: {fileID: 8184555098094622838, guid: f8d557a44255e3a42883cce4576d0c63, type: 3}
   <TitleLid>k__BackingField: Moon Rock!
   <Icon>k__BackingField: {fileID: 2029542551908640097, guid: 0e8125f6d56ef67479bf6bb25eb63c88, type: 3}
+  <OnUseCommands>k__BackingField:
+  - {fileID: 11400000, guid: bd978712b850c5c4f8556e58d03f68d1, type: 2}
