@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf26d04bdea4453834db4d6609cee3e, type: 3}
+  m_Name: GlobalSettingsInstaller
+  m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game.Registrations.GlobalSettingsInstaller
+  _gameSettings: {fileID: 11400000, guid: a61aa3dfde769ad4ab8bf025300972d5, type: 2}
