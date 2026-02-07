@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Core;
 using _WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO;
+using R3;
 using UnityEngine;
 
 namespace _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services
@@ -32,8 +34,9 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services
             var enemyPf = enemySettings.EnemyPf;
             var enemy = Object.Instantiate(enemyPf, position, Quaternion.identity);
             
-            enemy.Initialize(this);
-            _allExistingEnemies.Add(enemy.GetEntityId() , enemy);
+            enemy.Construct(this, enemySettings);
+            
+            
             
             return enemy;
         }
@@ -43,6 +46,22 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services
             var enemy = _allExistingEnemies[enemyId];
             enemy.TakeDamage(damage);
         }
+
+
+
+
+        public void RegisterEnemy(Enemy enemyToRegister)
+        {
+            _allExistingEnemies.Add(enemyToRegister.GetInstanceID() , enemyToRegister);
+
+        }
+
+
+        public void UnregisterEnemy(Enemy enemyToUnregister)
+        {
+            _allExistingEnemies.Remove(enemyToUnregister.GetInstanceID());
+        }
+        
         
     }
 }

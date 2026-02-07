@@ -4,5 +4,6 @@ namespace _WitchCauldron.Scripts.Core.GameRoot.Data
     {
         public const string Item = "Item";
         public const string Battleground  = "Battleground";
+        public const string Base = "Base";
     }
 }

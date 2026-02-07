@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Enemy_Dummy
   m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO.EnemySettings
   <TypeId>k__BackingField: Enemy_Dummy
-  <PointPrice>k__BackingField: 1
-  <MaxHealth>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 1
   <EnemyPf>k__BackingField: {fileID: 7923958733403220195, guid: 7b66b5d6ff47c2a4981414a4bc7ea00f, type: 3}
+  <PointPrice>k__BackingField: 1
+  <MaxHealth>k__BackingField: 10
+  <MaxSpeed>k__BackingField: 0.5
+  <Damage>k__BackingField: 1
+  <AttackDistance>k__BackingField: 1
+  <AttackSpeed>k__BackingField: 1

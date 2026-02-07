@@ -26,10 +26,10 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
         public override void InstallBindings()
         {
             
-            Container.Bind<MouseClickHandler>()
-                .FromMethod(_ => new MouseClickHandler(Container.Resolve<GameInput>()))
-                .AsSingle()     
+            Container.BindInterfacesAndSelfTo<MouseClickHandler>()
+                .AsSingle()
                 .NonLazy();
+
             
             Container.BindInstance(_combinationRuleList).AsSingle();
     

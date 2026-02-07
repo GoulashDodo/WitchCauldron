@@ -82,6 +82,8 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
 
         public void UseItem(UsableItem usableItem, Vector2 position)
         {
+            DespawnDraggableItem(usableItem);
+            
             var itemSettings = _allItemSettings[usableItem.TypeId];
             Debug.Log($"[Item service]: Using {usableItem.TypeId}");
 
@@ -91,7 +93,6 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
                 _useCommandProcessor.Process(commandParameters, position);
             }
             
-            DespawnDraggableItem(usableItem);
             
             
         }
