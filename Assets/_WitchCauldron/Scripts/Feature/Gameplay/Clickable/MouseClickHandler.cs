@@ -8,44 +8,24 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Clickable
 {
     public sealed class MouseClickHandler : IInitializable, ITickable, IDisposable
     {
-        private const int DefaultMaxHits = 16;
-
         private readonly GameInput _gameInput;
-        private readonly Camera _camera;
-
-        private readonly Collider2D[] _hits;
-        private readonly ContactFilter2D _filter;
+        private Camera _camera;
 
         private readonly ReactiveProperty<Vector2> _mouseToWorldPosition = new();
         public Observable<Vector2> MouseToWorldPosition => _mouseToWorldPosition;
 
-        
-        public MouseClickHandler(
-            GameInput gameInput,
-            [InjectOptional] Camera camera = null,
-            int maxHits = DefaultMaxHits,
-            LayerMask clickableMask = default,
-            bool includeTriggers = true)
+        private const int MaxHits = 16;
+        private readonly Collider2D[] _hitBuffer = new Collider2D[MaxHits];
+
+        public MouseClickHandler(GameInput gameInput)
         {
             _gameInput = gameInput;
-            _camera = camera != null ? camera : Camera.main;
-
-            _hits = new Collider2D[maxHits];
-
-            _filter = new ContactFilter2D();
-            _filter.useTriggers = includeTriggers;
-
-            if (clickableMask.value == 0)
-                clickableMask = Physics2D.DefaultRaycastLayers;
-
-            _filter.SetLayerMask(clickableMask);
-            _filter.useLayerMask = true;
-
-         
         }
 
         public void Initialize()
         {
+            _camera = Camera.main;
+
             _gameInput.Gameplay.Enable();
             _gameInput.Gameplay.LeftMousePressed.performed += HandleLeftMousePressed;
             _gameInput.Gameplay.LeftMousePressed.canceled += HandleLeftMouseReleased;
@@ -53,10 +33,8 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Clickable
 
         public void Tick()
         {
-            if (!TryGetMouseWorldPoint(out var worldPoint))
-                return;
-
-            _mouseToWorldPosition.Value = worldPoint;
+            if (TryGetMouseWorldPoint(out var worldPoint))
+                _mouseToWorldPosition.Value = worldPoint;
         }
 
         public void Dispose()
@@ -73,12 +51,12 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Clickable
             if (!TryGetMouseWorldPoint(out var worldPoint))
                 return;
 
-            Dispatch(worldPoint,
-                onCollider: (col) =>
-                {
-                    if (col.TryGetComponent<ILeftButtonPressable>(out var pressable))
-                        pressable.OnLeftButtonPressed(worldPoint);
-                });
+            var hit = Physics2D.OverlapPoint(worldPoint);
+            if (hit == null)
+                return;
+
+            if (hit.TryGetComponent<ILeftButtonPressable>(out var clickable))
+                clickable.OnLeftButtonPressed(worldPoint);
         }
 
         private void HandleLeftMouseReleased(InputAction.CallbackContext _)
@@ -86,28 +64,23 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Clickable
             if (!TryGetMouseWorldPoint(out var worldPoint))
                 return;
 
-            Dispatch(worldPoint,
-                onCollider: (col) =>
-                {
-                    if (col.TryGetComponent<ILeftButtonReleasable>(out var releasable))
-                        releasable.OnLeftButtonReleased(worldPoint);
-                });
-        }
-
-        private void Dispatch(Vector2 worldPoint, Action<Collider2D> onCollider)
-        {
-            var hitCount = Physics2D.OverlapPoint(worldPoint, _filter, _hits);
+            var hitCount = Physics2D.OverlapPoint(worldPoint, new ContactFilter2D(), _hitBuffer);
 
             for (int i = 0; i < hitCount; i++)
             {
-                var hit = _hits[i];
+                var hit = _hitBuffer[i];
                 if (!hit) continue;
-                onCollider(hit);
+
+                if (hit.TryGetComponent<ILeftButtonReleasable>(out var releasable))
+                    releasable.OnLeftButtonReleased(worldPoint);
             }
         }
 
         private bool TryGetMouseWorldPoint(out Vector2 worldPoint)
         {
+            if (_camera == null)
+                _camera = Camera.main;
+
             if (_camera == null || Mouse.current == null)
             {
                 worldPoint = default;

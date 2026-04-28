@@ -1,6 +1,5 @@
 using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using _WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +8,7 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Spawners
     public class ItemSpawner : MonoBehaviour, ILeftButtonPressable
     {
 
-        [SerializeField] private ItemSettings _itemSettingsToSpawn;
+        [SerializeField] private string _itemToSpawnTypeId;
 
         private ItemService _service;
         
@@ -21,7 +20,7 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Spawners
        
         public void OnLeftButtonPressed(Vector3 mousePosition)
         {
-            _service.SpawnDraggableItem(_itemSettingsToSpawn, mousePosition, true);
+            _service.SpawnDraggableItem(_itemToSpawnTypeId, mousePosition, true);
         }
 
     }

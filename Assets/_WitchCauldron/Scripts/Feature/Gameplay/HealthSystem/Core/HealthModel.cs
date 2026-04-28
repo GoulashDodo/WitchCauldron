@@ -19,6 +19,8 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.HealthSystem.Core
         private readonly Subject<DeathInfo> _died = new();
 
         
+        public Observable<float> CurrentHealth => _currentHealth;
+        
         
         public Observable<DamageInfo> Damaged => _damaged;
         public Observable<DeathInfo> Died => _died;

@@ -113,19 +113,11 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Core
         }
         
         
-        
-
-        #region ATTACK
-
-
         public void TakeDamage(float damage)
         {
             Debug.Log($"Taking damage {damage}");
             _context.Health.TakeDamage(damage);
         }
-
-        #endregion
-
 
         private void Die(DeathInfo deathInfo)
         {
@@ -133,12 +125,10 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Core
             gameObject.SetActive(false);
         }
 
-
         private void OnDisable()
         {
             _disposables.Dispose();
         }
-
 
         private void OnDrawGizmosSelected()
         {

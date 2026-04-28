@@ -1,12 +1,12 @@
-using _WitchCauldron.Scripts.Core.GameRoot.View;
 using _WitchCauldron.Scripts.Feature.Gameplay._Root;
+using _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
 using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
 using _WitchCauldron.Scripts.Feature.Gameplay.Combination.ScriptableObjects;
 using _WitchCauldron.Scripts.Feature.Gameplay.Combination.Service;
 using _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services;
 using _WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
 using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor;
-using _WitchCauldron.Scripts.Feature.Gameplay.UI;
+using _WitchCauldron.Scripts.Feature.Gameplay.Level._Root;
 using _WitchCauldron.Scripts.Feature.Gameplay.Waves.Service;
 using _WitchCauldron.Scripts.Feature.Gameplay.Waves.SpawnArea;
 using UnityEngine;
@@ -17,10 +17,13 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
     public sealed class GameplayInstaller : MonoInstaller
     {
         [Header("Configs")]
-        [SerializeField] private UIGameplayRootBinder _sceneRootBinderPrefab;
+        [SerializeField] private LevelConfig _levelConfig;
         
         [SerializeField] private CombinationRuleList  _combinationRuleList;
-        
+
+
+        [Header("Level Objects")] 
+        [SerializeField] private Base _base;
         [SerializeField] private BoxSpawnArea _spawnArea;
         
         public override void InstallBindings()
@@ -32,7 +35,13 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
 
             
             Container.BindInstance(_combinationRuleList).AsSingle();
-    
+            Container.BindInstance(_levelConfig).AsSingle();
+            
+            
+            Container.Bind<Base>()
+                    .FromInstance(_base)
+                    .AsSingle();
+            
             
             Container
                 .Bind<ISpawnArea>()
@@ -42,7 +51,6 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
             Container.Bind<IUseCommandProcessor>().To<UseCommandProcessor>().AsSingle();
          
             BindServices();
-            InstallSceneUI();
             
             
             Container.Bind<IInitializable>().To<GameBootstrap>().AsSingle().NonLazy();
@@ -61,20 +69,7 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
 
         }
         
-        private void InstallSceneUI()
-        {
-            Container.Bind<UIGameplayRootBinder>()
-                .FromComponentInNewPrefab(_sceneRootBinderPrefab)
-                .AsSingle()
-                .OnInstantiated<UIGameplayRootBinder>((ctx, binder) =>
-                {
-                    var uiRoot = ctx.Container.Resolve<UIRootView>();
-                    uiRoot.AttachSceneUI(binder.gameObject);
-
-                    binder.InitializeUI(ctx.Container);
-                })
-                .NonLazy();
-        }
+      
      
     }
 }

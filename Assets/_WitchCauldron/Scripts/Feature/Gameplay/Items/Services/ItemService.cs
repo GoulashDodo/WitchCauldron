@@ -36,8 +36,10 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
         }
         
         
-        public DraggableItem SpawnDraggableItem(ItemSettings itemSettings,  Vector3 initialPosition, bool startDragging = false)
+        public DraggableItem SpawnDraggableItem(string itemTypeId,  Vector3 initialPosition, bool startDragging = false)
         {
+            
+            var itemSettings = _allItemSettings[itemTypeId];
             
             var itemPf = itemSettings.ItemPf;
             var item = Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
@@ -45,7 +47,9 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
             item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, startDragging);
             
             return item;
-        }   
+        }  
+        
+        
         private void DespawnDraggableItem(DraggableItem item)
         {
             if (item == null)
@@ -54,6 +58,7 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
             item.Dispose();
             item.gameObject.SetActive(false);
         }
+        
         public bool TryCombineItems(CombinableItem item, CombinableItem otherItem)
         {
             
@@ -70,7 +75,7 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
                 Debug.Log($"[Item service]: Combining {item.TypeId} and {otherItem.TypeId}");
                 var midPoint = (item.gameObject.transform.position + otherItem.gameObject.transform.position) / 2;
                 
-                SpawnDraggableItem(result, midPoint);
+                SpawnDraggableItem(result.TypeId, midPoint);
                 DespawnDraggableItem(item);
                 DespawnDraggableItem(otherItem);
                 

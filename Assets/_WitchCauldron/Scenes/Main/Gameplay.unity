@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 109975211}
   - component: {fileID: 109975215}
   - component: {fileID: 109975214}
+  - component: {fileID: 109975216}
   m_Layer: 0
   m_Name: __SCENE__
   m_TagString: Untagged
@@ -170,8 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b04a3c3fb168a4fbd3c6aa77c2f68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _sceneRootBinderPrefab: {fileID: 7403211245335291435, guid: 0e4ecaddeee375246896571c24ac3f3d, type: 3}
+  _levelConfig: {fileID: 11400000, guid: 7458ea1c594837641b04fa2d4d41e0b4, type: 2}
   _combinationRuleList: {fileID: 11400000, guid: 4980c159665a033469b65c316e85b2b2, type: 2}
+  _base: {fileID: 2104869628}
   _spawnArea: {fileID: 805302040}
 --- !u!114 &109975215
 MonoBehaviour:
@@ -188,6 +190,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 109975214}
+  - {fileID: 109975216}
   _installerPrefabs: []
   _autoRun: 0
   OnPreInstall:
@@ -205,6 +208,19 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!114 &109975216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109975210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b136ce25b2b14679bc2f6a730abb2e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Registrations.UIGameplayInstaller
+  _sceneRootBinderPrefab: {fileID: 7403211245335291435, guid: 0e4ecaddeee375246896571c24ac3f3d, type: 3}
 --- !u!1 &184857860
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +353,8 @@ Transform:
   m_GameObject: {fileID: 184857860}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.65, y: 4.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.88, y: 4.38, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 109975211}
@@ -355,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e451eed281b4d12ac5a312189038009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Spawners.ItemSpawner
-  _itemSettingsToSpawn: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+  _itemToSpawnTypeId: Item_MoonPebble
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

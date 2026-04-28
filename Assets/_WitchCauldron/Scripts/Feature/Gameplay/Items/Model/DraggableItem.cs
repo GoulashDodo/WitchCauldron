@@ -25,6 +25,15 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Model
         
         protected Collider2D[] OverlapBuffer;
         
+        
+        private Subject<Unit> _pickedUp = new Subject<Unit>();
+        private Subject<Unit> _dropped = new Subject<Unit>();
+        
+        public Observable<Unit> PickedUp => _pickedUp;
+        public Observable<Unit> Dropped => _dropped;
+        
+        
+        
         public void Initialize(
             ItemSettings itemSettings,
             ItemService itemService,
@@ -65,11 +74,13 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Model
 
         private void Drag()
         {
+            _pickedUp.OnNext(Unit.Default);
             _isDragging = true;  
         }
         
         protected virtual void OnDrop()
         {
+            _dropped.OnNext(Unit.Default);
             _isDragging = false;
         }
         

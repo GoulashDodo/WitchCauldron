@@ -1,4 +1,3 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.Waves.ScriptableObjects;
 using R3;
 
 namespace _WitchCauldron.Scripts.Feature.Gameplay.Waves.Service
