@@ -1,10 +1,10 @@
 using System;
-using _WitchCauldron.Scripts.Core.GameRoot.Data;
-using _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Model;
+using Core.GameRoot.Data;
+using Feature.Gameplay.Battle.Model;
+using Feature.Gameplay.Items.Model;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Model
+namespace Feature.Gameplay.Items.Usable.Model
 {
     public abstract class UsableItem : CombinableItem
     {

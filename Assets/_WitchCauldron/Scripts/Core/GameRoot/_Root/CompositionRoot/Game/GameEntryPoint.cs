@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game
+namespace Core.GameRoot._root.CompositionRoot.Game
 {
     public class GameEntryPoint
     {

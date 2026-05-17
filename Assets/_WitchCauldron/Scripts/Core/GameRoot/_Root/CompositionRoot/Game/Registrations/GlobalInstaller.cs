@@ -1,10 +1,8 @@
-using _WitchCauldron.Scripts.Core.GameRoot.State.Providers;
-using _WitchCauldron.Scripts.Core.GameRoot.View;
-using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
+using Core.GameRoot.View;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game.Registrations
+namespace Core.GameRoot._root.CompositionRoot.Game.Registrations
 {
     public class GlobalInstaller : MonoInstaller
     {
@@ -13,7 +11,6 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game.Regist
 
         public override void InstallBindings()
         {
-            Container.Bind<IGameStateProvider>().To<PlayerPrefsGameStateProvider>().AsSingle();
             Container.Bind<SceneLoader>().AsSingle();
 
             Container.Bind<GameInput>()

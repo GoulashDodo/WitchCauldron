@@ -1,10 +1,9 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
-using _WitchCauldron.Scripts.Feature.Gameplay.HealthSystem;
+using Feature.Gameplay.Battle.Model;
 using R3;
 using TMPro;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.UI
+namespace Feature.Gameplay.UI
 {
     public class UIBaseHealth : MonoBehaviour
     {

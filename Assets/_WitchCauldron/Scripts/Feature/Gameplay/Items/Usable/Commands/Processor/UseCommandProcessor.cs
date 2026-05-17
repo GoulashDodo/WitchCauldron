@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Damage;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Handler;
+using Feature.Gameplay.Items.Usable.Commands.Damage;
+using Feature.Gameplay.Items.Usable.Commands.Handler;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor
+namespace Feature.Gameplay.Items.Usable.Commands.Processor
 {
     public class UseCommandProcessor : IUseCommandProcessor
     {

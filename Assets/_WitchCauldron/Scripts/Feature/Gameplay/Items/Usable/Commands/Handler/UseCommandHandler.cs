@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Handler
+namespace Feature.Gameplay.Items.Usable.Commands.Handler
 {
     public abstract class UseCommandHandler<T> : IUseCommandHandler, IUseCommandHandler<T>
         where T : UseCommandParameters

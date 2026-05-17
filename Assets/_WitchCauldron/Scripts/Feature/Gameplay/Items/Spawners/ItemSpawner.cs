@@ -1,9 +1,9 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
+using Core.GameRoot.Input.Clickable;
+using Feature.Gameplay.Items.Services;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Spawners
+namespace Feature.Gameplay.Items.Spawners
 {
     public class ItemSpawner : MonoBehaviour, ILeftButtonPressable
     {

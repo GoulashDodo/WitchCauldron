@@ -1,40 +1,20 @@
-using _WitchCauldron.Scripts.Core.GameRoot.Settings;
-using _WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
+using Core.GameRoot.SO;
+using Feature.Gameplay._root.SO;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game.Registrations
+namespace Core.GameRoot._root.CompositionRoot.Game.Registrations
 {
-    [CreateAssetMenu(
-        fileName = "GlobalSettingsInstaller",
-        menuName = "Installers/Global Settings Installer")]
+    [CreateAssetMenu(fileName = "GlobalSettingsInstaller",  menuName = "Installers/Global Settings Installer")]
     public class GlobalSettingsInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private GameSettings _gameSettings;
 
         public override void InstallBindings()
         {
-            Container
-                .Bind<GameSettings>()
-                .FromInstance(_gameSettings)
-                .AsSingle();
-
-            var enemiesSettings = _gameSettings.AllEnemiesSettings;
             
-            Container
-                .Bind<AllEnemySettings>()
-                .FromInstance(enemiesSettings)
-                .AsSingle();
-            
-            var itemSettings = _gameSettings.AllItemsSettings;
-            
-            Container
-                .Bind<AllItemSettings>()
-                .FromInstance(itemSettings)
-                .AsSingle();
-            
-            
+            Container.Bind<GameSettings>().FromInstance(_gameSettings).AsSingle();
+            Container.Bind<GameplaySettings>().FromInstance(_gameSettings.GameplaySettings).AsSingle();
             
         }
     }

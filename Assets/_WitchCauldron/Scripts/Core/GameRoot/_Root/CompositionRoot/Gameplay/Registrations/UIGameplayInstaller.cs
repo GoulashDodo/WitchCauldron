@@ -1,9 +1,8 @@
-using _WitchCauldron.Scripts.Core.GameRoot.View;
-using _WitchCauldron.Scripts.Feature.Gameplay.UI;
+using Feature.Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Registrations
+namespace Core.GameRoot._root.CompositionRoot.Gameplay.Registrations
 {
     public class UIGameplayInstaller : MonoInstaller
     {

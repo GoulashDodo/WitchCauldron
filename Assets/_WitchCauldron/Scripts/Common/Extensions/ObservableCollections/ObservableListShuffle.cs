@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using ObservableCollections;
 
-namespace _WitchCauldron.Scripts.Common.Extensions.ObservableCollections
+namespace Common.Extensions.ObservableCollections
 {
     public static class ObservableListShuffle
     {

@@ -1,21 +1,20 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.HealthSystem;
-using _WitchCauldron.Scripts.Feature.Gameplay.HealthSystem.Core;
-using _WitchCauldron.Scripts.Feature.Gameplay.Level._Root;
+using Feature.Gameplay.HealthSystem;
+using Feature.Gameplay.HealthSystem.Core;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model
+namespace Feature.Gameplay.Battle.Model
 {
     public class Base : MonoBehaviour, IDamageable
     {
         
-        public HealthModel Health { get; private set; }
+        public HealthComponent Health { get; private set; }
 
         
         [Inject]
-        public void Construct(LevelConfig levelConfig)
+        public void Construct()
         {
-            Health = new HealthModel(levelConfig.BaseHealth);
+            Health = new HealthComponent(10);
         }
         
         

@@ -1,8 +1,8 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.HealthSystem;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Handler;
+using Feature.Gameplay.HealthSystem;
+using Feature.Gameplay.Items.Usable.Commands.Handler;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Damage
+namespace Feature.Gameplay.Items.Usable.Commands.Damage
 {
     public sealed class DamageCommandHandler : UseCommandHandler<DamageCommandParameters>
     {

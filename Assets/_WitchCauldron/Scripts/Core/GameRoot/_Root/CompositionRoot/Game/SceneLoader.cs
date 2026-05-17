@@ -1,13 +1,14 @@
 using System.Collections;
-using _WitchCauldron.Scripts.Common.Utils;
-using _WitchCauldron.Scripts.Core.GameRoot.Data;
-using _WitchCauldron.Scripts.Core.GameRoot.State.Providers;
+using Common.Utils;
+using Core.GameRoot.Data;
+using Feature.Gameplay._root;
+using Feature.Gameplay.Level.SO;
 using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game
+namespace Core.GameRoot._root.CompositionRoot.Game
 {
     public class SceneLoader
     {
@@ -36,7 +37,11 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game
             switch (sceneName)
             {
                 case Scenes.Gameplay:
-                    _coroutines.StartCoroutine(LoadAndStartGameplay());
+                    
+                    //TODO: Change default level selection
+                    var entryParams = new GameplayEntryParameters("level_default");
+                    
+                    _coroutines.StartCoroutine(LoadAndStartGameplay(entryParams));
                     return;
                 case Scenes.MainMenu:
                     _coroutines.StartCoroutine(LoadAndStartMainMenu());
@@ -59,26 +64,17 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game
 
         }
         
-        private IEnumerator LoadAndStartGameplay()
+        private IEnumerator LoadAndStartGameplay(GameplayEntryParameters gameplayEntryParameters)
         {
 
             _onSceneLoadingStarted.OnNext(Unit.Default);
             
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.Gameplay);
-
-            
-            var isGameStateLoaded = false;
-            _rootContainer.Resolve<IGameStateProvider>().LoadGameState().Subscribe(_ => isGameStateLoaded = true);
-            yield return new WaitUntil(() => isGameStateLoaded);
             
 
             var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
-            if (!sceneEntryPoint)
-            {
-                Debug.LogError($"{Scenes.Gameplay}: entry point not found!!");
-            }
-            
+            //sceneEntryPoint.Container.Bind<GameplayEntryParameters>().FromInstance(gameplayEntryParameters).AsSingle();
             
             sceneEntryPoint.Run();
             

@@ -1,11 +1,11 @@
 using System;
-using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
+using Core.GameRoot.Input.Clickable;
+using Feature.Gameplay.Items.Services;
+using Feature.Gameplay.Items.SO;
 using R3;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Model
+namespace Feature.Gameplay.Items.Model
 {
     public class DraggableItem : MonoBehaviour, ILeftButtonPressable,ILeftButtonReleasable, IDisposable
     {

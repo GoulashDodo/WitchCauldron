@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326f3dac98e84494956859d8b19a60a0, type: 3}
+  m_Name: DefaultLevelSettings
+  m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Level._Root.LevelConfig
+  <LevelId>k__BackingField: level_default
+  <BaseHealth>k__BackingField: 250
+  <WaveSettings>k__BackingField: {fileID: 11400000, guid: 1d0aefd975d72b944941de2a989fc232, type: 2}

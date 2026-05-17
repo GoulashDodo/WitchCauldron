@@ -1,7 +1,7 @@
-using _WitchCauldron.Scripts.Common.Utils;
+using Common.Utils;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game
+namespace Core.GameRoot._root.CompositionRoot.Game
 {
     public class StartupLoader : IInitializable
     {

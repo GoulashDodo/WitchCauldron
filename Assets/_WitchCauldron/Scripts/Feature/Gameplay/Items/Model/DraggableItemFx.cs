@@ -1,7 +1,7 @@
 using R3;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Model
+namespace Feature.Gameplay.Items.Model
 {
     
     [RequireComponent(typeof(DraggableItem))]

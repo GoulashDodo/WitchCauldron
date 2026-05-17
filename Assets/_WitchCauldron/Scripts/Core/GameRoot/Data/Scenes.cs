@@ -1,4 +1,4 @@
-namespace _WitchCauldron.Scripts.Core.GameRoot.Data
+namespace Core.GameRoot.Data
 {
     public static class Scenes
     {

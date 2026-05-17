@@ -1,7 +1,7 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Model;
+using Feature.Gameplay.Items.Usable.Model;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Model
+namespace Feature.Gameplay.Items.Model
     {
         public class DamageItem : UsableItem
         {

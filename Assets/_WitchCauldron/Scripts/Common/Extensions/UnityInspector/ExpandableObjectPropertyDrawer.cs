@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Common.Extensions.UnityInspector
+namespace Common.Extensions.UnityInspector
 {
     [CustomPropertyDrawer(typeof(ExpandableAttribute))]
     public class ExpandableObjectPropertyDrawer : PropertyDrawer

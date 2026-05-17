@@ -1,25 +1,19 @@
-using _WitchCauldron.Scripts.Feature.Gameplay._Root;
-using _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
-using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using _WitchCauldron.Scripts.Feature.Gameplay.Combination.ScriptableObjects;
-using _WitchCauldron.Scripts.Feature.Gameplay.Combination.Service;
-using _WitchCauldron.Scripts.Feature.Gameplay.Enemies.Services;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Services;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor;
-using _WitchCauldron.Scripts.Feature.Gameplay.Level._Root;
-using _WitchCauldron.Scripts.Feature.Gameplay.Waves.Service;
-using _WitchCauldron.Scripts.Feature.Gameplay.Waves.SpawnArea;
+using Core.GameRoot.Input.Clickable;
+using Feature.Gameplay._root;
+using Feature.Gameplay.Battle.Enemies.Services;
+using Feature.Gameplay.Battle.Model;
+using Feature.Gameplay.Battle.Waves.Service;
+using Feature.Gameplay.Battle.Waves.SpawnArea;
+using Feature.Gameplay.Combination.Service;
+using Feature.Gameplay.Items.Services;
+using Feature.Gameplay.Items.Usable.Commands.Processor;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Registrations
+namespace Core.GameRoot._root.CompositionRoot.Gameplay.Registrations
 {
     public sealed class GameplayInstaller : MonoInstaller
     {
-        [Header("Configs")]
-        [SerializeField] private LevelConfig _levelConfig;
-        
-        [SerializeField] private CombinationRuleList  _combinationRuleList;
 
 
         [Header("Level Objects")] 
@@ -32,10 +26,6 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
             Container.BindInterfacesAndSelfTo<MouseClickHandler>()
                 .AsSingle()
                 .NonLazy();
-
-            
-            Container.BindInstance(_combinationRuleList).AsSingle();
-            Container.BindInstance(_levelConfig).AsSingle();
             
             
             Container.Bind<Base>()
@@ -57,13 +47,11 @@ namespace _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Gameplay.Re
             
         }
 
-
-
         private void BindServices()
         {
             
             Container.Bind<EnemyService>().AsSingle();
-            Container.Bind<WaveService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();
             Container.Bind<CombinationService>().AsSingle();
             Container.Bind<ItemService>().AsSingle();
 

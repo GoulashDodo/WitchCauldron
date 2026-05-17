@@ -1,8 +1,8 @@
-using _WitchCauldron.Scripts.Core.GameRoot._Root.CompositionRoot.Game;
+using Core.GameRoot._root.CompositionRoot.Game;
 using R3;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot.View
+namespace Core.GameRoot.View
 {
     public class UIRootView : MonoBehaviour
     {

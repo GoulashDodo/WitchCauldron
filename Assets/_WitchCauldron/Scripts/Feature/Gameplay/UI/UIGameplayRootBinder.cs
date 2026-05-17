@@ -1,10 +1,9 @@
-using _WitchCauldron.Scripts.Core.GameRoot.State.Providers;
-using _WitchCauldron.Scripts.Core.GameRoot.View;
-using _WitchCauldron.Scripts.Feature.Gameplay.Battle.Model;
+using Core.GameRoot.View;
+using Feature.Gameplay.Battle.Model;
 using UnityEngine;
 using Zenject;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.UI
+namespace Feature.Gameplay.UI
 {
     public class UIGameplayRootBinder : MonoBehaviour
     {

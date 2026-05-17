@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using _WitchCauldron.Scripts.Feature.Gameplay.Clickable;
-using _WitchCauldron.Scripts.Feature.Gameplay.Combination.Service;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Model;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Settings;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor;
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Model;
+using Core.GameRoot.Input.Clickable;
+using Feature.Gameplay.Combination.Service;
+using Feature.Gameplay.Items.Model;
+using Feature.Gameplay.Items.SO;
+using Feature.Gameplay.Items.Usable.Commands.Processor;
+using Feature.Gameplay.Items.Usable.Model;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
+namespace Feature.Gameplay.Items.Services
 {
     public class ItemService
     {
@@ -20,7 +20,10 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
         private readonly Dictionary<string, ItemSettings> _allItemSettings;        
         
         
-        public ItemService(MouseClickHandler mouseClickHandler, CombinationService combinationService, AllItemSettings allItemSettings, IUseCommandProcessor useCommandProcessor)
+        public ItemService(MouseClickHandler mouseClickHandler, 
+            CombinationService combinationService, 
+            AllItemSettings allItemSettings, 
+            IUseCommandProcessor useCommandProcessor)
         {
             _mouseClickHandler = mouseClickHandler;
             _combinationService = combinationService;
@@ -61,8 +64,6 @@ namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Services
         
         public bool TryCombineItems(CombinableItem item, CombinableItem otherItem)
         {
-            
-            
             
             var selfSettings = _allItemSettings[item.TypeId];
             var otherSettings = _allItemSettings[otherItem.TypeId];

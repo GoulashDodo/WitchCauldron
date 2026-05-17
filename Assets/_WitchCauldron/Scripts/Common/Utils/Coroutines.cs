@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Common.Utils
+namespace Common.Utils
 {
     public class Coroutines : MonoBehaviour {}
 }

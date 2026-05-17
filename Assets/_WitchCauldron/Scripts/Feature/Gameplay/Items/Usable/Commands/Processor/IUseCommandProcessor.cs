@@ -1,7 +1,7 @@
-using _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Handler;
+using Feature.Gameplay.Items.Usable.Commands.Handler;
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Processor
+namespace Feature.Gameplay.Items.Usable.Commands.Processor
 {
     public interface IUseCommandProcessor
     {

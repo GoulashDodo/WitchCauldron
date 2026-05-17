@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _WitchCauldron.Scripts.Core.GameRoot.View
+namespace Core.GameRoot.View
 {
     public class UILoadingScreenBinder : MonoBehaviour { }
 }

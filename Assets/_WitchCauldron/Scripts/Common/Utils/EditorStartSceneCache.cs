@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-namespace _WitchCauldron.Scripts.Common.Utils
+namespace Common.Utils
 {
     public static class EditorStartSceneCache
     {
