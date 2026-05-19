@@ -1,8 +1,8 @@
 using Feature.Gameplay.Battle.Enemies.Core.Behaviours.Movement;
 using Feature.Gameplay.Battle.Enemies.Services;
 using Feature.Gameplay.Battle.Enemies.SO;
-using Feature.Gameplay.HealthSystem;
-using Feature.Gameplay.HealthSystem.Structs;
+using Feature.Gameplay.Battle.HealthSystem;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using R3;
 using UnityEngine;
 

@@ -1,4 +1,5 @@
-using Feature.Gameplay.Battle.Model;
+using Feature.Gameplay.Battle.Base.Interfaces;
+using Feature.Gameplay.Battle.HealthSystem.Core;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -14,15 +15,15 @@ namespace Feature.Gameplay.UI
         [SerializeField] private TextMeshProUGUI _text;
         
 
-        private Base _baseInstance;
+        private IHealth _health;
         
         
         
         
-        public void Initialize(Base baseInstance)
+        public void Initialize(IBaseHealthProvider healthProvider)
         {
-            _baseInstance = baseInstance;
-            baseInstance.Health.CurrentHealth.Subscribe(UpdateText).AddTo(_disposables);
+            _health = healthProvider.GetBaseHealth();
+            _health.CurrentHealth.Subscribe(UpdateText).AddTo(_disposables);
         }
 
 

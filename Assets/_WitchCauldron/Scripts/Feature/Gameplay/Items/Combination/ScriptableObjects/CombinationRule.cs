@@ -1,7 +1,7 @@
 using Feature.Gameplay.Items.SO;
 using UnityEngine;
 
-namespace Feature.Gameplay.Combination.ScriptableObjects
+namespace Feature.Gameplay.Items.Combination.ScriptableObjects
 {
     [System.Serializable]
     public class CombinationRule

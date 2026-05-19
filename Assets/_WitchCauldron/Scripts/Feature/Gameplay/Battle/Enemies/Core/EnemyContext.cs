@@ -1,6 +1,6 @@
 using System;
 using Feature.Gameplay.Battle.Enemies.SO;
-using Feature.Gameplay.HealthSystem.Core;
+using Feature.Gameplay.Battle.HealthSystem.Core;
 using UnityEngine;
 
 namespace Feature.Gameplay.Battle.Enemies.Core
@@ -15,7 +15,7 @@ namespace Feature.Gameplay.Battle.Enemies.Core
         public EnemyEvents Events { get; }
         
         
-        public HealthComponent Health { get; private set; }
+        public Health Health { get; private set; }
         
 
         public EnemyContext(GameObject gameObject, Transform transform, Rigidbody2D rigidbody2D, EnemySettings settings, EnemyEvents events)
@@ -30,7 +30,7 @@ namespace Feature.Gameplay.Battle.Enemies.Core
 
         public void InitializeCore()
         {
-            Health = new HealthComponent(Settings.MaxHealth);
+            Health = new Health(Settings.MaxHealth);
         }
         
         

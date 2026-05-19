@@ -1,4 +1,4 @@
-using Feature.Gameplay.HealthSystem.Structs;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using R3;
 
 namespace Feature.Gameplay.Battle.Enemies.Core

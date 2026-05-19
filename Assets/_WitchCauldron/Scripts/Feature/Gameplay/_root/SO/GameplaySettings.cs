@@ -1,5 +1,5 @@
 using Feature.Gameplay.Battle.Enemies.SO;
-using Feature.Gameplay.Combination.ScriptableObjects;
+using Feature.Gameplay.Items.Combination.ScriptableObjects;
 using Feature.Gameplay.Items.SO;
 using Feature.Gameplay.Level.SO;
 using UnityEngine;

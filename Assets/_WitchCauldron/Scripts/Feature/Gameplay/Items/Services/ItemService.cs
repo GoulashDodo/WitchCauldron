@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Core.GameRoot.Input.Clickable;
-using Feature.Gameplay.Combination.Service;
+using Feature.Gameplay._root.SO;
+using Feature.Gameplay.Items.Combination.Service;
 using Feature.Gameplay.Items.Model;
 using Feature.Gameplay.Items.SO;
 using Feature.Gameplay.Items.Usable.Commands.Processor;
@@ -17,12 +18,12 @@ namespace Feature.Gameplay.Items.Services
         private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
         
-        private readonly Dictionary<string, ItemSettings> _allItemSettings;        
+        private readonly Dictionary<string, ItemSettings> _allItemSettings = new();        
         
         
         public ItemService(MouseClickHandler mouseClickHandler, 
             CombinationService combinationService, 
-            AllItemSettings allItemSettings, 
+            GameplaySettings gameplaySettings, 
             IUseCommandProcessor useCommandProcessor)
         {
             _mouseClickHandler = mouseClickHandler;
@@ -30,7 +31,9 @@ namespace Feature.Gameplay.Items.Services
             _useCommandProcessor = useCommandProcessor;
 
 
-            _allItemSettings = new Dictionary<string, ItemSettings>();
+            
+            var allItemSettings = gameplaySettings.AllItemsSettings;
+            
             foreach (var setting in allItemSettings.ItemSettings)
             {
                 _allItemSettings.Add(setting.TypeId, setting);

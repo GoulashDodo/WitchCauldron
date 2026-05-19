@@ -6,8 +6,8 @@ namespace Feature.Gameplay.Battle.Waves.Service
     {
         ReadOnlyReactiveProperty<float> Progress01 { get;}
         
-        void StartLevel();
-        void StopLevel();
+        void StartWaves();
+        void StopWaves();
         
     }
 }

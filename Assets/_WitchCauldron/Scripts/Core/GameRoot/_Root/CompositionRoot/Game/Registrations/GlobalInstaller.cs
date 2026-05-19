@@ -1,3 +1,4 @@
+using Core.GameRoot.Input.Clickable;
 using Core.GameRoot.View;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,8 @@ namespace Core.GameRoot._root.CompositionRoot.Game.Registrations
 
         public override void InstallBindings()
         {
+            Container.Bind<SceneParametersPayload>().AsSingle();
+            
             Container.Bind<SceneLoader>().AsSingle();
 
             Container.Bind<GameInput>()
@@ -25,7 +28,9 @@ namespace Core.GameRoot._root.CompositionRoot.Game.Registrations
                 .NonLazy();
 
             
-            
+            Container.BindInterfacesAndSelfTo<MouseClickHandler>()
+                .AsSingle()
+                .NonLazy();
             
             InstallUiRoot();
             

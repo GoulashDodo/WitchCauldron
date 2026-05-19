@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Feature.Gameplay.Combination.ScriptableObjects
+namespace Feature.Gameplay.Items.Combination.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "CombinationRuleList", menuName = "Game/Items/Combination Rules", order = 1)]
     public class CombinationRuleList : ScriptableObject

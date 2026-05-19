@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.GameRoot._root;
 using Feature.Gameplay.Battle.Enemies.Services;
 using Feature.Gameplay.Battle.Waves.Enums;
 using Feature.Gameplay.Battle.Waves.SO;
@@ -28,17 +29,19 @@ namespace Feature.Gameplay.Battle.Waves.Service
         public WaveService(
             ISpawnArea spawnArea,
             EnemyService enemyService,
-            [InjectOptional] WaveSettings waveSettings = null)
+            SceneParametersPayload payload)
         {
             _spawnArea = spawnArea;
             _enemyService = enemyService;
-            _waveSettings = waveSettings;
+
+            
+            //_waveSettings = waveSettings;
         }
 
-        public void StartLevel()
+        public void StartWaves()
         {
             if (_isRunning)
-                StopLevel();
+                StopWaves();
 
             BuildRuntimeStates();
 
@@ -54,7 +57,7 @@ namespace Feature.Gameplay.Battle.Waves.Service
             _isRunning = true;
         }
 
-        public void StopLevel()
+        public void StopWaves()
         {
             _isRunning = false;
             _runtimeStates.Clear();

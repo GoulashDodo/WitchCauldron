@@ -1,4 +1,4 @@
-namespace Feature.Gameplay.HealthSystem
+namespace Feature.Gameplay.Battle.HealthSystem
 {
     public interface IDamageable
     {

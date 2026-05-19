@@ -1,5 +1,6 @@
 using Core.GameRoot.View;
-using Feature.Gameplay.Battle.Model;
+using Feature.Gameplay.Battle.Base.Interfaces;
+using Feature.Gameplay.Battle.HealthSystem.Core;
 using UnityEngine;
 using Zenject;
 
@@ -16,19 +17,19 @@ namespace Feature.Gameplay.UI
     
         
         [Inject]
-        public void Construct(UIRootView view, Base baseInstance)
+        public void Construct(UIRootView view, IBaseHealthProvider baseHealthProvider)
         {
             view.AttachSceneUI(gameObject);
             
-            InitializeUI(baseInstance);
+            InitializeUI(baseHealthProvider);
             
         }
-        
 
-        public void InitializeUI(Base baseInstance)
+
+        private void InitializeUI(IBaseHealthProvider baseHealthProvider)
         {
             
-            _uiBaseHealth.Initialize(baseInstance);
+            _uiBaseHealth.Initialize(baseHealthProvider);
             
             
         }

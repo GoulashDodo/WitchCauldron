@@ -1,11 +1,11 @@
 using System;
-using Feature.Gameplay.HealthSystem.Structs;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using R3;
 using UnityEngine;
 
-namespace Feature.Gameplay.HealthSystem.Core
+namespace Feature.Gameplay.Battle.HealthSystem.Core
 {
-    public class HealthComponent : IDamageable, IDisposable
+    public class Health : IHealth, IDamageable, IDisposable
     {
 
         private readonly float _maxHealth;       
@@ -23,7 +23,7 @@ namespace Feature.Gameplay.HealthSystem.Core
         public Observable<DeathInfo> Died => _died;
         
         
-        public HealthComponent(float maxHealth)
+        public Health(float maxHealth)
         {
             _maxHealth = maxHealth;
             _currentHealth = new ReactiveProperty<float>(maxHealth);

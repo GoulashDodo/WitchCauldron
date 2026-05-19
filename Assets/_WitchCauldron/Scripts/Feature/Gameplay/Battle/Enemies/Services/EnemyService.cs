@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Feature.Gameplay._root.SO;
 using Feature.Gameplay.Battle.Enemies.Core;
 using Feature.Gameplay.Battle.Enemies.SO;
 using UnityEngine;
@@ -15,8 +16,10 @@ namespace Feature.Gameplay.Battle.Enemies.Services
 
 
 
-        public EnemyService(AllEnemySettings allEnemySettings)
+        public EnemyService(GameplaySettings settings)
         {
+            var allEnemySettings = settings.AllEnemiesSettings;
+            
             foreach (var enemySetting in allEnemySettings.AllSettings)
             {
                 _allEnemies.Add(enemySetting.TypeId, enemySetting);

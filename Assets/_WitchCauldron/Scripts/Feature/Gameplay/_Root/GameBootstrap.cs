@@ -1,5 +1,4 @@
-using Feature.Gameplay.Battle.Waves.Service;
-using UnityEngine;
+using Feature.Gameplay.Level;
 using Zenject;
 
 namespace Feature.Gameplay._root
@@ -7,21 +6,18 @@ namespace Feature.Gameplay._root
     public class GameBootstrap : IInitializable
     {
 
-        //private readonly GameplayEntryParameters _gameplayEntryParameters;
-        private readonly WaveService _waveService;
+        private G _game;
 
-        public GameBootstrap(WaveService waveService)
+        public GameBootstrap(G game)
         {
-            //_gameplayEntryParameters = gameplayEntryParameters;
-            _waveService = waveService;
+            _game = game;
+            
         }
         
         
         public void Initialize()
         {
-            Debug.Log("Starting game");    
-            //Debug.Log(_gameplayEntryParameters.LevelId);
-            _waveService.StartLevel();
+            _game.StartGameplay();
         }
 
     }

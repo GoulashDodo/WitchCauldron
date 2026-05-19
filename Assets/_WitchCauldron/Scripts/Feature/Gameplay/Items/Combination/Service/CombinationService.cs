@@ -1,9 +1,9 @@
 using System.Linq;
 using Feature.Gameplay._root.SO;
-using Feature.Gameplay.Combination.ScriptableObjects;
+using Feature.Gameplay.Items.Combination.ScriptableObjects;
 using Feature.Gameplay.Items.SO;
 
-namespace Feature.Gameplay.Combination.Service
+namespace Feature.Gameplay.Items.Combination.Service
 {
     public class CombinationService
     {

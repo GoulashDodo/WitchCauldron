@@ -1,4 +1,4 @@
-namespace Feature.Gameplay.HealthSystem.Structs
+namespace Feature.Gameplay.Battle.HealthSystem.Structs
 {
     public struct DamageInfo
     {

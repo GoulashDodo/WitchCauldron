@@ -1,6 +1,7 @@
 using System;
 using Core.GameRoot.Data;
-using Feature.Gameplay.Battle.Model;
+using Feature.Gameplay.Battle.Base;
+using Feature.Gameplay.Battle.Base.Core;
 using Feature.Gameplay.Items.Model;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Feature.Gameplay.Items.Usable.Model
             
             int count = Collider.Overlap(contactFilter, OverlapBuffer);
     
-            Battleground best = null;
+            BattlegroundView best = null;
             float bestSqr = float.MaxValue;
     
             for (int i = 0; i < count; i++)
@@ -30,7 +31,7 @@ namespace Feature.Gameplay.Items.Usable.Model
     
                 if (c.transform == Transform) continue;
     
-                if (!c.TryGetComponent(out Battleground other)) continue;
+                if (!c.TryGetComponent(out BattlegroundView other)) continue;
     
                 Vector2 closest = c.ClosestPoint(Transform.position);
                 float sqr = ((Vector2)Transform.position - closest).sqrMagnitude;

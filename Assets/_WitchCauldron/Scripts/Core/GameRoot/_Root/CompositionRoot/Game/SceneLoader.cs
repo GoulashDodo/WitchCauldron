@@ -12,21 +12,22 @@ namespace Core.GameRoot._root.CompositionRoot.Game
 {
     public class SceneLoader
     {
-        private readonly DiContainer _rootContainer;
 
         private readonly Coroutines _coroutines;
         
         private readonly Subject<Unit> _onSceneLoadingStarted = new();
         private readonly Subject<Unit> _onSceneLoadingEnded = new();
+        private readonly SceneParametersPayload _sceneParametersPayload;
 
         public Observable<Unit> OnSceneLoadingStarted => _onSceneLoadingStarted;
         public Observable<Unit> OnSceneLoadingEnded => _onSceneLoadingEnded;        
         
         
-        public SceneLoader(DiContainer rootContainer)
+        public SceneLoader(SceneParametersPayload parametersPayload)
         {
-            _rootContainer = rootContainer;
-
+            _sceneParametersPayload = parametersPayload;
+            
+            
             _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
             Object.DontDestroyOnLoad(_coroutines.gameObject);
             
@@ -74,7 +75,7 @@ namespace Core.GameRoot._root.CompositionRoot.Game
             
 
             var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
-            //sceneEntryPoint.Container.Bind<GameplayEntryParameters>().FromInstance(gameplayEntryParameters).AsSingle();
+            _sceneParametersPayload.SetGameplayEntryParameters(gameplayEntryParameters);
             
             sceneEntryPoint.Run();
             
