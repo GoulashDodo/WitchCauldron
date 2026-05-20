@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Feature.Gameplay.Items.Usable.Commands.Damage;
 using Feature.Gameplay.Items.Usable.Commands.Handler;
+using Feature.Gameplay.Items.Usable.Commands.Spawn;
 using UnityEngine;
 
 namespace Feature.Gameplay.Items.Usable.Commands.Processor
@@ -13,6 +14,7 @@ namespace Feature.Gameplay.Items.Usable.Commands.Processor
         public UseCommandProcessor()
         {
             RegisterHandler(new DamageCommandHandler());
+            RegisterHandler(new SpawnCommandHandler());
         }
 
         public void RegisterHandler(IUseCommandHandler handler)
@@ -21,7 +23,6 @@ namespace Feature.Gameplay.Items.Usable.Commands.Processor
             _handlers[handler.ParametersType] = handler;
         }
 
-        // Обратите внимание: теперь метод НЕ generic
         public bool Process(UseCommandParameters command, Vector2 position)
         {
             if (command == null)

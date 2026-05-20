@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cc1180b9814fcca99772841a806874, type: 3}
+  m_Name: CombinationRuleList
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Combination.ScriptableObjects.CombinationRuleList
+  _rules:
+  - _itemA: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+    _itemB: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+    _result: {fileID: 11400000, guid: 9aea7fe048a245c4ba3a4fe5331456a6, type: 2}
+  - _itemA: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+    _itemB: {fileID: 11400000, guid: 6421e641e2cdf954eb94eb9a017be506, type: 2}
+    _result: {fileID: 11400000, guid: ae6bb992e3a68534098c9a0fc169c240, type: 2}

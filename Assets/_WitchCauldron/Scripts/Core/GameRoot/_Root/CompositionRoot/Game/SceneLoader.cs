@@ -57,8 +57,9 @@ namespace Core.GameRoot._root.CompositionRoot.Game
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.MainMenu);
 
-            yield return new WaitForSeconds(0.5f);
+            var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
             
+            sceneEntryPoint.Run();
             
             _onSceneLoadingEnded.OnNext(Unit.Default);
 

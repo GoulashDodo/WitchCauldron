@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Feature.Gameplay.Items.Combination.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "CombinationRuleList", menuName = "Game/Items/Combination Rules", order = 1)]
+    [CreateAssetMenu(fileName = "CombinationRuleList", menuName = "Game/Gameplay/Items/Combination Rules", order = 1)]
     public class CombinationRuleList : ScriptableObject
     {
         [SerializeField] private List<CombinationRule> _rules;

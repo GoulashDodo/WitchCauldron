@@ -18,7 +18,7 @@ namespace Feature.Gameplay.Level
         private readonly Subject<Unit> _gameWon = new();
 
         
-        private CompositeDisposable _compositeDisposable = new CompositeDisposable();
+        private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private bool _areWavesCompleted;
         private bool _isGameEnded;
         
@@ -41,11 +41,6 @@ namespace Feature.Gameplay.Level
             _isGameEnded = false;
             _waveService.StartWaves();
         }
-
-         
-
-
-
         
         private void EndGameplay()
         {

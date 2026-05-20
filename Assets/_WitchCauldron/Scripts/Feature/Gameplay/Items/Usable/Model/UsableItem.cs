@@ -10,6 +10,8 @@ namespace Feature.Gameplay.Items.Usable.Model
     public abstract class UsableItem : CombinableItem
     {
         
+        
+        
         protected override void OnDrop()
         {
             var contactFilter = new ContactFilter2D

@@ -56,15 +56,13 @@ namespace Feature.Gameplay.Items.Model
         }
         
         
-        private void Awake()
+        protected virtual void Awake()
         {
             Transform = transform;
             Collider = GetComponent<Collider2D>();
 
             OverlapBuffer = new Collider2D[8];
             
-            
-
         }
 
         private void OnDestroy()
