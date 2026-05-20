@@ -1,5 +1,4 @@
 using Feature.Gameplay.Battle.Enemies.Core;
-using Feature.Gameplay.Battle.Enemies.Core.Behaviours.Movement.SO;
 using UnityEngine;
 
 namespace Feature.Gameplay.Battle.Enemies.SO
@@ -29,11 +28,5 @@ namespace Feature.Gameplay.Battle.Enemies.SO
         [field: SerializeField] public float Damage { get; private set; } = 1;
         [field: SerializeField] public float AttackDistance { get; private set; } = 1;
         [field: SerializeField] public float AttackSpeed { get; private set; } = 1;
-        
-        
-        [field: Header("Movement")]
-        [field: SerializeField] public MoveBehaviourConfig MoveConfig { get; private set; }
-        
-
     }
 }

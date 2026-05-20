@@ -16,7 +16,10 @@ MonoBehaviour:
   <Waves>k__BackingField:
   - <Type>k__BackingField: 0
     <StartTime>k__BackingField: 0
-    <SpawnInterval>k__BackingField: 1
+    <SpawnInterval>k__BackingField: 3.5
     <SpawnPositionMode>k__BackingField: 0
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
-    <Enemies>k__BackingField: []
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 5
+      <Weight>k__BackingField: 1

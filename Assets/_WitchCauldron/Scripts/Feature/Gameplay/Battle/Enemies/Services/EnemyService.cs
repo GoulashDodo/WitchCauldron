@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Feature.Gameplay._root.SO;
 using Feature.Gameplay.Battle.Enemies.Core;
 using Feature.Gameplay.Battle.Enemies.SO;
+using R3;
 using UnityEngine;
 
 namespace Feature.Gameplay.Battle.Enemies.Services
@@ -13,6 +14,11 @@ namespace Feature.Gameplay.Battle.Enemies.Services
         private readonly Dictionary<string, EnemySettings> _allEnemies = new();
         
         private readonly Dictionary<int, Enemy> _allExistingEnemies = new();
+
+        private readonly ReactiveProperty<int> _activeEnemyCount = new(0);
+
+        public ReadOnlyReactiveProperty<int> ActiveEnemyCount => _activeEnemyCount;
+        public int ActiveEnemyCountValue => _activeEnemyCount.Value;
 
 
 
@@ -55,6 +61,7 @@ namespace Feature.Gameplay.Battle.Enemies.Services
         public void RegisterEnemy(Enemy enemyToRegister)
         {
             _allExistingEnemies.Add(enemyToRegister.GetInstanceID() , enemyToRegister);
+            _activeEnemyCount.Value = _allExistingEnemies.Count;
 
         }
 
@@ -62,6 +69,7 @@ namespace Feature.Gameplay.Battle.Enemies.Services
         public void UnregisterEnemy(Enemy enemyToUnregister)
         {
             _allExistingEnemies.Remove(enemyToUnregister.GetInstanceID());
+            _activeEnemyCount.Value = _allExistingEnemies.Count;
         }
         
         

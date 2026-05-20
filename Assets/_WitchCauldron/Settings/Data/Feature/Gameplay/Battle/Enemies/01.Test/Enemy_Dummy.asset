@@ -17,7 +17,6 @@ MonoBehaviour:
   <PointPrice>k__BackingField: 1
   <MaxHealth>k__BackingField: 10
   <MaxSpeed>k__BackingField: 0.5
-  <Damage>k__BackingField: 1
+  <Damage>k__BackingField: 5
   <AttackDistance>k__BackingField: 1
   <AttackSpeed>k__BackingField: 1
-  <MoveConfig>k__BackingField: {fileID: 11400000, guid: cfa9134534703624da169bd828b80fcd, type: 2}

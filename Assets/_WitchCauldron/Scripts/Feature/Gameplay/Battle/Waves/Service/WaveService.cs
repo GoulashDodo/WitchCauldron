@@ -6,6 +6,7 @@ using Feature.Gameplay.Battle.Waves.Enums;
 using Feature.Gameplay.Battle.Waves.SO;
 using Feature.Gameplay.Battle.Waves.SO.Structures;
 using Feature.Gameplay.Battle.Waves.SpawnArea;
+using Feature.Gameplay.Level.SO;
 using R3;
 using UnityEngine;
 using Zenject;
@@ -22,6 +23,9 @@ namespace Feature.Gameplay.Battle.Waves.Service
         public ReadOnlyReactiveProperty<float> Progress01 => _progress01;
         private readonly ReactiveProperty<float> _progress01 = new(0f);
 
+        public Observable<Unit> WavesCompleted => _wavesCompleted;
+        private readonly Subject<Unit> _wavesCompleted = new();
+
         private float _levelStartTime;
         private float _levelDuration;
         private bool _isRunning;
@@ -29,13 +33,13 @@ namespace Feature.Gameplay.Battle.Waves.Service
         public WaveService(
             ISpawnArea spawnArea,
             EnemyService enemyService,
-            SceneParametersPayload payload)
+            LevelSettings levelSettings)
         {
             _spawnArea = spawnArea;
             _enemyService = enemyService;
 
             
-            //_waveSettings = waveSettings;
+            _waveSettings = levelSettings.WaveSettings;
         }
 
         public void StartWaves()
@@ -49,6 +53,7 @@ namespace Feature.Gameplay.Battle.Waves.Service
             {
                 Debug.LogWarning("WaveService cannot start: wave settings have no waves with enemies.");
                 _progress01.Value = 1f;
+                _wavesCompleted.OnNext(Unit.Default);
                 return;
             }
 
@@ -86,12 +91,14 @@ namespace Feature.Gameplay.Battle.Waves.Service
             {
                 _progress01.Value = 1f;
                 _isRunning = false;
+                _wavesCompleted.OnNext(Unit.Default);
             }
         }
 
         public void Dispose()
         {
             _progress01.Dispose();
+            _wavesCompleted.Dispose();
         }
 
         private void BuildRuntimeStates()

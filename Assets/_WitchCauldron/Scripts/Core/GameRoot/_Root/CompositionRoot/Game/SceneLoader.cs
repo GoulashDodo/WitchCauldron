@@ -2,7 +2,6 @@ using System.Collections;
 using Common.Utils;
 using Core.GameRoot.Data;
 using Feature.Gameplay._root;
-using Feature.Gameplay.Level.SO;
 using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;

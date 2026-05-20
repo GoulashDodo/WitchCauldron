@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultLevelSettings
   m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Level._Root.LevelConfig
   <LevelId>k__BackingField: level_default
-  <BaseHealth>k__BackingField: 250
+  <BaseHealth>k__BackingField: 100
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: 1d0aefd975d72b944941de2a989fc232, type: 2}

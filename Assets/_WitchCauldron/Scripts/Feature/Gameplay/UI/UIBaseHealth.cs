@@ -9,15 +9,13 @@ namespace Feature.Gameplay.UI
     public class UIBaseHealth : MonoBehaviour
     {
         
-        private CompositeDisposable _disposables = new();
+        private readonly CompositeDisposable _disposables = new();
         
 
         [SerializeField] private TextMeshProUGUI _text;
         
 
         private IHealth _health;
-        
-        
         
         
         public void Initialize(IBaseHealthProvider healthProvider)
