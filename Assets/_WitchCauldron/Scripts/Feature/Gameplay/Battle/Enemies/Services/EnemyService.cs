@@ -9,16 +9,17 @@ namespace Feature.Gameplay.Battle.Enemies.Services
 {
     public class EnemyService
     {
-
-        
         private readonly Dictionary<string, EnemySettings> _allEnemies = new();
         
         private readonly Dictionary<int, Enemy> _allExistingEnemies = new();
+        private readonly Dictionary<int, System.IDisposable> _enemyDeathSubscriptions = new();
 
         private readonly ReactiveProperty<int> _activeEnemyCount = new(0);
+        private readonly Subject<Enemy> _enemyDied = new();
 
         public ReadOnlyReactiveProperty<int> ActiveEnemyCount => _activeEnemyCount;
         public int ActiveEnemyCountValue => _activeEnemyCount.Value;
+        public Observable<Enemy> EnemyDied => _enemyDied;
 
 
 
@@ -60,7 +61,10 @@ namespace Feature.Gameplay.Battle.Enemies.Services
 
         public void RegisterEnemy(Enemy enemyToRegister)
         {
-            _allExistingEnemies.Add(enemyToRegister.GetInstanceID() , enemyToRegister);
+            var enemyId = enemyToRegister.GetInstanceID();
+
+            _allExistingEnemies.Add(enemyId, enemyToRegister);
+            _enemyDeathSubscriptions.Add(enemyId, enemyToRegister.Events.Died.Subscribe(_ => _enemyDied.OnNext(enemyToRegister)));
             _activeEnemyCount.Value = _allExistingEnemies.Count;
 
         }
@@ -68,7 +72,12 @@ namespace Feature.Gameplay.Battle.Enemies.Services
 
         public void UnregisterEnemy(Enemy enemyToUnregister)
         {
-            _allExistingEnemies.Remove(enemyToUnregister.GetInstanceID());
+            var enemyId = enemyToUnregister.GetInstanceID();
+
+            if (_enemyDeathSubscriptions.Remove(enemyId, out var subscription))
+                subscription.Dispose();
+
+            _allExistingEnemies.Remove(enemyId);
             _activeEnemyCount.Value = _allExistingEnemies.Count;
         }
         

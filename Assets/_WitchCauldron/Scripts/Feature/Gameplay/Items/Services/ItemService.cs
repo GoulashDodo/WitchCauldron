@@ -54,6 +54,18 @@ namespace Feature.Gameplay.Items.Services
             
             return item;
         }  
+
+        public bool TrySpawnDraggableItem(string itemTypeId, Vector3 initialPosition, bool startDragging = false)
+        {
+            if (string.IsNullOrWhiteSpace(itemTypeId) || !_allItemSettings.ContainsKey(itemTypeId))
+            {
+                Debug.LogWarning($"[Item service]: Item settings with type id '{itemTypeId}' were not found.");
+                return false;
+            }
+
+            SpawnDraggableItem(itemTypeId, initialPosition, startDragging);
+            return true;
+        }
         
         
         private void DespawnDraggableItem(DraggableItem item)

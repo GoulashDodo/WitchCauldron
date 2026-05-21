@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Potions.Brewing.Spawners.ItemSpawner
   _itemToSpawnTypeId: Item_Egg
-  _cooldown: 2
+  _cooldown: 4
 --- !u!61 &708704593
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -28,5 +28,12 @@ namespace Feature.Gameplay.Battle.Enemies.SO
         [field: SerializeField] public float Damage { get; private set; } = 1;
         [field: SerializeField] public float AttackDistance { get; private set; } = 1;
         [field: SerializeField] public float AttackSpeed { get; private set; } = 1;
+        
+        
+        
+        [field: Space(10)]
+        [field: Header("Loot")]
+        [field: SerializeField] public EnemyLootDefinition[] LootDefinitions { get; private set; } 
+        
     }
 }

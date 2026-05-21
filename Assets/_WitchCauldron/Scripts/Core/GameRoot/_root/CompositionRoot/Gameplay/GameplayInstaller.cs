@@ -72,10 +72,12 @@ namespace Core.GameRoot._root.CompositionRoot.Gameplay
         private void BindServices()
         {
             Container.Bind<IUseCommandProcessor>().To<UseCommandProcessor>().AsSingle();
+            Container.Bind<ItemService>().AsSingle();
             Container.Bind<EnemyService>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();
             Container.Bind<CombinationService>().AsSingle();
-            Container.Bind<ItemService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DropService>().AsSingle();
+
 
         }
         
