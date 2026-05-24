@@ -7,10 +7,8 @@ using UnityEngine;
 
 namespace Feature.Gameplay.Items.Usable.Model
 {
-    public abstract class UsableItem : CombinableItem
+    public class UsableItem : CombinableItem
     {
-        
-        
         
         protected override void OnDrop()
         {
@@ -56,7 +54,6 @@ namespace Feature.Gameplay.Items.Usable.Model
             
         }
         
-        public abstract void Use(Vector2 position);
 
     }
 }   

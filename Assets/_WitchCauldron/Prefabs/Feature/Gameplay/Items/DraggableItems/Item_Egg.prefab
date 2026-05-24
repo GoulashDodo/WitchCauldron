@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1605263395995326615}
   - component: {fileID: 4128799391024465509}
   - component: {fileID: 1468631774178966378}
-  - component: {fileID: 2258027246820597168}
+  - component: {fileID: 929682272644745665}
   - component: {fileID: 6528911269834254503}
   m_Layer: 6
   m_Name: Item_Egg
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2258027246820597168
+--- !u!114 &929682272644745665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,9 +149,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5298818203534590916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d729446d53944dd4ad83cb60c5e83e17, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d06ec1faaa841efae976bf5470edfbc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model.DamageItem
+  m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.Usable.Model.UsableItem
 --- !u!114 &6528911269834254503
 MonoBehaviour:
   m_ObjectHideFlags: 0

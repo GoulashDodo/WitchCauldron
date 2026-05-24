@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5776205760233355396}
   - component: {fileID: 3691367901764182798}
   - component: {fileID: 639453218469285755}
-  - component: {fileID: 8184555098094622838}
+  - component: {fileID: 8232789034652950297}
   - component: {fileID: 5498891410327977747}
   m_Layer: 6
   m_Name: Item_MoonRock
@@ -83,6 +83,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!212 &639453218469285755
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,6 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: 353519729
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 2029542551908640097, guid: 0e8125f6d56ef67479bf6bb25eb63c88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -137,9 +139,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8184555098094622838
+--- !u!114 &8232789034652950297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +149,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2739547259859735684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d729446d53944dd4ad83cb60c5e83e17, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d06ec1faaa841efae976bf5470edfbc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Items.Item.Model.DamageItem
+  m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.Usable.Model.UsableItem
 --- !u!114 &5498891410327977747
 MonoBehaviour:
   m_ObjectHideFlags: 0
