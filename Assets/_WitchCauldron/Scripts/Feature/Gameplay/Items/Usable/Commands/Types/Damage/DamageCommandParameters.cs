@@ -1,3 +1,5 @@
+using Feature.Gameplay.Battle.HealthSystem;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using UnityEngine;
 
 namespace Feature.Gameplay.Items.Usable.Commands.Damage
@@ -6,6 +8,7 @@ namespace Feature.Gameplay.Items.Usable.Commands.Damage
     public class DamageCommandParameters : UseCommandParameters
     {
         [field: SerializeField] public int Damage { get; private set; }
+        [field: SerializeField] public DamageType DamageType { get; private set; } = DamageType.Physical;
         [field: SerializeField] public float Radius { get; private set; }
         [field: SerializeField] public bool IsArea { get; private set; }
     }

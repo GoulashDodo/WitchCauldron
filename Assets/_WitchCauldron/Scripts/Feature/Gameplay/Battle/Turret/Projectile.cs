@@ -1,4 +1,6 @@
 using Feature.Gameplay.Battle.Enemies.Core;
+using Feature.Gameplay.Battle.HealthSystem;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using UnityEngine;
 
 namespace Feature.Gameplay.Battle.Turret
@@ -56,7 +58,7 @@ namespace Feature.Gameplay.Battle.Turret
             if ((targetPosition - transform.position).sqrMagnitude > _hitDistance * _hitDistance)
                 return;
 
-            _target.TakeDamage(_damage);
+            _target.TakeDamage(new BattleDamage(_damage, DamageType.Physical));
             Destroy(gameObject);
         }
     }

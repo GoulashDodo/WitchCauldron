@@ -1,8 +1,10 @@
+using Feature.Gameplay.Battle.HealthSystem.Structs;
+
 namespace Feature.Gameplay.Battle.HealthSystem
 {
     public interface IDamageable
     {
             
-        void TakeDamage(float damage);
+        void TakeDamage(BattleDamage battleDamage);
     }
 }

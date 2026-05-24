@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Feature.Gameplay._root.SO;
 using Feature.Gameplay.Battle.Enemies.Core;
 using Feature.Gameplay.Battle.Enemies.SO;
+using Feature.Gameplay.Battle.HealthSystem;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using R3;
 using UnityEngine;
 
@@ -53,7 +55,7 @@ namespace Feature.Gameplay.Battle.Enemies.Services
         public void DamageEnemy(int enemyId, int damage)
         {
             var enemy = _allExistingEnemies[enemyId];
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(new BattleDamage(damage, DamageType.Physical));
         }
 
 

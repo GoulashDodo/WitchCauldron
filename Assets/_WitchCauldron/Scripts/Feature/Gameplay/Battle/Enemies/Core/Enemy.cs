@@ -85,10 +85,10 @@ namespace Feature.Gameplay.Battle.Enemies.Core
         }
         
         
-        public void TakeDamage(float damage)
+        public void TakeDamage(BattleDamage battleDamage)
         {
-            Debug.Log($"Taking damage {damage}");
-            _health.TakeDamage(damage);
+            Debug.Log($"Taking damage {battleDamage.Amount}");
+            _health.TakeDamage(battleDamage);
         }
 
         private IDamageable FindBaseInAttackRange()
@@ -109,7 +109,7 @@ namespace Feature.Gameplay.Battle.Enemies.Core
             if (Time.time < _nextAttackTime)
                 return;
 
-            target.TakeDamage(Settings.Damage);
+            target.TakeDamage(new BattleDamage(Settings.Damage, DamageType.Physical));
             _nextAttackTime = Time.time + GetAttackCooldown();
         }
 

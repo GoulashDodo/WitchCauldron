@@ -7,7 +7,6 @@ namespace Core.GameRoot.SO
     public class GameSettings : ScriptableObject
     {
         
-        
         [field: SerializeField] public GameplaySettings GameplaySettings { get; set; }
         
     }

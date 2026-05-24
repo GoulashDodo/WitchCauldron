@@ -30,20 +30,20 @@ namespace Feature.Gameplay.Battle.HealthSystem.Core
         }
         
         
-        public void TakeDamage(float damage)
+        public void TakeDamage(BattleDamage battleDamage)
         {
-            if (damage <= 0)
+            if (battleDamage.Amount <= 0)
             {
                 Debug.LogWarning("Damage must be positive");
                 return;
             }            
             
 
-            var newHealth = Mathf.Max(_currentHealth.Value - damage, 0f);
+            var newHealth = Mathf.Max(_currentHealth.Value - battleDamage.Amount, 0f);
             _currentHealth.Value = newHealth;
 
             
-            var info = new DamageInfo(damage, _currentHealth.Value, _maxHealth);
+            var info = new DamageInfo(battleDamage.Amount, _currentHealth.Value, _maxHealth);
 
             
             _damaged.OnNext(info);

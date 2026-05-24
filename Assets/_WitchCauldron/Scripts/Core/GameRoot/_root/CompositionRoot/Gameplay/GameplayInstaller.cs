@@ -43,7 +43,7 @@ namespace Core.GameRoot._root.CompositionRoot.Gameplay
             BindServices();
             
             
-            Container.Bind<IInitializable>().To<GameBootstrap>().AsSingle().NonLazy();
+            Container.Bind<IInitializable>().To<GameplayBootstrap>().AsSingle().NonLazy();
             
         }
 

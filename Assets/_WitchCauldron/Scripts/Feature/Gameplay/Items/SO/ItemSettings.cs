@@ -1,6 +1,6 @@
-using Common.Extensions.UnityInspector;
 using Feature.Gameplay.Items.Model;
 using Feature.Gameplay.Items.Usable.Commands;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Feature.Gameplay.Items.SO
@@ -15,8 +15,10 @@ namespace Feature.Gameplay.Items.SO
         [field: SerializeField] public string TitleLid { get; private set; }
    
         
+        
         [field: Space(10)][Header("On Item use")]
-        [field: SerializeField, Expandable] public UseCommandParameters[] OnUseCommands { get; private set; }
+        [field: InlineEditor]
+        [field: SerializeField] public UseCommandParameters[] OnUseCommands { get; private set; }
         
     }
 }

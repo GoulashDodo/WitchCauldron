@@ -3,12 +3,12 @@ using Zenject;
 
 namespace Feature.Gameplay._root
 {
-    public class GameBootstrap : IInitializable
+    public class GameplayBootstrap : IInitializable
     {
 
         private G _game;
 
-        public GameBootstrap(G game)
+        public GameplayBootstrap(G game)
         {
             _game = game;
             

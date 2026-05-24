@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Feature.Gameplay.Battle.Enemies.Core;
 using Feature.Gameplay.Battle.HealthSystem;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using Feature.Gameplay.Items.Usable.Commands.Handler;
 using UnityEngine;
 
@@ -83,7 +84,7 @@ namespace Feature.Gameplay.Items.Usable.Commands.Damage
         private static void DoDamage(DamageCommandParameters p, Vector2 pos, IDamageable damageable)
         {
             Debug.Log($"Do damage {p.Damage} at {pos}");
-            damageable.TakeDamage(p.Damage);
+            damageable.TakeDamage(new BattleDamage(p.Damage, p.DamageType));
         }
     }
 }

@@ -1,6 +1,7 @@
 using Feature.Gameplay.Battle.Base.Interfaces;
 using Feature.Gameplay.Battle.HealthSystem;
 using Feature.Gameplay.Battle.HealthSystem.Core;
+using Feature.Gameplay.Battle.HealthSystem.Structs;
 using UnityEngine;
 using Zenject;
 
@@ -18,9 +19,9 @@ namespace Feature.Gameplay.Battle.Base.Core
         }
         
         
-        public void TakeDamage(float damage)
+        public void TakeDamage(BattleDamage battleDamage)
         {
-            Health.TakeDamage(damage);
+            Health.TakeDamage(battleDamage);
         }
     }
 }
