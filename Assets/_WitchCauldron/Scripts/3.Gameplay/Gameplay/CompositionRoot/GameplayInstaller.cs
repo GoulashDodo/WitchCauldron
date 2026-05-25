@@ -44,6 +44,7 @@ namespace Gameplay.CompositionRoot
             BindServices();
             
             
+            Container.BindInterfacesTo<GameplayRunFlowController>().AsSingle().NonLazy();
             Container.Bind<IInitializable>().To<GameplayBootstrap>().AsSingle().NonLazy();
             
         }

@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Level.SO.AllLevelSettings
   <AllSettings>k__BackingField:
   - {fileID: 11400000, guid: 7458ea1c594837641b04fa2d4d41e0b4, type: 2}
+  - {fileID: 11400000, guid: ff1eda4eba378af4f827f3b51d1787b0, type: 2}
+  - {fileID: 11400000, guid: 054c3adc6bfff9a4c86adf9b390891f2, type: 2}
+  - {fileID: 11400000, guid: 8c7635dcd505eef45badfa404f462a34, type: 2}

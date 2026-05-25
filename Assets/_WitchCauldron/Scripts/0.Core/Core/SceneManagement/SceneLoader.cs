@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Data;
+using Core.Run;
 using Core.Utils;
 using Gameplay._root;
 using R3;
@@ -17,14 +18,16 @@ namespace Core.SceneManagement
         private readonly Subject<Unit> _onSceneLoadingStarted = new();
         private readonly Subject<Unit> _onSceneLoadingEnded = new();
         private readonly SceneParametersPayload _sceneParametersPayload;
+        private readonly RunState _runState;
 
         public Observable<Unit> OnSceneLoadingStarted => _onSceneLoadingStarted;
         public Observable<Unit> OnSceneLoadingEnded => _onSceneLoadingEnded;        
         
         
-        public SceneLoader(SceneParametersPayload parametersPayload)
+        public SceneLoader(SceneParametersPayload parametersPayload, RunState runState)
         {
             _sceneParametersPayload = parametersPayload;
+            _runState = runState;
             
             
             _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
@@ -46,11 +49,28 @@ namespace Core.SceneManagement
                     return;
                 
                 case Scenes.Gameplay:
-                    //TODO: Change default level selection
-                    var entryParams = new GameplayEntryParameters("level_default");
-                    _coroutines.StartCoroutine(LoadAndStartGameplay(entryParams));
+                    if (!_runState.HasCurrentLevel && !_runState.StartNewRun())
+                        return;
+
+                    LoadGameplay(_runState.CurrentLevelId);
                     return;
             }
+        }
+
+        public void LoadGameplay(string levelId)
+        {
+            if (string.IsNullOrWhiteSpace(levelId))
+            {
+                Debug.LogWarning("Cannot load gameplay: level id is empty.");
+                return;
+            }
+
+            LoadGameplay(new GameplayEntryParameters(levelId));
+        }
+
+        public void LoadGameplay(GameplayEntryParameters gameplayEntryParameters)
+        {
+            _coroutines.StartCoroutine(LoadAndStartGameplay(gameplayEntryParameters));
         }
         
         private IEnumerator LoadAndStartMainMenu()
@@ -109,7 +129,6 @@ namespace Core.SceneManagement
         {
             yield return SceneManager.LoadSceneAsync(sceneName);
         }
-
         
     }
 }

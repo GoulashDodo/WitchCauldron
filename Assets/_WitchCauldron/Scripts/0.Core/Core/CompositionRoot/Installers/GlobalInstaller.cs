@@ -1,10 +1,11 @@
 using Core.Input.Clickable;
+using Core.Run;
 using Core.SceneManagement;
-using Core.View;
+using Core.UI;
 using UnityEngine;
 using Zenject;
 
-namespace Core.CompositionRoot.Registrations
+namespace Core.CompositionRoot.Installers
 {
     public class GlobalInstaller : MonoInstaller
     {
@@ -27,11 +28,15 @@ namespace Core.CompositionRoot.Registrations
                 })
                 .AsSingle()
                 .NonLazy();
-
             
             Container.BindInterfacesAndSelfTo<MouseClickHandler>()
                 .AsSingle()
                 .NonLazy();
+
+            Container.BindInterfacesAndSelfTo<RunState>()
+                .AsSingle();
+            
+            
             
             InstallUiRoot();
             

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.View
+namespace Core.UI
 {
     public class UILoadingScreenBinder : MonoBehaviour { }
 }

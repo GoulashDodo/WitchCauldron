@@ -1,5 +1,5 @@
 using Core.SceneManagement;
-using Core.View;
+using Core.UI;
 using Gameplay.Battle.Base.Interfaces;
 using Gameplay.Battle.Waves.Service;
 using Gameplay.Level;

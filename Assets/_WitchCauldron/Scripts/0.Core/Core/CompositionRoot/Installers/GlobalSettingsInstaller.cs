@@ -3,7 +3,7 @@ using Gameplay._root.SO;
 using UnityEngine;
 using Zenject;
 
-namespace Core.CompositionRoot.Registrations
+namespace Core.CompositionRoot.Installers
 {
     [CreateAssetMenu(fileName = "GlobalSettingsInstaller",  menuName = "Installers/Global Settings Installer")]
     public class GlobalSettingsInstaller : ScriptableObjectInstaller

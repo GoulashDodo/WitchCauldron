@@ -2,7 +2,7 @@ using Core.SceneManagement;
 using R3;
 using UnityEngine;
 
-namespace Core.View
+namespace Core.UI
 {
     public class UIRootView : MonoBehaviour
     {
