@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: MoonPebble
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item.Settings.ItemSettings
   <TypeId>k__BackingField: Item_MoonPebble
-  <ItemPf>k__BackingField: {fileID: -7014870578423957334, guid: 99eef5e0e4477604fae54f679a52b043, type: 3}
+  <ItemPf>k__BackingField: {fileID: 3727037310572803791, guid: 99eef5e0e4477604fae54f679a52b043, type: 3}
   <TitleLid>k__BackingField: Moon Peeble
-  <Icon>k__BackingField: {fileID: -7573354855677281409, guid: 0e8125f6d56ef67479bf6bb25eb63c88, type: 3}
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 56b1d47e84911d34099acdf52cb3972d, type: 2}

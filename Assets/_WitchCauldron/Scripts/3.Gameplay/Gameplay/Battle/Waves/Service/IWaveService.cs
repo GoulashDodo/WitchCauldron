@@ -1,0 +1,14 @@
+using R3;
+
+namespace Gameplay.Battle.Waves.Service
+{
+    public interface IWaveService
+    {
+        ReadOnlyReactiveProperty<float> Progress01 { get;}
+        Observable<Unit> WavesCompleted { get; }
+        
+        void StartWaves();
+        void StopWaves();
+        
+    }
+}

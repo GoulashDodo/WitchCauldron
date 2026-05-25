@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Egg
   m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.SO.ItemSettings
   <TypeId>k__BackingField: Item_Egg
-  <ItemPf>k__BackingField: {fileID: 2258027246820597168, guid: 96c2dddcf6acb9842bbb4e70afd32caa, type: 3}
+  <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 96c2dddcf6acb9842bbb4e70afd32caa, type: 3}
   <TitleLid>k__BackingField: Egg!
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 9520921d0630f414d9a061deab320ffa, type: 2}
