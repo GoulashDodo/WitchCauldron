@@ -16,7 +16,6 @@ namespace Hut.UI
         private SceneLoader _sceneLoader;
 
         private const string StartNextLevelText = "Start: ";
-        private const string RunCompletedText = "Run Completed";
 
 
         public void Initialize(RunState runState, SceneLoader sceneLoader)
@@ -25,9 +24,8 @@ namespace Hut.UI
             _sceneLoader = sceneLoader;
             RefreshState();
 
-            
-            SubscribeToButtons();
-
+            if (isActiveAndEnabled)
+                SubscribeToButtons();
         }
         
         private void OnEnable()
@@ -52,17 +50,13 @@ namespace Hut.UI
 
             var canStartNextLevel = _runState.HasCurrentLevel;
 
-            _nextLevelButton.interactable = canStartNextLevel;
+            gameObject.SetActive(canStartNextLevel);
 
+            if (_nextLevelButton != null)
+                _nextLevelButton.interactable = canStartNextLevel;
 
-            if (canStartNextLevel)
-            {
+            if (canStartNextLevel && _nextLevelButtonText != null)
                 _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelId}";
-            }
-            else
-            {
-                _nextLevelButtonText.text = RunCompletedText;
-            }
         }
         
         
@@ -70,12 +64,14 @@ namespace Hut.UI
         {
             UnsubscribeFromButtons();
 
-            _nextLevelButton.onClick.AddListener(StartNextLevel);
+            if (_nextLevelButton != null)
+                _nextLevelButton.onClick.AddListener(StartNextLevel);
         }
 
         private void UnsubscribeFromButtons()
         {
-            _nextLevelButton.onClick.RemoveListener(StartNextLevel);
+            if (_nextLevelButton != null)
+                _nextLevelButton.onClick.RemoveListener(StartNextLevel);
         }
 
         private void StartNextLevel()

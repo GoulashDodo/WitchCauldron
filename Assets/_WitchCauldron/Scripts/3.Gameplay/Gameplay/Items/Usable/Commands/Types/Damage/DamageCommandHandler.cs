@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Battle.Enemies.Core;
+using Gameplay.Battle.BattleEntities.Enemies.Core;
 using Gameplay.Battle.HealthSystem;
 using Gameplay.Battle.HealthSystem.Structs;
 using Gameplay.Items.Usable.Commands.Handler;

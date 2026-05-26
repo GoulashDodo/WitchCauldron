@@ -1,4 +1,4 @@
-using Gameplay.Battle.Enemies.SO;
+using Gameplay.Battle.BattleEntities.Enemies.SO;
 using Gameplay.Items.Combination.ScriptableObjects;
 using Gameplay.Items.SO;
 using Gameplay.Level.SO;

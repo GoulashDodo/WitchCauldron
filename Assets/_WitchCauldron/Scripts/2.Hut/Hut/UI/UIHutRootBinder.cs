@@ -10,7 +10,7 @@ namespace Hut.UI
     {
         
         [SerializeField] private UINextLevel _nextLevel;
-        
+        [SerializeField] private UIRunCompleted _runCompleted;   
 
         [Inject]
         public void Construct(UIRootView view, RunState runState, SceneLoader sceneLoader)
@@ -19,7 +19,7 @@ namespace Hut.UI
             view.AttachSceneUI(gameObject);
             
             _nextLevel.Initialize(runState, sceneLoader);
-
+            _runCompleted.Initialize(runState);
         }
         
     }

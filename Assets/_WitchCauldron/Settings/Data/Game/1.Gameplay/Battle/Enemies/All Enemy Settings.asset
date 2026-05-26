@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7359590830e47309c462beac1ced267, type: 3}
+  m_Name: All Enemy Settings
+  m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO.AllEnemySettings
+  <AllSettings>k__BackingField:
+  - {fileID: 11400000, guid: 91c977a909133214192abd293567c0df, type: 2}
+  - {fileID: 11400000, guid: 0ce9575635366254883e5d20555dc6ba, type: 2}
+  - {fileID: 11400000, guid: 50fba0f9cd647fa49b71059ee010a052, type: 2}

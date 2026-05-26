@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Battle.Base.Interfaces;
-using Gameplay.Battle.Enemies.Services;
+using Gameplay.Battle.BattleEntities.Enemies.Services;
 using Gameplay.Battle.HealthSystem.Core;
 using Gameplay.Battle.HealthSystem.Structs;
 using Gameplay.Battle.Waves.Service;
@@ -40,6 +40,8 @@ namespace Gameplay.Level
             _isGameEnded = false;
             _waveService.StartWaves();
         }
+
+        
         
         private void EndGameplay()
         {
@@ -83,5 +85,28 @@ namespace Gameplay.Level
             _gameWon?.Dispose();
             _compositeDisposable?.Dispose();
         }
+
+        #region FORCE
+
+        public void ForceWin()
+        {
+            if (_isGameEnded)
+                return;
+
+            _isGameEnded = true;
+            _waveService.StopWaves();
+            _gameWon.OnNext(Unit.Default);
+        }
+
+        public void ForceLose()
+        {
+            if (_isGameEnded)
+                return;
+
+            _baseHealth.TakeDamage(new BattleDamage(float.MaxValue, DamageType.Physical));
+        }
+
+        #endregion        
+        
     }
 }

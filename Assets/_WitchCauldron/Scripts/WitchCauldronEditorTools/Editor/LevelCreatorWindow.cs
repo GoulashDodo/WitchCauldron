@@ -16,9 +16,14 @@ namespace WitchCauldronEditorTools.Editor
         [SerializeField] private float _waveStartDelay = 2f;
         [SerializeField] private float _waveStartTime;
         [SerializeField] private float _spawnInterval = 1f;
+        [SerializeField] private WaveStartMode _startMode = WaveStartMode.Timeline;
+        [SerializeField] private WaveSpawnMode _spawnMode = WaveSpawnMode.ManualCount;
+        [SerializeField] private int _pointBudget = 10;
         [SerializeField] private string _enemyTypeId = "Enemy_Dummy";
         [SerializeField] private int _enemyCount = 3;
         [SerializeField] private int _enemyWeight = 1;
+        [SerializeField] private int _enemyMinCount;
+        [SerializeField] private int _enemyMaxCount;
         [SerializeField] private WaveType _waveType = WaveType.Normal;
         [SerializeField] private SpawnPositionMode _spawnPositionMode = SpawnPositionMode.RandomInArea;
         [SerializeField] private Vector3 _specificSpawnPosition;
@@ -47,9 +52,17 @@ namespace WitchCauldronEditorTools.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Wave", EditorStyles.boldLabel);
             _waveStartDelay = EditorGUILayout.FloatField("Start Delay", _waveStartDelay);
-            _waveStartTime = EditorGUILayout.FloatField("Wave Start Time", _waveStartTime);
+            _startMode = (WaveStartMode)EditorGUILayout.EnumPopup("Start Mode", _startMode);
+            _waveStartTime = EditorGUILayout.FloatField(
+                _startMode == WaveStartMode.AfterPreviousCleared ? "Delay After Clear" : "Wave Start Time",
+                _waveStartTime);
             _spawnInterval = EditorGUILayout.FloatField("Spawn Interval", _spawnInterval);
             _waveType = (WaveType)EditorGUILayout.EnumPopup("Wave Type", _waveType);
+            _spawnMode = (WaveSpawnMode)EditorGUILayout.EnumPopup("Spawn Mode", _spawnMode);
+
+            using (new EditorGUI.DisabledScope(_spawnMode != WaveSpawnMode.PointBudget))
+                _pointBudget = EditorGUILayout.IntField("Point Budget", _pointBudget);
+
             _spawnPositionMode = (SpawnPositionMode)EditorGUILayout.EnumPopup("Spawn Position Mode", _spawnPositionMode);
 
             using (new EditorGUI.DisabledScope(_spawnPositionMode != SpawnPositionMode.SpecificPosition))
@@ -58,8 +71,16 @@ namespace WitchCauldronEditorTools.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Enemy", EditorStyles.boldLabel);
             _enemyTypeId = EditorGUILayout.TextField("Enemy Type Id", _enemyTypeId);
-            _enemyCount = EditorGUILayout.IntField("Enemy Count", _enemyCount);
             _enemyWeight = EditorGUILayout.IntField("Enemy Weight", _enemyWeight);
+
+            using (new EditorGUI.DisabledScope(_spawnMode != WaveSpawnMode.ManualCount))
+                _enemyCount = EditorGUILayout.IntField("Manual Count", _enemyCount);
+
+            using (new EditorGUI.DisabledScope(_spawnMode != WaveSpawnMode.PointBudget))
+            {
+                _enemyMinCount = EditorGUILayout.IntField("Min Count", _enemyMinCount);
+                _enemyMaxCount = EditorGUILayout.IntField("Max Count", _enemyMaxCount);
+            }
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Output", EditorStyles.boldLabel);
@@ -83,7 +104,8 @@ namespace WitchCauldronEditorTools.Editor
                    !string.IsNullOrWhiteSpace(_enemyTypeId) &&
                    _baseHealth > 0f &&
                    _spawnInterval > 0f &&
-                   _enemyCount > 0 &&
+                   (_spawnMode != WaveSpawnMode.ManualCount || _enemyCount > 0) &&
+                   (_spawnMode != WaveSpawnMode.PointBudget || _pointBudget > 0) &&
                    _enemyWeight > 0;
         }
 
@@ -124,8 +146,11 @@ namespace WitchCauldronEditorTools.Editor
 
             var wave = waves.GetArrayElementAtIndex(0);
             wave.FindPropertyRelative("<Type>k__BackingField").enumValueIndex = (int)_waveType;
+            wave.FindPropertyRelative("<StartMode>k__BackingField").enumValueIndex = (int)_startMode;
             wave.FindPropertyRelative("<StartTime>k__BackingField").floatValue = Mathf.Max(0f, _waveStartTime);
             wave.FindPropertyRelative("<SpawnInterval>k__BackingField").floatValue = Mathf.Max(0.1f, _spawnInterval);
+            wave.FindPropertyRelative("<SpawnMode>k__BackingField").enumValueIndex = (int)_spawnMode;
+            wave.FindPropertyRelative("<PointBudget>k__BackingField").intValue = Mathf.Max(0, _pointBudget);
             wave.FindPropertyRelative("<SpawnPositionMode>k__BackingField").enumValueIndex = (int)_spawnPositionMode;
             wave.FindPropertyRelative("<SpecificSpawnPosition>k__BackingField").vector3Value = _specificSpawnPosition;
 
@@ -136,6 +161,8 @@ namespace WitchCauldronEditorTools.Editor
             enemy.FindPropertyRelative("<EnemyTypeId>k__BackingField").stringValue = _enemyTypeId;
             enemy.FindPropertyRelative("<Count>k__BackingField").intValue = Mathf.Max(1, _enemyCount);
             enemy.FindPropertyRelative("<Weight>k__BackingField").intValue = Mathf.Max(1, _enemyWeight);
+            enemy.FindPropertyRelative("<MinCount>k__BackingField").intValue = Mathf.Max(0, _enemyMinCount);
+            enemy.FindPropertyRelative("<MaxCount>k__BackingField").intValue = Mathf.Max(0, _enemyMaxCount);
 
             serialized.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(waveSettings);
