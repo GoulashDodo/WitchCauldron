@@ -1,4 +1,3 @@
-using Core.Data;
 using Gameplay.Battle.BattleEntities.Enemies.Services;
 using Gameplay.Battle.BattleEntities.Enemies.SO;
 using Gameplay.Battle.HealthSystem;
@@ -17,23 +16,19 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         private readonly CompositeDisposable _disposables = new();
         
         
-        private Rigidbody2D _rigidbody;
         private Health _health;
-        private LayerMask _baseLayerMask;
-        private float _nextAttackTime;
 
 
         public EnemySettings Settings { get; private set; }
-        public EnemyEvents Events { get; private set; }
+        public EnemyEvents Events { get; } = new();
+        
+        public bool IsDead { get; private set; }
+        
+        public bool IsInitialized => Settings != null;
 
         private EnemyService _enemyService;
     
 
-        
-        private void Awake()
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-        }
         
         #region CREATION
         
@@ -44,9 +39,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
             Settings = enemySettings;
             
 
-            Events = new EnemyEvents();
             _health = new Health(Settings.MaxHealth);
-            _baseLayerMask = LayerMask.GetMask(Layers.Base);
 
             _health.Damaged
                 .Subscribe(damageInfo => Events.RaiseDamaged(damageInfo))
@@ -68,22 +61,6 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         
         #endregion
         
-        private void FixedUpdate()
-        {
-            if (Settings == null)
-                return;
-
-            var target = FindBaseInAttackRange();
-
-            if (target != null)
-            {
-                TryAttack(target);
-                return;
-            }
-
-            MoveLeft(Time.fixedDeltaTime);
-        }
-        
         
         public void TakeDamage(BattleDamage battleDamage)
         {
@@ -91,44 +68,26 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
             _health.TakeDamage(battleDamage);
         }
 
-        private IDamageable FindBaseInAttackRange()
-        {
-            var hit = Physics2D.Raycast(
-                origin: transform.position,
-                direction: Vector2.left,
-                distance: Settings.AttackDistance,
-                layerMask: _baseLayerMask);
-
-            return hit.collider != null
-                ? hit.collider.GetComponentInParent<IDamageable>()
-                : null;
-        }
-
-        private void TryAttack(IDamageable target)
-        {
-            if (Time.time < _nextAttackTime)
-                return;
-
-            target.TakeDamage(new BattleDamage(Settings.Damage, DamageType.Physical));
-            _nextAttackTime = Time.time + GetAttackCooldown();
-        }
-
-        private float GetAttackCooldown()
-        {
-            return 1f / Mathf.Max(Settings.AttackSpeed, 0.01f);
-        }
-
-        private void MoveLeft(float deltaTime)
-        {
-            var nextPosition = _rigidbody.position + Vector2.left * (Settings.MaxSpeed * deltaTime);
-            _rigidbody.MovePosition(nextPosition);
-        }
-
+        
         private void Die(DeathInfo deathInfo)
         {
+            if (IsDead)
+                return;
+
+            IsDead = true;
+
+            Events.RaiseDied(deathInfo);
             _enemyService.UnregisterEnemy(this);
+        }
+
+        public void CompleteDeath()
+        {
+            if (!IsDead)
+                return;
+
             gameObject.SetActive(false);
         }
+        
 
         private void OnDisable()
         {
