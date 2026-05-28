@@ -14,6 +14,7 @@ namespace Gameplay.UI
         [SerializeField] private UIBaseHealth _uiBaseHealth;
         
         [SerializeField] private UIProgressBar _uiProgressBar;
+        [SerializeField] private UIWaveAlert _uiWaveAlert;
 
         [SerializeField] private UILose _uiLose;
 
@@ -35,6 +36,10 @@ namespace Gameplay.UI
             
             _uiBaseHealth.Initialize(baseHealthProvider);
             _uiProgressBar.Initialize(waveService);
+            
+            if (_uiWaveAlert != null)
+                _uiWaveAlert.Initialize(waveService);
+            
             _uiLose.Initialize(game, sceneLoader);
             _uiWin.Initialize(game, sceneLoader);
             

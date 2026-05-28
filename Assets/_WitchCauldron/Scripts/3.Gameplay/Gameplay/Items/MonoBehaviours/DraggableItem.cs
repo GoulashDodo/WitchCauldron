@@ -10,6 +10,7 @@ namespace Gameplay.Items.MonoBehaviours
     public class DraggableItem : UnityEngine.MonoBehaviour, ILeftButtonPressable,ILeftButtonReleasable, IDisposable
     {
         public string TypeId { get; private set; }
+        public ItemSettings Settings { get; private set; }
 
         protected ItemService ItemService;
         
@@ -41,6 +42,7 @@ namespace Gameplay.Items.MonoBehaviours
             bool startDragging = false
         )
         {
+            Settings = itemSettings;
             TypeId = itemSettings.TypeId;
             ItemService = itemService;
 

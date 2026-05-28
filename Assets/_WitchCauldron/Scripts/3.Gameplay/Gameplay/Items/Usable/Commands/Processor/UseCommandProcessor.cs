@@ -23,7 +23,7 @@ namespace Gameplay.Items.Usable.Commands.Processor
             _handlers[handler.ParametersType] = handler;
         }
 
-        public bool Process(UseCommandParameters command, Vector2 position)
+        public bool Process(UseCommandParameters command, Vector2 position, UseCommandContext context = null)
         {
             if (command == null)
             {
@@ -33,7 +33,7 @@ namespace Gameplay.Items.Usable.Commands.Processor
 
             var t = command.GetType();
             if (_handlers.TryGetValue(t, out var handler))
-                return handler.Handle(command, position);
+                return handler.Handle(command, position, context);
 
 
             Debug.LogError($"Handler for {t.Name} not found");

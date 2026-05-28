@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 5853506882678611314}
   - component: {fileID: 8645644839072344767}
   - component: {fileID: 742013304347418832}
+  - component: {fileID: 2936397237523389917}
   m_Layer: 9
   m_Name: View
   m_TagString: Untagged
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: bfe1ccc6622501d4ca99a6a756f3d4b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,3 +279,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Enemies.Core.EnemyAnimator
   _hasDeathAnimation: 1
+--- !u!114 &2936397237523389917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442551734154908671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de9ddd28d254c0a943a84b3dfb4d0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashAmount: 0.5
+  _flashInDuration: 0.035
+  _flashHoldDuration: 0.025
+  _flashOutDuration: 0.06
+  _flashCount: 2

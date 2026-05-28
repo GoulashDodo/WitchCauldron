@@ -22,4 +22,4 @@ MonoBehaviour:
   <AttackSpeed>k__BackingField: 1
   <LootDefinitions>k__BackingField:
   - <DropItemTypeId>k__BackingField: Item_Egg
-    <ChanceToDropItem>k__BackingField: 0.5
+    <ChanceToDropItem>k__BackingField: 0.33

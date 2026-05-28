@@ -76,7 +76,6 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
             IsDead = true;
 
-            Events.RaiseDied(deathInfo);
             _enemyService.UnregisterEnemy(this);
         }
 

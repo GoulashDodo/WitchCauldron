@@ -8,6 +8,7 @@ using Gameplay.Battle.Waves.Service;
 using Gameplay.Battle.Waves.SpawnArea;
 using Gameplay.Items.Combination.Service;
 using Gameplay.Items.Services;
+using Gameplay.Items.Usable.Commands.Preview;
 using Gameplay.Items.Usable.Commands.Processor;
 using Gameplay.Level;
 using Gameplay.Level.SO;
@@ -73,6 +74,7 @@ namespace Gameplay._root.Installers
         private void BindServices()
         {
             Container.Bind<IUseCommandProcessor>().To<UseCommandProcessor>().AsSingle();
+            Container.Bind<IUseCommandPreviewProcessor>().To<UseCommandPreviewProcessor>().AsSingle();
             Container.Bind<ItemService>().AsSingle();
             Container.Bind<EnemyService>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();

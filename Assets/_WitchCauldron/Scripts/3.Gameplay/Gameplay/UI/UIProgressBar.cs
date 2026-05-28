@@ -17,8 +17,8 @@ namespace Gameplay.UI
             _slider.maxValue = 1f;
             _slider.wholeNumbers = false;
 
-            waveService.Progress01
-                .Subscribe(UpdateProgress)
+            waveService.Progress
+                .Subscribe(progress => UpdateProgress(progress.Level01))
                 .AddTo(_disposables);
         }
 

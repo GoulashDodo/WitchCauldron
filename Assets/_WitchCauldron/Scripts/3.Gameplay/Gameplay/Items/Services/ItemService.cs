@@ -3,8 +3,12 @@ using Core.Input.Clickable;
 using Gameplay._root.SO;
 using Gameplay.Items.Combination.Service;
 using Gameplay.Items.MonoBehaviours;
+using Gameplay.Items.MonoBehaviours.View;
 using Gameplay.Items.SO;
+using Gameplay.Items.Usable.Commands;
+using Gameplay.Items.Usable.Commands.Preview;
 using Gameplay.Items.Usable.Commands.Processor;
+using Gameplay.Items.Visuals;
 using UnityEngine;
 
 namespace Gameplay.Items.Services
@@ -13,6 +17,8 @@ namespace Gameplay.Items.Services
     {
 
         private readonly IUseCommandProcessor _useCommandProcessor;
+        private readonly IUseCommandPreviewProcessor _previewProcessor;
+        private readonly ItemUseFxPlayer _fxPlayer = new();
         
         private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
@@ -23,11 +29,13 @@ namespace Gameplay.Items.Services
         public ItemService(MouseClickHandler mouseClickHandler, 
             CombinationService combinationService, 
             GameplaySettings gameplaySettings, 
-            IUseCommandProcessor useCommandProcessor)
+            IUseCommandProcessor useCommandProcessor,
+            IUseCommandPreviewProcessor previewProcessor)
         {
             _mouseClickHandler = mouseClickHandler;
             _combinationService = combinationService;
             _useCommandProcessor = useCommandProcessor;
+            _previewProcessor = previewProcessor;
 
 
             
@@ -50,6 +58,7 @@ namespace Gameplay.Items.Services
             var item = Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
             
             item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, startDragging);
+            InitializeUsePreviewFx(item);
             
             return item;
         }  
@@ -107,14 +116,23 @@ namespace Gameplay.Items.Services
             var itemSettings = _allItemSettings[usableItem.TypeId];
             Debug.Log($"[Item service]: Using {usableItem.TypeId}");
 
+            var context = new UseCommandContext(itemSettings, _fxPlayer);
 
             foreach (var commandParameters in itemSettings.OnUseCommands)
             {
-                _useCommandProcessor.Process(commandParameters, position);
+                _useCommandProcessor.Process(commandParameters, position, context);
             }
-            
-            
-            
+        }
+
+        private void InitializeUsePreviewFx(DraggableItem item)
+        {
+            if (item is not UsableItem usableItem)
+                return;
+
+            if (!usableItem.TryGetComponent(out UsableItemPreviewFx previewFx))
+                previewFx = usableItem.gameObject.AddComponent<UsableItemPreviewFx>();
+
+            previewFx.Initialize(_previewProcessor);
         }
     }
 }

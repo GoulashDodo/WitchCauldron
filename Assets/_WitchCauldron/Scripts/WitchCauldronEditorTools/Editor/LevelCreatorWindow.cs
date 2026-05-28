@@ -16,7 +16,6 @@ namespace WitchCauldronEditorTools.Editor
         [SerializeField] private float _waveStartDelay = 2f;
         [SerializeField] private float _waveStartTime;
         [SerializeField] private float _spawnInterval = 1f;
-        [SerializeField] private WaveStartMode _startMode = WaveStartMode.Timeline;
         [SerializeField] private WaveSpawnMode _spawnMode = WaveSpawnMode.ManualCount;
         [SerializeField] private int _pointBudget = 10;
         [SerializeField] private string _enemyTypeId = "Enemy_Dummy";
@@ -52,10 +51,7 @@ namespace WitchCauldronEditorTools.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Wave", EditorStyles.boldLabel);
             _waveStartDelay = EditorGUILayout.FloatField("Start Delay", _waveStartDelay);
-            _startMode = (WaveStartMode)EditorGUILayout.EnumPopup("Start Mode", _startMode);
-            _waveStartTime = EditorGUILayout.FloatField(
-                _startMode == WaveStartMode.AfterPreviousCleared ? "Delay After Clear" : "Wave Start Time",
-                _waveStartTime);
+            _waveStartTime = EditorGUILayout.FloatField("Wave Delay", _waveStartTime);
             _spawnInterval = EditorGUILayout.FloatField("Spawn Interval", _spawnInterval);
             _waveType = (WaveType)EditorGUILayout.EnumPopup("Wave Type", _waveType);
             _spawnMode = (WaveSpawnMode)EditorGUILayout.EnumPopup("Spawn Mode", _spawnMode);
@@ -146,7 +142,6 @@ namespace WitchCauldronEditorTools.Editor
 
             var wave = waves.GetArrayElementAtIndex(0);
             wave.FindPropertyRelative("<Type>k__BackingField").enumValueIndex = (int)_waveType;
-            wave.FindPropertyRelative("<StartMode>k__BackingField").enumValueIndex = (int)_startMode;
             wave.FindPropertyRelative("<StartTime>k__BackingField").floatValue = Mathf.Max(0f, _waveStartTime);
             wave.FindPropertyRelative("<SpawnInterval>k__BackingField").floatValue = Mathf.Max(0.1f, _spawnInterval);
             wave.FindPropertyRelative("<SpawnMode>k__BackingField").enumValueIndex = (int)_spawnMode;

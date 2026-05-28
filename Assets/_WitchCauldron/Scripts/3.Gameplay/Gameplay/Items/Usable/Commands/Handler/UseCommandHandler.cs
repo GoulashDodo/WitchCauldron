@@ -8,7 +8,7 @@ namespace Gameplay.Items.Usable.Commands.Handler
     {
         public Type ParametersType => typeof(T);
 
-        public bool Handle(UseCommandParameters p, Vector2 pos) => Handle((T)p, pos);
-        public abstract bool Handle(T p, Vector2 pos);
+        public bool Handle(UseCommandParameters p, Vector2 pos, UseCommandContext context = null) => Handle((T)p, pos, context);
+        public abstract bool Handle(T p, Vector2 pos, UseCommandContext context = null);
     }
 }

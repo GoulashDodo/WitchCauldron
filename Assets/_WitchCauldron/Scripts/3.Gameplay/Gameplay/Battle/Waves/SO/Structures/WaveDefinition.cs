@@ -10,12 +10,9 @@ namespace Gameplay.Battle.Waves.SO.Structures
         [field: SerializeField, BoxGroup("Timing")]
         public WaveType Type { get; private set; }
 
-        [field: SerializeField, BoxGroup("Timing")]
-        public WaveStartMode StartMode { get; private set; } = WaveStartMode.Timeline;
-
         [field: SerializeField, Min(0f), BoxGroup("Timing")]
         [field: LabelText("Start Time / Delay")]
-        [field: InfoBox("Timeline: seconds after level wave start. After Previous Cleared: seconds after previous wave is fully cleared.")]
+        [field: InfoBox("First wave: seconds after level wave start delay. Next waves: seconds after the previous wave is cleared.")]
         public float StartTime { get; private set; }
 
         [field: SerializeField, Min(0.1f), BoxGroup("Timing")]
@@ -58,6 +55,5 @@ namespace Gameplay.Battle.Waves.SO.Structures
             }
         }
 
-        public float Duration => TotalEnemyCount <= 0 ? 0f : (TotalEnemyCount - 1) * SpawnInterval;
     }
 }

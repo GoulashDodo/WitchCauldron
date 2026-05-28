@@ -10,6 +10,16 @@ namespace Gameplay.Items.MonoBehaviours
         
         protected override void OnDrop()
         {
+            if (CanUseAtCurrentPosition())
+            {
+                ItemService.UseItem(this, transform.position);
+            }
+    
+            base.OnDrop();
+        }
+
+        public bool CanUseAtCurrentPosition()
+        {
             var contactFilter = new ContactFilter2D
             {
                 useLayerMask = true,
@@ -41,17 +51,8 @@ namespace Gameplay.Items.MonoBehaviours
                 }
             }
     
-            if (best != null)
-            {
-                ItemService.UseItem(this, transform.position);
-            }
-    
             Array.Clear(OverlapBuffer, 0, count);
-    
-            base.OnDrop();
-            
+            return best != null;
         }
-        
-
     }
 }   

@@ -6,6 +6,6 @@ namespace Gameplay.Items.Usable.Commands.Processor
     public interface IUseCommandProcessor
     {
         void RegisterHandler(IUseCommandHandler handler);
-        bool Process(UseCommandParameters command, Vector2 position);
+        bool Process(UseCommandParameters command, Vector2 position, UseCommandContext context = null);
     }
 }

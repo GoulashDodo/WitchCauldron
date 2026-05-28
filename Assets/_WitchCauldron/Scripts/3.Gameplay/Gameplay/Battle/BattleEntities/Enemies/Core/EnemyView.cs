@@ -5,7 +5,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 {
     
     [RequireComponent(typeof(Animator))]
-    public class EnemyAnimator : MonoBehaviour
+    public class EnemyView : MonoBehaviour
     {
         [SerializeField] private bool _hasDeathAnimation = true;
         

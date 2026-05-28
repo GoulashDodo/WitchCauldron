@@ -13,17 +13,25 @@ namespace Gameplay.Items.Usable.Commands.Damage
         private readonly Collider2D[] _buffer = new Collider2D[20];
         private readonly ContactFilter2D _contactFilter = new();
         
-        public override bool Handle(DamageCommandParameters p, Vector2 pos)
+        public override bool Handle(DamageCommandParameters p, Vector2 pos, UseCommandContext context = null)
         {
             var radius = Mathf.Max(0f, p.Radius);
             var hitCount = Physics2D.OverlapCircle(pos, radius, _contactFilter, _buffer);
 
+            bool damaged;
             if (p.IsArea)
             {
-                return DamageAllEnemies(p, pos, hitCount);
+                damaged = DamageAllEnemies(p, pos, hitCount);
+            }
+            else
+            {
+                damaged = DamageFirstEnemy(p, pos, hitCount);
             }
 
-            return DamageFirstEnemy(p, pos, hitCount);
+            if (damaged)
+                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings);
+
+            return damaged;
         }
 
         private bool DamageFirstEnemy(DamageCommandParameters p, Vector2 pos, int hitCount)
