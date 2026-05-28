@@ -17,3 +17,13 @@ MonoBehaviour:
   <TitleLid>k__BackingField: Egg!
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 9520921d0630f414d9a061deab320ffa, type: 2}
+  <UseVisuals>k__BackingField:
+    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
+    <FallbackImpactParticleLifetime>k__BackingField: 1.1
+    <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleAngularSpeed>k__BackingField: 540
+    <UseSfx>k__BackingField: {fileID: 0}
+    <ImpactSfx>k__BackingField: {fileID: 0}
+  <SpawnCooldown>k__BackingField: 12
+  <Icon>k__BackingField: {fileID: 4016478160230727852, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

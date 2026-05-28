@@ -21,6 +21,14 @@ namespace Gameplay.Items.SO
 
         [field: Space(10)]
         [field: SerializeField] public ItemUseVisualSettings UseVisuals { get; private set; } = new();
+     
+        [field: Space(10)]
+        [field: Header("Item Spawn")]
+        [field: SerializeField] public float SpawnCooldown { get; private set; }
+        [field: SerializeField] public Sprite Icon { get; private set; }
+        
+        
+        
         
     }
 }

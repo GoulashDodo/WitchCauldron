@@ -1,4 +1,5 @@
 using Gameplay.Battle.Waves.SO;
+using Gameplay.Items.SO;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace Gameplay.Level.SO
         [field: InlineEditor]
         [field:SerializeField] public WaveSettings WaveSettings { get; private set; } 
         
+   
         
     }
 }

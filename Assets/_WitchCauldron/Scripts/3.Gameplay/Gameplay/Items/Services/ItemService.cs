@@ -123,7 +123,12 @@ namespace Gameplay.Items.Services
                 _useCommandProcessor.Process(commandParameters, position, context);
             }
         }
-
+        
+        public ItemSettings GetItemSettings(string itemTypeId)
+        {
+            return _allItemSettings[itemTypeId];
+        }
+        
         private void InitializeUsePreviewFx(DraggableItem item)
         {
             if (item is not UsableItem usableItem)
@@ -134,5 +139,6 @@ namespace Gameplay.Items.Services
 
             previewFx.Initialize(_previewProcessor);
         }
+
     }
 }
