@@ -1,6 +1,7 @@
 using Core.Run;
 using Core.SceneManagement;
 using Core.UI;
+using Gameplay._root;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -84,7 +85,8 @@ namespace MainMenu.UI
             if (!_runState.StartNewRun())
                 return;
 
-            _sceneLoader.LoadGameplay(_runState.CurrentLevelId);
+            var gameplayEntryParameters = new GameplayEntryParameters(_runState.CurrentLevelId);
+            _sceneLoader.LoadGameplay(gameplayEntryParameters);
         }
 
         private static void ExitGame()

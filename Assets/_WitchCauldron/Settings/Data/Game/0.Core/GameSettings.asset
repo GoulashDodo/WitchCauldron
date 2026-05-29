@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Core.GameRoot.Settings.GameSettings
   <GameplaySettings>k__BackingField: {fileID: 11400000, guid: 0ad4dd2943ff89044a34e2d73e92aba6, type: 2}
+  <HutSettings>k__BackingField: {fileID: 11400000, guid: f32551155edc9304593c26db7219de65, type: 2}

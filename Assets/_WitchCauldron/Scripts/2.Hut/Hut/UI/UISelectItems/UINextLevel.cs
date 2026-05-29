@@ -1,13 +1,18 @@
 using Core.Run;
 using Core.SceneManagement;
+using Gameplay._root;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hut.UI
+namespace Hut.UI.UISelectItems
 {
     public class UINextLevel : MonoBehaviour
     {
+
+        
+        //TODO: Change this coupling
+        [SerializeField] private UISelectItemParent _uiSelectItemsParent;
         
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private TMP_Text _nextLevelButtonText;
@@ -41,24 +46,13 @@ namespace Hut.UI
         {
             UnsubscribeFromButtons();
         }
-
-        
         private void RefreshState()
         {
             if (!_runState.HasCurrentLevel && !_runState.IsCompleted)
                 _runState.StartNewRun();
-
-            var canStartNextLevel = _runState.HasCurrentLevel;
-
-            gameObject.SetActive(canStartNextLevel);
-
-            if (_nextLevelButton != null)
-                _nextLevelButton.interactable = canStartNextLevel;
-
-            if (canStartNextLevel && _nextLevelButtonText != null)
-                _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelId}";
+            
+            _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelId}";
         }
-        
         
         private void SubscribeToButtons()
         {
@@ -82,7 +76,9 @@ namespace Hut.UI
                 return;
             }
 
-            _sceneLoader.LoadGameplay(_runState.CurrentLevelId);
+            var gameplayEntryPoint = new GameplayEntryParameters(_runState.CurrentLevelId, _uiSelectItemsParent.GetSelectedItemsIds());
+            
+            _sceneLoader.LoadGameplay(gameplayEntryPoint);
         }
     }
 }

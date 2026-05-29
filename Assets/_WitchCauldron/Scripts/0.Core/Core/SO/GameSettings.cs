@@ -1,4 +1,5 @@
 using Gameplay._root.SO;
+using Hut.SO;
 using UnityEngine;
 
 namespace Core.SO
@@ -7,7 +8,8 @@ namespace Core.SO
     public class GameSettings : ScriptableObject
     {
         
-        [field: SerializeField] public GameplaySettings GameplaySettings { get; set; }
+        [field: SerializeField] public GameplaySettings GameplaySettings { get; private set; }
+        [field: SerializeField] public HutSettings HutSettings { get; private set; }
         
     }
 }

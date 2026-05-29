@@ -52,21 +52,13 @@ namespace Core.SceneManagement
                     if (!_runState.HasCurrentLevel && !_runState.StartNewRun())
                         return;
 
-                    LoadGameplay(_runState.CurrentLevelId);
+                    var entryParameters = new GameplayEntryParameters(_runState.CurrentLevelId);
+                    
+                    LoadGameplay(entryParameters);
                     return;
             }
         }
 
-        public void LoadGameplay(string levelId)
-        {
-            if (string.IsNullOrWhiteSpace(levelId))
-            {
-                Debug.LogWarning("Cannot load gameplay: level id is empty.");
-                return;
-            }
-
-            LoadGameplay(new GameplayEntryParameters(levelId));
-        }
 
         public void LoadGameplay(GameplayEntryParameters gameplayEntryParameters)
         {
