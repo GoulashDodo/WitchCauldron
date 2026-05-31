@@ -17,6 +17,7 @@ MonoBehaviour:
   <TitleLid>k__BackingField: Egg!
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 9520921d0630f414d9a061deab320ffa, type: 2}
+  - {fileID: 11400000, guid: 2b7820327ffb176438f4822475dd5075, type: 2}
   <UseVisuals>k__BackingField:
     <ImpactParticlePrefab>k__BackingField: {fileID: 0}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Items.Usable.Commands.Damage;
+using Gameplay.Items.Usable.Commands.Effect;
 using Gameplay.Items.Usable.Commands.Handler;
 using Gameplay.Items.Usable.Commands.Spawn;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Gameplay.Items.Usable.Commands.Processor
         {
             RegisterHandler(new DamageCommandHandler());
             RegisterHandler(new SpawnCommandHandler());
+            RegisterHandler(new EffectCommandHandler());
         }
 
         public void RegisterHandler(IUseCommandHandler handler)

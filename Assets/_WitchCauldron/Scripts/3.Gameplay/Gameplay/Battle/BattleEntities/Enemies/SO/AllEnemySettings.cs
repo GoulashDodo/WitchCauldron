@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Battle.BattleEntities.Enemies.SO
 {
-    [CreateAssetMenu(fileName = "All Enemy Settings", menuName = "Game/Enemies/All Enemy Settings")]
+    [CreateAssetMenu(fileName = "All Enemy Settings", menuName = "Game/Gameplay/Enemies/All Enemy Settings")]
 
     public class AllEnemySettings : ScriptableObject
     {
