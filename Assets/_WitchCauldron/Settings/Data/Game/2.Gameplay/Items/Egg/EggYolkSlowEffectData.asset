@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f517dd27f3242a19d2e4966ee706287, type: 3}
-  m_Name: EggSlowEffect
+  m_Name: EggYolkSlowEffectData
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.Effects.Slow.SlowEffectData
-  <EffectName>k__BackingField: Slowing....
-  <Duration>k__BackingField: 2
-  <IsPermanent>k__BackingField: 0
-  <SpeedMultiplier>k__BackingField: 0.2
+  <EffectName>k__BackingField: Yolked!
+  <Duration>k__BackingField: 0
+  <IsPermanent>k__BackingField: 1
+  <EffectIcon>k__BackingField: {fileID: 6910276236607872795, guid: 0eb672d58d5890e4b9330eae9821f099, type: 3}
+  <SpeedMultiplier>k__BackingField: 0.4

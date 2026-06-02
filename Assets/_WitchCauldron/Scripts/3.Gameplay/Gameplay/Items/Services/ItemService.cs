@@ -57,8 +57,11 @@ namespace Gameplay.Items.Services
             var itemPf = itemSettings.ItemPf;
             var item = Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
             
-            item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, startDragging);
+            item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition);
             InitializeUsePreviewFx(item);
+
+            if (startDragging)
+                item.StartDragging();
             
             return item;
         }  
@@ -111,12 +114,13 @@ namespace Gameplay.Items.Services
 
         public void UseItem(UsableItem usableItem, Vector2 position)
         {
+            var itemWorldScale = usableItem.transform.lossyScale;
             DespawnDraggableItem(usableItem);
             
             var itemSettings = _allItemSettings[usableItem.TypeId];
             Debug.Log($"[Item service]: Using {usableItem.TypeId}");
 
-            var context = new UseCommandContext(itemSettings, _fxPlayer);
+            var context = new UseCommandContext(itemSettings, _fxPlayer, itemWorldScale);
 
             foreach (var commandParameters in itemSettings.OnUseCommands)
             {

@@ -21,6 +21,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
         public EnemySettings Settings { get; private set; }
         public EnemyEvents Events { get; } = new();
+        public IHealth Health => _health;
         
         public bool IsDead { get; private set; }
         

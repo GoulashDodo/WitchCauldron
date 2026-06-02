@@ -16,6 +16,9 @@ namespace Gameplay.Battle.HealthSystem.Core
         private readonly Subject<DeathInfo> _died = new();
 
         
+        public float CurrentHealthValue => _currentHealth.Value;
+        public float MaxHealth => _maxHealth;
+        
         public Observable<float> CurrentHealth => _currentHealth;
         
         

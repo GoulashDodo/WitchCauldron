@@ -17,3 +17,13 @@ MonoBehaviour:
   <TitleLid>k__BackingField: MoonSpitter
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 28292de05f5cad245b56288b855e2b43, type: 2}
+  <UseVisuals>k__BackingField:
+    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
+    <FallbackImpactParticleLifetime>k__BackingField: 1.1
+    <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleAngularSpeed>k__BackingField: 540
+    <UseSfx>k__BackingField: {fileID: 0}
+    <ImpactSfx>k__BackingField: {fileID: 0}
+  <SpawnCooldown>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 0}

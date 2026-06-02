@@ -8,6 +8,10 @@ namespace Gameplay.Battle.Effects.Base
         [field: SerializeField] public float Duration { get; private set; }
         [field: SerializeField] public bool IsPermanent { get; private set; }
 
+        [field: SerializeField] public Sprite EffectIcon { get; private set; }
+
+        
+        
         public abstract EffectRuntime CreateRuntime();
     }
     

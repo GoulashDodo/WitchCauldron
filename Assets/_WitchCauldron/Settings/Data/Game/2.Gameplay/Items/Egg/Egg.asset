@@ -16,8 +16,7 @@ MonoBehaviour:
   <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 96c2dddcf6acb9842bbb4e70afd32caa, type: 3}
   <TitleLid>k__BackingField: Egg!
   <OnUseCommands>k__BackingField:
-  - {fileID: 11400000, guid: 9520921d0630f414d9a061deab320ffa, type: 2}
-  - {fileID: 11400000, guid: 2b7820327ffb176438f4822475dd5075, type: 2}
+  - {fileID: 11400000, guid: bc04e92b630037a42a3ed3ca5b676224, type: 2}
   <UseVisuals>k__BackingField:
     <ImpactParticlePrefab>k__BackingField: {fileID: 0}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
@@ -27,4 +26,4 @@ MonoBehaviour:
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}
   <SpawnCooldown>k__BackingField: 12
-  <Icon>k__BackingField: {fileID: 4016478160230727852, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
+  <Icon>k__BackingField: {fileID: 3733566075561334502, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

@@ -5,6 +5,8 @@ namespace Gameplay.Battle.Effects.Base
     public abstract class EffectRuntime
     {
 
+        public EffectData EffectData => Data;
+        
         private float _timeLeft;
         
         protected GameObject Target { get; private set; }

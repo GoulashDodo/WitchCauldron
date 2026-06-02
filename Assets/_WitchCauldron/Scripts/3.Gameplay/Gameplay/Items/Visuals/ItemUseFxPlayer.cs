@@ -5,7 +5,7 @@ namespace Gameplay.Items.Visuals
 {
     public class ItemUseFxPlayer
     {
-        public void PlayImpactFx(Vector2 position, ItemSettings itemSettings)
+        public void PlayImpactFx(Vector2 position, ItemSettings itemSettings, Vector3 itemWorldScale)
         {
             if (itemSettings?.UseVisuals == null)
                 return;
@@ -26,6 +26,7 @@ namespace Gameplay.Items.Visuals
 
             var particle = new GameObject($"{itemSettings.TypeId}_ImpactParticle");
             particle.transform.position = position;
+            particle.transform.localScale = itemWorldScale;
 
             var renderer = particle.AddComponent<SpriteRenderer>();
             renderer.sprite = sourceRenderer.sprite;

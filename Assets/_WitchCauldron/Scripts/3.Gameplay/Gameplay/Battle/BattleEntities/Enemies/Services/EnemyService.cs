@@ -16,10 +16,12 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
         private readonly Dictionary<int, System.IDisposable> _enemyDeathSubscriptions = new();
 
         private readonly ReactiveProperty<int> _activeEnemyCount = new(0);
+        private readonly Subject<Enemy> _enemySpawned = new();
         private readonly Subject<Enemy> _enemyDied = new();
 
         public ReadOnlyReactiveProperty<int> ActiveEnemyCount => _activeEnemyCount;
         public int ActiveEnemyCountValue => _activeEnemyCount.Value;
+        public Observable<Enemy> EnemySpawned => _enemySpawned;
         public Observable<Enemy> EnemyDied => _enemyDied;
 
 
@@ -72,6 +74,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
             _allExistingEnemies.Add(enemyId, enemyToRegister);
             _enemyDeathSubscriptions.Add(enemyId, enemyToRegister.Events.Died.Subscribe(_ => _enemyDied.OnNext(enemyToRegister)));
             _activeEnemyCount.Value = _allExistingEnemies.Count;
+            _enemySpawned.OnNext(enemyToRegister);
 
         }
 

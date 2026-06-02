@@ -24,6 +24,9 @@ namespace Gameplay.Items.MonoBehaviours.View
         public void Initialize(IUseCommandPreviewProcessor previewProcessor)
         {
             _previewProcessor = previewProcessor;
+
+            if (_item != null && _item.IsDragging)
+                ShowPreviews();
         }
 
         private void Awake()

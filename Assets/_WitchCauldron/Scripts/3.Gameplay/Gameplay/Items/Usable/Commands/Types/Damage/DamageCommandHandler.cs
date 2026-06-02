@@ -29,7 +29,7 @@ namespace Gameplay.Items.Usable.Commands.Damage
             }
 
             if (damaged)
-                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings);
+                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings, context.ItemWorldScale);
 
             return damaged;
         }

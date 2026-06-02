@@ -27,7 +27,7 @@ namespace Gameplay.Items.Usable.Commands.Effect
             }
 
             if (applied)
-                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings);
+                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings, context.ItemWorldScale);
 
             return applied;
         }

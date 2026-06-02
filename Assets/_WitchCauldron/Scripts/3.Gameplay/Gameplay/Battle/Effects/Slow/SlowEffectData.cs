@@ -9,8 +9,7 @@ namespace Gameplay.Battle.Effects.Slow
         menuName = "Game/Gameplay/Effects/Slow")]
     public class SlowEffectData : EffectData<SlowEffectRuntime>
     {
-        [field: SerializeField] public float SpeedMultiplier { get; set; } = 1f; 
-        
+        [field: SerializeField] public float SpeedMultiplier { get; private set; } = 1f; 
         
     }
 }

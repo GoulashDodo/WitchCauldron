@@ -13,7 +13,7 @@ namespace Gameplay._root
             LevelId = levelId;
             
             //TODO: Change, test purpose only
-            SelectedItemsIds = new string[] {"Item_MoonPebble", "Item_Egg"};
+            SelectedItemsIds = new string[] {"Item_MoonPebble", "Item_Egg", "Item_Goo"};
         }
 
         public GameplayEntryParameters(string levelId, string[] selectedItemsIds)

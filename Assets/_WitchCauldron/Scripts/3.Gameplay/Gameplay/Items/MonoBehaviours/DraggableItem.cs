@@ -11,6 +11,7 @@ namespace Gameplay.Items.MonoBehaviours
     {
         public string TypeId { get; private set; }
         public ItemSettings Settings { get; private set; }
+        public bool IsDragging => _isDragging;
 
         protected ItemService ItemService;
         
@@ -45,8 +46,6 @@ namespace Gameplay.Items.MonoBehaviours
             Settings = itemSettings;
             TypeId = itemSettings.TypeId;
             ItemService = itemService;
-
-            if (startDragging)  Drag();
             
             _positionSubscription = grabbedPosition.Subscribe(position =>
             {
@@ -72,10 +71,18 @@ namespace Gameplay.Items.MonoBehaviours
             Dispose();
         }
 
+        public void StartDragging()
+        {
+            Drag();
+        }
+
         private void Drag()
         {
+            if (_isDragging)
+                return;
+
+            _isDragging = true;
             _pickedUp.OnNext(Unit.Default);
-            _isDragging = true;  
         }
         
         protected virtual void OnDrop()
