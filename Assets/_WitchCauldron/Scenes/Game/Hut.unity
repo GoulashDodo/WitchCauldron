@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 109975211}
   - component: {fileID: 109975215}
+  - component: {fileID: 109975217}
   - component: {fileID: 109975216}
   m_Layer: 0
   m_Name: __SCENE__
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Zenject::Zenject.SceneContext
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 109975217}
   - {fileID: 109975216}
   _installerPrefabs: []
   _autoRun: 0
@@ -199,7 +201,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f1449e2db04cf19173c6f0cd3f6c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hut.CompositionRoot.UIHutInstaller
-  _hutRootBinderPf: {fileID: 9025661073705117073, guid: ef96e99578054184aa031b7565af9512, type: 3}
+  _hutRootBinderPf: {fileID: 8480634146934452749, guid: ef96e99578054184aa031b7565af9512, type: 3}
+--- !u!114 &109975217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109975210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0f331d3f7f4765b85d29e6876c1798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hut.CompositionRoot.HutInstaller
 --- !u!1 &214785420
 GameObject:
   m_ObjectHideFlags: 0

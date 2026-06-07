@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Hut.SO;
+using Hut.SelectedItems;
 using UnityEngine;
 
 namespace Hut.UI.UISelectItems
@@ -13,39 +14,32 @@ namespace Hut.UI.UISelectItems
         //TODO: Change this, test purpose only
         [SerializeField] private AllSelectableItems _allItemSettings;
 
-        public void Initialize()
+        private SelectedItemsRuntime _selectedItemsRuntime;
+
+        public void Initialize(SelectedItemsRuntime selectedItemsRuntime)
         {
+            _selectedItemsRuntime = selectedItemsRuntime;
+
+            if (_togglePf == null || _allItemSettings == null || _allItemSettings.ItemSettings == null)
+                return;
 
             var allSettings = _allItemSettings.ItemSettings;
 
             foreach (var setting in allSettings)
             {
+                if (setting == null)
+                    continue;
+
                 var toggle = Instantiate(_togglePf, gameObject.transform, false);
-                toggle.Initialize(setting);
+                toggle.Initialize(setting, _selectedItemsRuntime);
                 _toggles.Add(toggle);
             }
-
-            
         }
 
 
         public string[] GetSelectedItemsIds()
         {
-            var ids = new List<string>();
-
-            foreach (var toggle in _toggles)
-            {
-                if (toggle.IsSelected)
-                {
-                    ids.Add(toggle.SettingsTypeId);
-                }
-            }
-            
-            
-            return ids.ToArray();
+            return _selectedItemsRuntime.GetSelectedItemsIds();
         }
-        
-        
-        
     }
 }

@@ -48,8 +48,16 @@ namespace Gameplay.Items.Spawners
         {
             if (!CanSpawn)
                 return false;
+
+            if (_service == null)
+            {
+                Debug.LogWarning($"{nameof(ItemSpawner)} on '{name}' was not injected. Spawn it through Zenject or call Initialize.");
+                return false;
+            }
             
-            _service.SpawnDraggableItem(_itemToSpawnTypeId, mousePosition, true);
+            if (!_service.TrySpawnDraggableItem(_itemToSpawnTypeId, mousePosition, true))
+                return false;
+
             _itemSpawned.OnNext(Unit.Default);
             StartCooldown();
             return true;

@@ -1,5 +1,6 @@
 using Core.SO;
 using Gameplay._root.SO;
+using Hut.SO;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,7 @@ namespace Core.CompositionRoot.Installers
             
             Container.Bind<GameSettings>().FromInstance(_gameSettings).AsSingle();
             Container.Bind<GameplaySettings>().FromInstance(_gameSettings.GameplaySettings).AsSingle();
+            Container.Bind<HutSettings>().FromInstance(_gameSettings.HutSettings).AsSingle();
             
         }
     }

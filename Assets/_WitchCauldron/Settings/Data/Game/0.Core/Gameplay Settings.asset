@@ -15,4 +15,5 @@ MonoBehaviour:
   <AllEnemiesSettings>k__BackingField: {fileID: 11400000, guid: 10ae4c37751a3e0469ca8fc2397226da, type: 2}
   <AllItemsSettings>k__BackingField: {fileID: 11400000, guid: 3449e20e15fcccf4489cd77679ab494c, type: 2}
   <AllLevelSettings>k__BackingField: {fileID: 11400000, guid: 0c20c7f8df2b9f34f86b96723bff3ad2, type: 2}
+  <AllFamiliarsData>k__BackingField: {fileID: 11400000, guid: 200a5090d9775d0499e09495cafedc18, type: 2}
   <CombinationRuleList>k__BackingField: {fileID: 11400000, guid: 4980c159665a033469b65c316e85b2b2, type: 2}

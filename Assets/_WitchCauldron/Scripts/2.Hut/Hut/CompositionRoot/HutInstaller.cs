@@ -9,6 +9,7 @@ namespace Hut.CompositionRoot
         public override void InstallBindings()
         {
             Container.Bind<SelectedItemsRuntime>().AsSingle().NonLazy();
+            Container.Bind<SelectedFamiliarRuntime>().AsSingle().NonLazy();
         }
     }
 }

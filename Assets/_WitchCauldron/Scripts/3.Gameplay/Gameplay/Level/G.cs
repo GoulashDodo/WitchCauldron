@@ -14,13 +14,19 @@ namespace Gameplay.Level
         private readonly WaveService _waveService;
         private readonly EnemyService _enemyService;
         private readonly IHealth _baseHealth;
-        private readonly Subject<Unit> _gameWon = new();
 
         
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private bool _areWavesCompleted;
         private bool _isGameEnded;
         
+        
+        private readonly Subject<Unit> _gameStarted = new();
+        private readonly Subject<Unit> _gameWon = new();
+
+        
+        
+        public Observable<Unit> GameStarted => _gameStarted;
         public Observable<DeathInfo> GameLost => _baseHealth.Died;
         public Observable<Unit> GameWon => _gameWon;
 
@@ -36,6 +42,8 @@ namespace Gameplay.Level
         public void StartGameplay()
         {
             Debug.Log("Starting Gameplay");
+            _gameStarted.OnNext(Unit.Default);
+            
             _areWavesCompleted = false;
             _isGameEnded = false;
             _waveService.StartWaves();

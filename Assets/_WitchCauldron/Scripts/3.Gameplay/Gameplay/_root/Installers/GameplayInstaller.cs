@@ -4,6 +4,7 @@ using Core.SceneManagement;
 using Gameplay._root.SO;
 using Gameplay.Battle.Base.Interfaces;
 using Gameplay.Battle.BattleEntities.Enemies.Services;
+using Gameplay.Battle.Familiars.Service;
 using Gameplay.Battle.Waves.Service;
 using Gameplay.Battle.Waves.SpawnArea;
 using Gameplay.Items.Combination.Service;
@@ -34,9 +35,10 @@ namespace Gameplay._root.Installers
                 .AsSingle();
             
          
-            
+
             Container.Bind<G>().AsSingle();
 
+            BindEntryParameters();
             BindLevelData();
             
             Container.Bind<IBaseHealthProvider>().To<LevelSettingsBaseHealthProvider>().AsSingle();
@@ -50,16 +52,28 @@ namespace Gameplay._root.Installers
         }
 
 
+        private void BindEntryParameters()
+        {
+            Container.Bind<GameplayEntryParameters>()
+                .FromMethod(ctx =>
+                {
+                    var entryParameters = ctx.Container.Resolve<SceneParametersPayload>().GameplayEntryParameters;
+
+                    if (entryParameters == null)
+                        throw new InvalidOperationException("Gameplay entry parameters were not provided.");
+
+                    return entryParameters;
+                })
+                .AsSingle();
+        }
+
         private void BindLevelData()
         {
             Container.Bind<LevelSettings>()
                 .FromMethod(ctx =>
                 {
                     var gameplaySettings = ctx.Container.Resolve<GameplaySettings>();
-                    var entryParameters = ctx.Container.Resolve<SceneParametersPayload>().GameplayEntryParameters;
-
-                    if (entryParameters == null)
-                        throw new InvalidOperationException("Gameplay entry parameters were not provided.");
+                    var entryParameters = ctx.Container.Resolve<GameplayEntryParameters>();
 
                     var levelSettings = gameplaySettings.AllLevelSettings.AllSettings
                         .FirstOrDefault(settings => settings != null && settings.LevelId == entryParameters.LevelId);
@@ -77,6 +91,7 @@ namespace Gameplay._root.Installers
             Container.Bind<IUseCommandPreviewProcessor>().To<UseCommandPreviewProcessor>().AsSingle();
             Container.Bind<ItemService>().AsSingle();
             Container.Bind<EnemyService>().AsSingle();
+            Container.Bind<FamiliarService>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();
             Container.Bind<CombinationService>().AsSingle();
             Container.BindInterfacesAndSelfTo<DropService>().AsSingle();

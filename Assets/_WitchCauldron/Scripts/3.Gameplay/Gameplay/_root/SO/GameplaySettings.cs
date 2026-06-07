@@ -1,4 +1,5 @@
 using Gameplay.Battle.BattleEntities.Enemies.SO;
+using Gameplay.Battle.Familiars.SO;
 using Gameplay.Items.Combination.ScriptableObjects;
 using Gameplay.Items.SO;
 using Gameplay.Level.SO;
@@ -12,6 +13,9 @@ namespace Gameplay._root.SO
         [field: SerializeField] public AllEnemySettings AllEnemiesSettings  { get; private set; }
         [field: SerializeField] public AllItemSettings AllItemsSettings { get; private set; }
         [field: SerializeField] public AllLevelSettings AllLevelSettings  { get; private set; }
+        
+        [field: SerializeField] public AllFamiliarsData AllFamiliarsData { get; private set; }
+        
         [field: SerializeField] public CombinationRuleList CombinationRuleList  { get; private set; }
 
     }

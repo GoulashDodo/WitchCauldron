@@ -1,6 +1,7 @@
 using Core.Run;
 using Core.SceneManagement;
 using Gameplay._root;
+using Hut.SelectedItems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,28 +10,31 @@ namespace Hut.UI.UISelectItems
 {
     public class UINextLevel : MonoBehaviour
     {
-
-        
-        //TODO: Change this coupling
-        [SerializeField] private UISelectItemParent _uiSelectItemsParent;
-        
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private TMP_Text _nextLevelButtonText;
 
         private RunState _runState;
         private SceneLoader _sceneLoader;
+        private SelectedItemsRuntime _selectedItemsRuntime;
+        private SelectedFamiliarRuntime _selectedFamiliarRuntime;
 
         private const string StartNextLevelText = "Start: ";
 
 
-        public void Initialize(RunState runState, SceneLoader sceneLoader)
+        public void Initialize(
+            RunState runState,
+            SceneLoader sceneLoader,
+            SelectedItemsRuntime selectedItemsRuntime,
+            SelectedFamiliarRuntime selectedFamiliarRuntime)
         {
             _runState = runState;
             _sceneLoader = sceneLoader;
+            _selectedItemsRuntime = selectedItemsRuntime;
+            _selectedFamiliarRuntime = selectedFamiliarRuntime;
             RefreshState();
 
             if (isActiveAndEnabled)
-                SubscribeToButtons();
+                Subscribe();
         }
         
         private void OnEnable()
@@ -39,12 +43,12 @@ namespace Hut.UI.UISelectItems
                 return;
 
             RefreshState();
-            SubscribeToButtons();
+            Subscribe();
         }
         
         private void OnDisable()
         {
-            UnsubscribeFromButtons();
+            Unsubscribe();
         }
         private void RefreshState()
         {
@@ -52,20 +56,29 @@ namespace Hut.UI.UISelectItems
                 _runState.StartNewRun();
             
             _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelId}";
+
+            if (_nextLevelButton != null)
+                _nextLevelButton.interactable = _runState.HasCurrentLevel && _selectedItemsRuntime.HasRequiredSelectedItems;
         }
         
-        private void SubscribeToButtons()
+        private void Subscribe()
         {
-            UnsubscribeFromButtons();
+            Unsubscribe();
 
             if (_nextLevelButton != null)
                 _nextLevelButton.onClick.AddListener(StartNextLevel);
+
+            if (_selectedItemsRuntime != null)
+                _selectedItemsRuntime.SelectionChanged += RefreshState;
         }
 
-        private void UnsubscribeFromButtons()
+        private void Unsubscribe()
         {
             if (_nextLevelButton != null)
                 _nextLevelButton.onClick.RemoveListener(StartNextLevel);
+
+            if (_selectedItemsRuntime != null)
+                _selectedItemsRuntime.SelectionChanged -= RefreshState;
         }
 
         private void StartNextLevel()
@@ -76,7 +89,16 @@ namespace Hut.UI.UISelectItems
                 return;
             }
 
-            var gameplayEntryPoint = new GameplayEntryParameters(_runState.CurrentLevelId, _uiSelectItemsParent.GetSelectedItemsIds());
+            if (!_selectedItemsRuntime.HasRequiredSelectedItems)
+            {
+                RefreshState();
+                return;
+            }
+
+            var gameplayEntryPoint = new GameplayEntryParameters(
+                _runState.CurrentLevelId,
+                _selectedItemsRuntime.GetSelectedItemsIds(),
+                _selectedFamiliarRuntime.SelectedFamiliarId);
             
             _sceneLoader.LoadGameplay(gameplayEntryPoint);
         }
