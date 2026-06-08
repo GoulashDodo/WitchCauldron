@@ -10,9 +10,13 @@ namespace Gameplay.Level.SO
     {
         [field: SerializeField] public string LevelId { get; private set; }
         
+        [field: SerializeField] public string LevelName { get; private set; }
         
         
         [field:SerializeField] public float BaseHealth { get; private set; }
+        
+        
+        
         
         
         [field: InlineEditor]

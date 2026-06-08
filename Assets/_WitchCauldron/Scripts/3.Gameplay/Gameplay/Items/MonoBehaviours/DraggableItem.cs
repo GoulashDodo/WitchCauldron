@@ -7,16 +7,15 @@ using UnityEngine;
 
 namespace Gameplay.Items.MonoBehaviours
 {
-    public class DraggableItem : UnityEngine.MonoBehaviour, ILeftButtonPressable,ILeftButtonReleasable, IDisposable
+    public class DraggableItem : MonoBehaviour, ILeftButtonPressable,ILeftButtonReleasable, IDisposable
     {
         public string TypeId { get; private set; }
         public ItemSettings Settings { get; private set; }
-        public bool IsDragging => _isDragging;
+        public bool IsDragging { get; private set; }
 
         protected ItemService ItemService;
-        
-        
-        private bool _isDragging;
+
+
         private IDisposable _positionSubscription;
 
 
@@ -28,12 +27,13 @@ namespace Gameplay.Items.MonoBehaviours
         protected Collider2D[] OverlapBuffer;
         
         
-        private Subject<Unit> _pickedUp = new Subject<Unit>();
-        private Subject<Unit> _dropped = new Subject<Unit>();
+        private readonly Subject<Unit> _pickedUp = new();
+        private readonly Subject<Unit> _dropped = new();
         
         public Observable<Unit> PickedUp => _pickedUp;
         public Observable<Unit> Dropped => _dropped;
-        
+
+        private Vector2 _dragOffset;
         
         
         public void Initialize(
@@ -49,9 +49,9 @@ namespace Gameplay.Items.MonoBehaviours
             
             _positionSubscription = grabbedPosition.Subscribe(position =>
             {
-                if (_isDragging)
+                if (IsDragging)
                 {
-                    Transform.position = position;
+                    Transform.position = position + _dragOffset;
                 }
             });
         }
@@ -78,17 +78,17 @@ namespace Gameplay.Items.MonoBehaviours
 
         private void Drag()
         {
-            if (_isDragging)
+            if (IsDragging)
                 return;
 
-            _isDragging = true;
+            IsDragging = true;
             _pickedUp.OnNext(Unit.Default);
         }
         
         protected virtual void OnDrop()
         {
             _dropped.OnNext(Unit.Default);
-            _isDragging = false;
+            IsDragging = false;
         }
         
         public void Dispose()
@@ -96,8 +96,13 @@ namespace Gameplay.Items.MonoBehaviours
             _positionSubscription?.Dispose();
         }
 
-        public void OnLeftButtonPressed(Vector3 mousePosition) => Drag();
-        
+        public void OnLeftButtonPressed(Vector3 mousePosition)
+        {
+            
+            _dragOffset = new Vector2 (Transform.position.x -  mousePosition.x, Transform.position.y - mousePosition.y);
+            Drag();
+        }
+
         public void OnLeftButtonReleased(Vector3 mousePosition) => OnDrop();
         
         

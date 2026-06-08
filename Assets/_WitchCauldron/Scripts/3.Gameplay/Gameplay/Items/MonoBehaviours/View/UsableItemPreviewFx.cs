@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Gameplay.Items.MonoBehaviours.View
 {
     [RequireComponent(typeof(UsableItem))]
-    public class UsableItemPreviewFx : UnityEngine.MonoBehaviour
+    public class UsableItemPreviewFx : MonoBehaviour
     {
         [SerializeField] private bool _showOnlyWhenItemCanBeUsed = true;
         [SerializeField] private bool _hideItemRenderersWhenPreviewVisible = true;

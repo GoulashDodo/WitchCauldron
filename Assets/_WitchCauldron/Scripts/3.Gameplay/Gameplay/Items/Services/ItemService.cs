@@ -23,8 +23,8 @@ namespace Gameplay.Items.Services
         private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
         
-        private readonly Dictionary<string, ItemSettings> _allItemSettings = new();        
-        
+        private readonly Dictionary<string, ItemSettings> _allItemSettings = new();
+        private readonly GameObject _combineSuccessParticlePf;
         
         public ItemService(MouseClickHandler mouseClickHandler, 
             CombinationService combinationService, 
@@ -45,6 +45,7 @@ namespace Gameplay.Items.Services
             {
                 _allItemSettings.Add(setting.TypeId, setting);
             }
+            _combineSuccessParticlePf = allItemSettings.CombineSuccessPrefab;
             
         }
         
@@ -102,7 +103,16 @@ namespace Gameplay.Items.Services
                 Debug.Log($"[Item service]: Combining {item.TypeId} and {otherItem.TypeId}");
                 var midPoint = (item.gameObject.transform.position + otherItem.gameObject.transform.position) / 2;
                 
-                SpawnDraggableItem(result.TypeId, midPoint);
+                if (_combineSuccessParticlePf != null)
+                {
+                    Object.Instantiate(_combineSuccessParticlePf, midPoint, Quaternion.identity);
+                }
+
+                var resultItem = SpawnDraggableItem(result.TypeId, midPoint);
+                var draggableItemFx = resultItem.GetComponentInChildren<DraggableItemFx>();
+                if (draggableItemFx != null)
+                    draggableItemFx.PlaySpawnPop();
+
                 DespawnDraggableItem(item);
                 DespawnDraggableItem(otherItem);
                 
@@ -110,6 +120,17 @@ namespace Gameplay.Items.Services
             }
             
             return false;
+        }
+
+        public bool CanCombineItems(CombinableItem item, CombinableItem otherItem)
+        {
+            if (item == null || otherItem == null)
+                return false;
+
+            var selfSettings = _allItemSettings[item.TypeId];
+            var otherSettings = _allItemSettings[otherItem.TypeId];
+
+            return _combinationService.TryCombine(selfSettings, otherSettings) != null;
         }
 
         public void UseItem(UsableItem usableItem, Vector2 position)

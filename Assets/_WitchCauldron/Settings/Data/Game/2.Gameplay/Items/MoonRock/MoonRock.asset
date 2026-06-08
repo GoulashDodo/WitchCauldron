@@ -26,4 +26,4 @@ MonoBehaviour:
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}
   <SpawnCooldown>k__BackingField: 3
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 6161679728694472582, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

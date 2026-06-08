@@ -33,7 +33,7 @@ namespace Gameplay.UI
         
         private void UpdateText(float currentHealth)
         {
-            _text.text = "Base:" + currentHealth;
+            _text.text = $"{currentHealth} / {_health.MaxHealth}";
         }
         
         

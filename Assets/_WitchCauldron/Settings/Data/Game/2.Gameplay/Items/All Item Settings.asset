@@ -18,3 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6421e641e2cdf954eb94eb9a017be506, type: 2}
   - {fileID: 11400000, guid: ae6bb992e3a68534098c9a0fc169c240, type: 2}
   - {fileID: 11400000, guid: 9eddd15c581aabd439b73e6a6831925f, type: 2}
+  - {fileID: 11400000, guid: afc929e479672784c8030bbd77409dee, type: 2}
+  - {fileID: 11400000, guid: 9e724822089d88d42986ef5e4d3f9874, type: 2}
+  <CombineSuccessPrefab>k__BackingField: {fileID: 7862261977410953971, guid: 2cef471cdf50cff4b968e932fc57c9ed, type: 3}

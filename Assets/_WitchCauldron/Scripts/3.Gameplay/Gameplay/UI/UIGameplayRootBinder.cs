@@ -2,9 +2,8 @@ using Core.SceneManagement;
 using Core.UI;
 using Gameplay.Battle.Base.Interfaces;
 using Gameplay.Battle.Waves.Service;
-using Gameplay.Items.Services;
 using Gameplay.Level;
-using Gameplay.UI.SpawnButtons;
+using Gameplay.UI.Recipes;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +17,8 @@ namespace Gameplay.UI
         [SerializeField] private UIProgressBar _uiProgressBar;
         [SerializeField] private UIWaveAlert _uiWaveAlert;
 
-        [SerializeField] private UISpawnButtonParent _uiSpawnButtonParent;
+        [SerializeField] private UIReceiptParent _uiReceiptPrent;
+        
         
         [SerializeField] private UILose _uiLose;
         [SerializeField] private UIWin _uiWin;
@@ -26,23 +26,23 @@ namespace Gameplay.UI
         
         [Inject]
         public void Construct(UIRootView view, IBaseHealthProvider baseHealthProvider, IWaveService waveService, G game,
-            SceneLoader sceneLoader, ItemService itemService, SceneParametersPayload payload)
+            SceneLoader sceneLoader)
         {
             view.AttachSceneUI(gameObject);
             
-            InitializeUI(baseHealthProvider, waveService, game, sceneLoader, itemService, payload);
+            InitializeUI(baseHealthProvider, waveService, game, sceneLoader);
             
         }
 
 
         private void InitializeUI(IBaseHealthProvider baseHealthProvider, IWaveService waveService, G game,
-            SceneLoader sceneLoader, ItemService itemService, SceneParametersPayload payload)
+            SceneLoader sceneLoader)
         {
             
             _uiBaseHealth.Initialize(baseHealthProvider);
             _uiProgressBar.Initialize(waveService);
 
-            _uiSpawnButtonParent.Initialize(payload.GameplayEntryParameters, itemService);
+            _uiReceiptPrent.Initialize();
             
             _uiWaveAlert.Initialize(waveService);
             

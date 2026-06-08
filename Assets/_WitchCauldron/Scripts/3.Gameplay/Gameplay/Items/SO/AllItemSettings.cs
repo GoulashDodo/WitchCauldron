@@ -6,5 +6,8 @@ namespace Gameplay.Items.SO
     public class AllItemSettings : ScriptableObject
     {
         [field: SerializeField] public ItemSettings[] ItemSettings { get; private set; }
+
+        [field: SerializeField] public GameObject CombineSuccessPrefab { get; private set; }
+
     }
 }
