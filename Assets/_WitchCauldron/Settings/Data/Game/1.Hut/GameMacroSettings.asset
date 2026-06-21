@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameMacroSettings
   m_EditorClassIdentifier: Assembly-CSharp::Hut.SO.GameMacroSettings
   <MinimumSelectedItemsCount>k__BackingField: 1
-  <InitialSelectedItemsCount>k__BackingField: 3
+  <InitialSelectedItemsCount>k__BackingField: 4

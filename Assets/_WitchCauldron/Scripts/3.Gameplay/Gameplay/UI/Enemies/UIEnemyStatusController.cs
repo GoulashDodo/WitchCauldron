@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using Gameplay._root.SO;
 using Gameplay.Battle.BattleEntities.Enemies.Core;
 using Gameplay.Battle.BattleEntities.Enemies.Services;
+using Gameplay.Battle.HealthSystem.Structs;
 using R3;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -12,15 +15,19 @@ namespace Gameplay.UI.Enemies
         [SerializeField] private Canvas _canvas;
         [SerializeField] private RectTransform _statusLayer;
         [SerializeField] private UIEnemyStatusView _statusViewPrefab;
+        [SerializeField] private UIDamageText _damageTextPrefab;
         [SerializeField] private Camera _worldCamera;
         
-        private CompositeDisposable _disposables = new();
+        private readonly CompositeDisposable _disposables = new();
         
         private readonly Dictionary<Enemy, UIEnemyStatusView> _views = new();
+        private readonly Dictionary<Enemy, System.IDisposable> _damageSubscriptions = new();
+        private AllDamageTypeTextSettings _damageTypeTextSettings;
 
         [Inject]
-        public void Construct(EnemyService enemyService)
+        public void Construct(EnemyService enemyService, GameplaySettings gameplaySettings)
         {
+            _damageTypeTextSettings = gameplaySettings.DamageTypeTextSettings;
             Initialize(enemyService);
         }
         
@@ -38,6 +45,8 @@ namespace Gameplay.UI.Enemies
             var view = Instantiate(_statusViewPrefab, _statusLayer.transform);
             view.Initialize(enemy);
             _views.Add(enemy, view);
+
+            _damageSubscriptions.Add(enemy, enemy.Events.Damaged.Subscribe(damageInfo => ShowDamageText(enemy, damageInfo)));
         }
 
         private void RemoveView(Enemy enemy)
@@ -45,9 +54,43 @@ namespace Gameplay.UI.Enemies
 
             if (!_views.Remove(enemy, out var view))
                 return;
+
+            if (_damageSubscriptions.Remove(enemy, out var damageSubscription))
+            {
+                damageSubscription.Dispose();
+            }
             
             Destroy(view.gameObject);
-            _views.Remove(enemy);
+        }
+
+        private void ShowDamageText(Enemy enemy, DamageInfo damageInfo)
+        {
+            if (!_views.TryGetValue(enemy, out var view))
+                return;
+
+            var damageText = CreateDamageText();
+            damageText.transform.SetParent(_statusLayer, false);
+            ((RectTransform)damageText.transform).anchoredPosition = view.RectTransform.anchoredPosition;
+
+            var settings = _damageTypeTextSettings != null
+                ? _damageTypeTextSettings.GetSettings(damageInfo.Type)
+                : null;
+
+            damageText.Play(damageInfo, settings);
+        }
+
+        private UIDamageText CreateDamageText()
+        {
+            if (_damageTextPrefab != null)
+                return Instantiate(_damageTextPrefab);
+
+            var damageTextObject = new GameObject("UIDamageText", typeof(RectTransform), typeof(CanvasGroup), typeof(TextMeshProUGUI), typeof(UIDamageText));
+            var text = damageTextObject.GetComponent<TextMeshProUGUI>();
+            text.alignment = TextAlignmentOptions.Center;
+            text.raycastTarget = false;
+            text.fontStyle = FontStyles.Bold;
+
+            return damageTextObject.GetComponent<UIDamageText>();
         }
 
         private void LateUpdate()
@@ -82,6 +125,12 @@ namespace Gameplay.UI.Enemies
 
         private void OnDestroy()
         {
+            foreach (var damageSubscription in _damageSubscriptions.Values)
+            {
+                damageSubscription.Dispose();
+            }
+
+            _damageSubscriptions.Clear();
             _disposables.Dispose();
         }
         

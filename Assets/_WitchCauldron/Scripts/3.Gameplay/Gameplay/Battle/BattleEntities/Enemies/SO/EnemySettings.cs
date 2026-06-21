@@ -21,6 +21,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.SO
         [field: Space(10)] [field: Header("Core Attributes")]
         [field: SerializeField] public float MaxHealth {get; private set;}
         [field: SerializeField] public float MaxSpeed {get; private set;}
+        [field: SerializeField] public bool ShowHealthBar { get; private set; }
 
 
         [field: Space(10)]

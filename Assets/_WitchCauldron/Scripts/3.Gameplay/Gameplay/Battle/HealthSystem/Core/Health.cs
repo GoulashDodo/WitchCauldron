@@ -46,7 +46,7 @@ namespace Gameplay.Battle.HealthSystem.Core
             _currentHealth.Value = newHealth;
 
             
-            var info = new DamageInfo(battleDamage.Amount, _currentHealth.Value, _maxHealth);
+            var info = new DamageInfo(battleDamage.Amount, battleDamage.Type, _currentHealth.Value, _maxHealth);
 
             
             _damaged.OnNext(info);

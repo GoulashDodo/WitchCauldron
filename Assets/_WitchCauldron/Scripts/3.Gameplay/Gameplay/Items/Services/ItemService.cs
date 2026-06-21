@@ -69,13 +69,23 @@ namespace Gameplay.Items.Services
 
         public bool TrySpawnDraggableItem(string itemTypeId, Vector3 initialPosition, bool startDragging = false)
         {
+            return TrySpawnDraggableItem(itemTypeId, initialPosition, out _, startDragging);
+        }
+
+        public bool TrySpawnDraggableItem(
+            string itemTypeId,
+            Vector3 initialPosition,
+            out DraggableItem item,
+            bool startDragging = false)
+        {
             if (string.IsNullOrWhiteSpace(itemTypeId) || !_allItemSettings.ContainsKey(itemTypeId))
             {
                 Debug.LogWarning($"[Item service]: Item settings with type id '{itemTypeId}' were not found.");
+                item = null;
                 return false;
             }
 
-            SpawnDraggableItem(itemTypeId, initialPosition, startDragging);
+            item = SpawnDraggableItem(itemTypeId, initialPosition, startDragging);
             return true;
         }
         

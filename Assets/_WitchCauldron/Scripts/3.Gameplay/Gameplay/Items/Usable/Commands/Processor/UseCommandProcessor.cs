@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Gameplay.Items.Usable.Commands.Damage;
-using Gameplay.Items.Usable.Commands.Effect;
 using Gameplay.Items.Usable.Commands.Handler;
-using Gameplay.Items.Usable.Commands.Spawn;
 using UnityEngine;
 
 namespace Gameplay.Items.Usable.Commands.Processor
@@ -12,11 +9,10 @@ namespace Gameplay.Items.Usable.Commands.Processor
     {
         private readonly Dictionary<Type, IUseCommandHandler> _handlers = new();
 
-        public UseCommandProcessor()
+        public UseCommandProcessor(List<IUseCommandHandler> handlers)
         {
-            RegisterHandler(new DamageCommandHandler());
-            RegisterHandler(new SpawnCommandHandler());
-            RegisterHandler(new EffectCommandHandler());
+            foreach (var handler in handlers)
+                RegisterHandler(handler);
         }
 
         public void RegisterHandler(IUseCommandHandler handler)

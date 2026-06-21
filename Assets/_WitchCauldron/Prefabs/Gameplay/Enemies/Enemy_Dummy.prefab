@@ -140,6 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06be927eb2e4c89888ee07a71437564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Enemies.Core.EnemyAttack
+  _targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _fallbackHitNormalizedTime: 0.5
 --- !u!114 &773900049704906533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,9 +193,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7014308009663793591}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001, y: -0.402, z: 0}
-  m_LocalScale: {x: 1.075495, y: 0.50261796, z: 1.0694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.002, y: -0.462, z: 0}
+  m_LocalScale: {x: 1.0763947, y: 0.47218361, z: 1.0694}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5562114720675656785}
@@ -245,7 +249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 1c64427549132164a9790f150719861f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c64427549132164a9790f150719861f, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.69411767}
   m_FlipX: 0
   m_FlipY: 0

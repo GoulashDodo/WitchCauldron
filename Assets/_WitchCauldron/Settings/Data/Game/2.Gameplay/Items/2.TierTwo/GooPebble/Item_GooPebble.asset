@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474920a752b40ecb93009bd5d4e62bd, type: 3}
+  m_Name: Item_GooPebble
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.SO.ItemSettings
+  <TypeId>k__BackingField: Item_GooPebble
+  <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: b5ae933e6481aca44ba49461098f0252, type: 3}
+  <TitleLid>k__BackingField: Goo Pebble
+  <OnUseCommands>k__BackingField:
+  - {fileID: 11400000, guid: c4f9b53e8699d7942a334171ebb05e6d, type: 2}
+  - {fileID: 11400000, guid: b6e866212ab401e428817f7dcaae8837, type: 2}
+  <UseVisuals>k__BackingField:
+    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
+    <FallbackImpactParticleLifetime>k__BackingField: 1.1
+    <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleAngularSpeed>k__BackingField: 540
+    <UseSfx>k__BackingField: {fileID: 0}
+    <ImpactSfx>k__BackingField: {fileID: 0}
+  <SpawnCooldown>k__BackingField: 5
+  <Icon>k__BackingField: {fileID: -37200399, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

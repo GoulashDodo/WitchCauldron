@@ -17,9 +17,10 @@ MonoBehaviour:
   <PointPrice>k__BackingField: 1
   <MaxHealth>k__BackingField: 10
   <MaxSpeed>k__BackingField: 0.5
+  <ShowHealthBar>k__BackingField: 0
   <Damage>k__BackingField: 5
   <AttackDistance>k__BackingField: 1
   <AttackSpeed>k__BackingField: 1
   <LootDefinitions>k__BackingField:
-  - <DropItemTypeId>k__BackingField: Item_Egg
-    <ChanceToDropItem>k__BackingField: 0.33
+  - <DropItemTypeId>k__BackingField: Item_Goo
+    <ChanceToDropItem>k__BackingField: 1

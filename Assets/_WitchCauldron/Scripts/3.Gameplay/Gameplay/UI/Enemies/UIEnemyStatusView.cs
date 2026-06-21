@@ -19,7 +19,12 @@ namespace Gameplay.UI.Enemies
         
         public void Initialize(Enemy enemy)
         {
-            _healthBar.Initialize(enemy.Health);
+            _healthBar.gameObject.SetActive(enemy.Settings.ShowHealthBar);
+
+            if (enemy.Settings.ShowHealthBar)
+            {
+                _healthBar.Initialize(enemy.Health);
+            }
 
             if (enemy.TryGetComponent(out EffectReceiver effectReceiver))
             {

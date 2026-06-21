@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474920a752b40ecb93009bd5d4e62bd, type: 3}
+  m_Name: Item_Mushroom
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.SO.ItemSettings
+  <TypeId>k__BackingField: Item_Mushroom
+  <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 2f0cb09cf23a4f24cb65b54c490e27e2, type: 3}
+  <TitleLid>k__BackingField: Mushroom
+  <OnUseCommands>k__BackingField:
+  - {fileID: 11400000, guid: e68ed042d4fa8ca47abdcd35d57036e0, type: 2}
+  <UseVisuals>k__BackingField:
+    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
+    <FallbackImpactParticleLifetime>k__BackingField: 1.1
+    <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleAngularSpeed>k__BackingField: 540
+    <UseSfx>k__BackingField: {fileID: 0}
+    <ImpactSfx>k__BackingField: {fileID: 0}
+  <SpawnCooldown>k__BackingField: 5
+  <Icon>k__BackingField: {fileID: -6589278446743610409, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

@@ -3,6 +3,7 @@ using Gameplay.Battle.Familiars.SO;
 using Gameplay.Items.Combination.ScriptableObjects;
 using Gameplay.Items.SO;
 using Gameplay.Level.SO;
+using Gameplay.UI.Enemies;
 using UnityEngine;
 
 namespace Gameplay._root.SO
@@ -17,6 +18,7 @@ namespace Gameplay._root.SO
         [field: SerializeField] public AllFamiliarsData AllFamiliarsData { get; private set; }
         
         [field: SerializeField] public CombinationRuleList CombinationRuleList  { get; private set; }
+        [field: SerializeField] public AllDamageTypeTextSettings DamageTypeTextSettings { get; private set; }
 
     }
 }

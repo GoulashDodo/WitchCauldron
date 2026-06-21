@@ -22,7 +22,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
             if (_attack.TryFindTarget(out var target))
             {
-                if (_attack.TryAttack(target))
+                if (_attack.TryStartAttack(target))
                 {
                     _enemy.Events.RaiseAttackPerformed();
                 }

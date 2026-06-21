@@ -7,9 +7,10 @@ using Zenject;
 
 namespace Gameplay.Battle.Base.Core
 {
-    public class BaseView : MonoBehaviour, IDamageable
+    public class BaseView : MonoBehaviour, IDamageable, IEnemyAttackTarget
     {
         private IHealth Health { get; set; }
+        public IDamageable Damageable => this;
 
         
         [Inject]
@@ -23,5 +24,6 @@ namespace Gameplay.Battle.Base.Core
         {
             Health.TakeDamage(battleDamage);
         }
+
     }
 }

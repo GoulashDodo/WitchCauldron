@@ -9,8 +9,12 @@ using Gameplay.Battle.Waves.Service;
 using Gameplay.Battle.Waves.SpawnArea;
 using Gameplay.Items.Combination.Service;
 using Gameplay.Items.Services;
+using Gameplay.Items.Usable.Commands.Damage;
+using Gameplay.Items.Usable.Commands.Effect;
+using Gameplay.Items.Usable.Commands.Handler;
 using Gameplay.Items.Usable.Commands.Preview;
 using Gameplay.Items.Usable.Commands.Processor;
+using Gameplay.Items.Usable.Commands.Spawn;
 using Gameplay.Level;
 using Gameplay.Level.SO;
 using UnityEngine;
@@ -87,6 +91,8 @@ namespace Gameplay._root.Installers
         
         private void BindServices()
         {
+            BindUseCommandHandlers();
+            
             Container.Bind<IUseCommandProcessor>().To<UseCommandProcessor>().AsSingle();
             Container.Bind<IUseCommandPreviewProcessor>().To<UseCommandPreviewProcessor>().AsSingle();
             Container.Bind<ItemService>().AsSingle();
@@ -97,6 +103,13 @@ namespace Gameplay._root.Installers
             Container.BindInterfacesAndSelfTo<DropService>().AsSingle();
 
 
+        }
+
+        private void BindUseCommandHandlers()
+        {
+            Container.Bind<IUseCommandHandler>().To<DamageCommandHandler>().AsSingle();
+            Container.Bind<IUseCommandHandler>().To<SpawnCommandHandler>().AsSingle();
+            Container.Bind<IUseCommandHandler>().To<EffectCommandHandler>().AsSingle();
         }
         
       

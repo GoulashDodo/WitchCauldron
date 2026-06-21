@@ -17,3 +17,4 @@ MonoBehaviour:
   <AllLevelSettings>k__BackingField: {fileID: 11400000, guid: 0c20c7f8df2b9f34f86b96723bff3ad2, type: 2}
   <AllFamiliarsData>k__BackingField: {fileID: 11400000, guid: 200a5090d9775d0499e09495cafedc18, type: 2}
   <CombinationRuleList>k__BackingField: {fileID: 11400000, guid: 4980c159665a033469b65c316e85b2b2, type: 2}
+  <DamageTypeTextSettings>k__BackingField: {fileID: 11400000, guid: bcb3dbb3979c4f2cbbf8fc857d955d79, type: 2}
