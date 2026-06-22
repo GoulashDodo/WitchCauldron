@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Level.SO
@@ -9,7 +8,6 @@ namespace Gameplay.Level.SO
     {
         
         
-        [field:InlineEditor]
         [field: SerializeField] public LevelSettings[] AllSettings { get; private set; }
     }
 }

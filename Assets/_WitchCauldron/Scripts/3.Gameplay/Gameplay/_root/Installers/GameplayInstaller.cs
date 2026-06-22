@@ -50,7 +50,7 @@ namespace Gameplay._root.Installers
             BindServices();
             
             
-            Container.BindInterfacesTo<GameplayRunFlowController>().AsSingle().NonLazy();
+            Container.Bind<GameplayRunFlowController>().AsSingle();
             Container.Bind<IInitializable>().To<GameplayBootstrap>().AsSingle().NonLazy();
             
         }
@@ -100,6 +100,7 @@ namespace Gameplay._root.Installers
             Container.Bind<FamiliarService>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();
             Container.Bind<CombinationService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayPauseService>().AsSingle();
             Container.BindInterfacesAndSelfTo<DropService>().AsSingle();
 
 

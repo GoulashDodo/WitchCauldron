@@ -1,43 +1,38 @@
-using System;
 using Core.Data;
 using Core.Run;
 using Core.SceneManagement;
-using Gameplay.Level;
-using R3;
-using Zenject;
+using Gameplay.Level.SO;
 
 namespace Gameplay._root
 {
-    public class GameplayRunFlowController : IInitializable, IDisposable
+    public class GameplayRunFlowController
     {
-        private readonly G _game;
         private readonly RunState _runState;
         private readonly SceneLoader _sceneLoader;
-        private readonly CompositeDisposable _disposables = new();
+        private readonly LevelSettings _levelSettings;
 
-        public GameplayRunFlowController(G game, RunState runState, SceneLoader sceneLoader)
+        public GameplayRunFlowController(RunState runState, SceneLoader sceneLoader, LevelSettings levelSettings)
         {
-            _game = game;
             _runState = runState;
             _sceneLoader = sceneLoader;
+            _levelSettings = levelSettings;
         }
 
-        public void Initialize()
+        public void CompleteLevelAndOpenHut()
         {
-            _game.GameWon
-                .Subscribe(_ => CompleteLevelAndOpenHut())
-                .AddTo(_disposables);
+            CompleteLevelAndLoadScene(Scenes.Hut);
         }
 
-        public void Dispose()
+        public void CompleteLevelAndOpenMainMenu()
         {
-            _disposables.Dispose();
+            CompleteLevelAndLoadScene(Scenes.MainMenu);
         }
 
-        private void CompleteLevelAndOpenHut()
+        private void CompleteLevelAndLoadScene(string sceneName)
         {
+            _runState.ApplyUnlockRewards(_levelSettings.CompletionRewards);
             _runState.TrySetNextLevel();
-            _sceneLoader.LoadScene(Scenes.Hut);
+            _sceneLoader.LoadScene(sceneName);
         }
     }
 }

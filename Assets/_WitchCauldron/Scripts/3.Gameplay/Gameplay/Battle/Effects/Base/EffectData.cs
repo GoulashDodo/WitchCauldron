@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Battle.Effects.Base
@@ -9,7 +8,6 @@ namespace Gameplay.Battle.Effects.Base
         [field: SerializeField] public bool IsPermanent { get; private set; }
 
         
-        [field:HideIf(nameof(IsPermanent))]
         [field: SerializeField] public float Duration { get; private set; }
 
         [field: SerializeField] public Sprite EffectIcon { get; private set; }

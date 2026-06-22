@@ -113,6 +113,7 @@ namespace WitchCauldronEditorTools.Editor
 
         private static void WriteRule(SerializedProperty rule, ItemSettings itemA, ItemSettings itemB, ItemSettings result)
         {
+            rule.FindPropertyRelative("_recipeId").stringValue = CombinationRule.GenerateRecipeId(itemA, itemB, result);
             rule.FindPropertyRelative("_itemA").objectReferenceValue = itemA;
             rule.FindPropertyRelative("_itemB").objectReferenceValue = itemB;
             rule.FindPropertyRelative("_result").objectReferenceValue = result;

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51a1d9c07f94f7594b5743c1e3b5fb1, type: 3}
+  m_Name: Enemy_Slime_NoLoot
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Enemies.SO.EnemySettings
+  <TypeId>k__BackingField: Enemy_Slime_NoLoot
+  <EnemyPf>k__BackingField: {fileID: 7923958733403220195, guid: 65160d9224168d745bf68203fe937b54, type: 3}
+  <PointPrice>k__BackingField: 1
+  <MaxHealth>k__BackingField: 10
+  <MaxSpeed>k__BackingField: 0.33
+  <ShowHealthBar>k__BackingField: 0
+  <Damage>k__BackingField: 5
+  <AttackDistance>k__BackingField: 1
+  <AttackSpeed>k__BackingField: 1
+  <LootDefinitions>k__BackingField: []

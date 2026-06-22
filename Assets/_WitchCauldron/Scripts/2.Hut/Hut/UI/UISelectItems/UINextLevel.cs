@@ -55,7 +55,7 @@ namespace Hut.UI.UISelectItems
             if (!_runState.HasCurrentLevel && !_runState.IsCompleted)
                 _runState.StartNewRun();
             
-            _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelId}";
+            _nextLevelButtonText.text = $"{StartNextLevelText}{_runState.CurrentLevelName}";
 
             if (_nextLevelButton != null)
                 _nextLevelButton.interactable = _runState.HasCurrentLevel && _selectedItemsRuntime.HasRequiredSelectedItems;

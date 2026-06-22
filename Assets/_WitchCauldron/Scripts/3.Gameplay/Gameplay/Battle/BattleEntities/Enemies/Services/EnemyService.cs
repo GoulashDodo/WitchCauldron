@@ -10,6 +10,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
 {
     public class EnemyService
     {
+        private readonly AllEnemySettings _allEnemySettings;
         private readonly Dictionary<string, EnemySettings> _allEnemies = new();
         
         private readonly Dictionary<int, Enemy> _allExistingEnemies = new();
@@ -21,6 +22,8 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
 
         public ReadOnlyReactiveProperty<int> ActiveEnemyCount => _activeEnemyCount;
         public int ActiveEnemyCountValue => _activeEnemyCount.Value;
+        public float SpawnMinDistance => _allEnemySettings.SpawnMinDistance;
+        public int SpawnPositionAttempts => _allEnemySettings.SpawnPositionAttempts;
         public Observable<Enemy> EnemySpawned => _enemySpawned;
         public Observable<Enemy> EnemyDied => _enemyDied;
 
@@ -29,6 +32,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
         public EnemyService(GameplaySettings settings)
         {
             var allEnemySettings = settings.AllEnemiesSettings;
+            _allEnemySettings = allEnemySettings;
             
             foreach (var enemySetting in allEnemySettings.AllSettings)
             {
@@ -45,7 +49,10 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
             
             var enemyPf = enemySettings.EnemyPf;
             var enemy = Object.Instantiate(enemyPf, position, Quaternion.identity);
-            
+
+            if (enemy.TryGetComponent(out EnemyMotor motor))
+                motor.SetSpeedMultiplier(_allEnemySettings.GetRandomSpawnSpeedMultiplier());
+
             enemy.Construct(this, enemySettings);
             
             

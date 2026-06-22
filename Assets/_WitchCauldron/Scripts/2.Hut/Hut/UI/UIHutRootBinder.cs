@@ -32,7 +32,7 @@ namespace Hut.UI
             _nextLevel.Initialize(runState, sceneLoader, selectedItemsRuntime, selectedFamiliarRuntime);
             _showSelectItemsButton.Initialize(runState);
             _runCompleted.Initialize(runState);
-            _selectItemParent.Initialize(selectedItemsRuntime);
+            _selectItemParent.Initialize(selectedItemsRuntime, runState);
 
             if (_selectFamiliarParent != null)
                 _selectFamiliarParent.Initialize(selectedFamiliarRuntime);

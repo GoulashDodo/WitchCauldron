@@ -12,14 +12,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b5c10c0e34404b9127b02284a29755, type: 3}
   m_Name: Level_03_WaveSettings
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.Waves.SO.WaveSettings
-  <StartDelay>k__BackingField: 2
+  <StartDelay>k__BackingField: 5
   <Waves>k__BackingField:
   - <Type>k__BackingField: 0
     <StartTime>k__BackingField: 0
     <SpawnInterval>k__BackingField: 1
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
     <SpawnPositionMode>k__BackingField: 0
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
-      <Count>k__BackingField: 3
+      <Count>k__BackingField: 2
       <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <StartTime>k__BackingField: 1
+    <SpawnInterval>k__BackingField: 1
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy_Fast
+      <Count>k__BackingField: 1
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <StartTime>k__BackingField: 2
+    <SpawnInterval>k__BackingField: 0.2
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy_Fast
+      <Count>k__BackingField: 2
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 2
+    <StartTime>k__BackingField: 4
+    <SpawnInterval>k__BackingField: 0.2
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy_Fast
+      <Count>k__BackingField: 2
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 1
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0

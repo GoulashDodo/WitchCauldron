@@ -234,14 +234,33 @@ namespace Gameplay.Battle.Waves.Service
 
         private Vector3 GetSpawnPosition(WaveDefinition wave)
         {
-            return wave.SpawnPositionMode == SpawnPositionMode.SpecificPosition
-                ? wave.SpecificSpawnPosition
-                : _spawnArea.GetRandomPosition();
+            if (wave.SpawnPositionMode == SpawnPositionMode.SpecificPosition)
+                return wave.SpecificSpawnPosition;
+
+            var position = _spawnArea.GetRandomPosition();
+
+            var minSpawnDistance = _enemyService.SpawnMinDistance;
+
+            if (minSpawnDistance <= 0f || _currentWave == null)
+                return position;
+
+            var attempts = Mathf.Max(1, _enemyService.SpawnPositionAttempts);
+
+            for (var i = 1; i < attempts; i++)
+            {
+                if (_currentWave.IsSpawnPositionFarEnough(position, minSpawnDistance))
+                    return position;
+
+                position = _spawnArea.GetRandomPosition();
+            }
+
+            return position;
         }
 
         private sealed class WaveRuntimeState : IDisposable
         {
             private readonly List<EnemySpawnRuntime> _spawns;
+            private readonly Dictionary<int, Enemy> _activeEnemies = new();
             private readonly Dictionary<int, IDisposable> _enemyDeathSubscriptions = new();
             private readonly int _totalSpawnCount;
             private int _spawnedCount;
@@ -317,12 +336,31 @@ namespace Gameplay.Battle.Waves.Service
                     return;
 
                 var enemyId = enemy.GetInstanceID();
+                _activeEnemies[enemyId] = enemy;
 
                 _enemyDeathSubscriptions[enemyId] = enemy.Events.Died.Subscribe(_ =>
                 {
+                    _activeEnemies.Remove(enemyId);
+
                     if (_enemyDeathSubscriptions.Remove(enemyId, out var subscription))
                         subscription.Dispose();
                 });
+            }
+
+            public bool IsSpawnPositionFarEnough(Vector3 position, float minDistance)
+            {
+                var minSqrDistance = minDistance * minDistance;
+
+                foreach (var enemy in _activeEnemies.Values)
+                {
+                    if (enemy == null || enemy.IsDead)
+                        continue;
+
+                    if ((enemy.transform.position - position).sqrMagnitude < minSqrDistance)
+                        return false;
+                }
+
+                return true;
             }
 
             public void Dispose()
@@ -330,6 +368,7 @@ namespace Gameplay.Battle.Waves.Service
                 foreach (var subscription in _enemyDeathSubscriptions.Values)
                     subscription.Dispose();
 
+                _activeEnemies.Clear();
                 _enemyDeathSubscriptions.Clear();
             }
 

@@ -1,7 +1,6 @@
 using Gameplay.Items.MonoBehaviours;
 using Gameplay.Items.Usable.Commands;
 using Gameplay.Items.Visuals;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Items.SO
@@ -16,7 +15,6 @@ namespace Gameplay.Items.SO
         [field: SerializeField] public string TitleLid { get; private set; }
 
         [field: Space(10)][Header("On Item use")]
-        [field: InlineEditor]
         [field: SerializeField] public UseCommandParameters[] OnUseCommands { get; private set; }
 
         [field: Space(10)]

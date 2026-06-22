@@ -7,5 +7,10 @@ namespace Hut.SO
     {
         [field: SerializeField] public int MinimumSelectedItemsCount { get; private set; } = 1;
         [field: SerializeField] public int InitialSelectedItemsCount { get; private set; }
+
+
+        [field: SerializeField] public string[] InitialSelectableItemsIds{ get; private set; }
+        [field: SerializeField] public string[] InitialRecipeIds { get; private set; }
+
     }
 }

@@ -44,10 +44,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: SpawnedObjects
-    uniqueID: 2063138111
-    locked: 0
-  - name: Enemy
+  - name: BattleGround
     uniqueID: 3114134245
     locked: 0
   - name: Item

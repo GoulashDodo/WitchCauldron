@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Core.Run;
 using Gameplay.Items.Combination.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -16,14 +18,24 @@ namespace Gameplay.UI.Recipes
         
         [SerializeField] private CombinationRuleList _combinationRuleList;
 
+        private readonly List<CombinationRule> _unlockedRules = new();
+
         private const int RecipesPerPage = 6;
         private int _currentPage;
-        private int TotalPages => Mathf.CeilToInt(_combinationRuleList.Rules.Count / (float)RecipesPerPage);
+        private int TotalPages => Mathf.CeilToInt(_unlockedRules.Count / (float)RecipesPerPage);
         
-        public void Initialize()
+        public void Initialize(RunState runState)
         {
             _previousButton.onClick.AddListener(PreviousPage);
             _nextButton.onClick.AddListener(NextPage);
+
+            _unlockedRules.Clear();
+
+            foreach (var rule in _combinationRuleList.Rules)
+            {
+                if (rule != null && runState.UnlockedRecipes.HasRecipe(rule.RecipeId))
+                    _unlockedRules.Add(rule);
+            }
 
             ShowPage(0);
         }
@@ -38,8 +50,8 @@ namespace Gameplay.UI.Recipes
             {
                 int recipeIndex = startIndex + i;
 
-                if (recipeIndex < _combinationRuleList.Rules.Count)
-                    _recipeSlots[i].Initialize(_combinationRuleList.Rules[recipeIndex]);
+                if (recipeIndex < _unlockedRules.Count)
+                    _recipeSlots[i].Initialize(_unlockedRules[recipeIndex]);
                 else
                     _recipeSlots[i].Clear();
             }
@@ -47,7 +59,7 @@ namespace Gameplay.UI.Recipes
             _previousButton.interactable = _currentPage > 0;
             _nextButton.interactable = _currentPage < TotalPages - 1;
 
-            _pageText.text = $"{_currentPage + 1} / {TotalPages}";
+            _pageText.text = TotalPages > 0 ? $"{_currentPage + 1} / {TotalPages}" : "0 / 0";
         }
         
         private void PreviousPage()

@@ -1,5 +1,4 @@
 using Gameplay.Battle.Waves.Enums;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Battle.Waves.SO.Structures
@@ -7,37 +6,30 @@ namespace Gameplay.Battle.Waves.SO.Structures
     [System.Serializable]
     public sealed class WaveDefinition
     {
-        [field: SerializeField, BoxGroup("Timing")]
+        [field: SerializeField]
         public WaveType Type { get; private set; }
 
-        [field: SerializeField, Min(0f), BoxGroup("Timing")]
-        [field: LabelText("Start Time / Delay")]
-        [field: InfoBox("First wave: seconds after level wave start delay. Next waves: seconds after the previous wave is cleared.")]
+        [field: SerializeField, Min(0f)]
+        [field: Tooltip("First wave: seconds after level wave start delay. Next waves: seconds after the previous wave is cleared.")]
         public float StartTime { get; private set; }
 
-        [field: SerializeField, Min(0.1f), BoxGroup("Timing")]
+        [field: SerializeField, Min(0.1f)]
         public float SpawnInterval { get; private set; } = 1f;
 
-        [field: SerializeField, BoxGroup("Spawn Generation")]
+        [field: SerializeField]
         public WaveSpawnMode SpawnMode { get; private set; } = WaveSpawnMode.ManualCount;
 
-        [field: SerializeField, Min(0), BoxGroup("Spawn Generation")]
-        [field: ShowIf(nameof(IsPointBudgetMode))]
+        [field: SerializeField, Min(0)]
         public int PointBudget { get; private set; }
 
-        [field: SerializeField, BoxGroup("Position")]
+        [field: SerializeField]
         public SpawnPositionMode SpawnPositionMode { get; private set; }
 
-        [field: SerializeField, BoxGroup("Position")]
-        [field: ShowIf(nameof(UsesSpecificSpawnPosition))]
+        [field: SerializeField]
         public Vector3 SpecificSpawnPosition { get; private set; }
 
-        [field: SerializeField, BoxGroup("Enemies")]
-        [field: TableList]
+        [field: SerializeField]
         public EnemySpawnDefinition[] Enemies { get; private set; }
-
-        private bool IsPointBudgetMode => SpawnMode == WaveSpawnMode.PointBudget;
-        private bool UsesSpecificSpawnPosition => SpawnPositionMode == SpawnPositionMode.SpecificPosition;
 
         public int TotalEnemyCount
         {

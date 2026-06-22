@@ -1,5 +1,4 @@
 using System;
-using Gameplay.Items.SO;
 
 namespace Gameplay._root
 {
@@ -16,7 +15,7 @@ namespace Gameplay._root
             SelectedFamiliar = String.Empty;
 
             //TODO: Change, test purpose only
-            SelectedItemsIds = new string[] {"Item_MoonPebble", "Item_Egg", "Item_Goo"};
+            SelectedItemsIds = new string[] {"Item_MoonPebble", "Item_Egg"};
         }
 
         public GameplayEntryParameters(string levelId, string[] selectedItemsIds, string selectedFamiliar = null)

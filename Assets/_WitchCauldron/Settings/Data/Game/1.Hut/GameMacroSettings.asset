@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hut.SO.GameMacroSettings
   <MinimumSelectedItemsCount>k__BackingField: 1
   <InitialSelectedItemsCount>k__BackingField: 4
+  <InitialSelectableItemsIds>k__BackingField:
+  - Item_MoonPebble
+  - Item_Egg
+  <InitialRecipeIds>k__BackingField:
+  - Combination_Rock
+  - Combination_BigEgg
+  - Combination_PebbleSpitter

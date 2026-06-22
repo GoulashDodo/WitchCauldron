@@ -1,4 +1,5 @@
 using System;
+using Core.Data;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -51,12 +52,10 @@ namespace Core.Input.Clickable
             if (!TryGetMouseWorldPoint(out var worldPoint))
                 return;
 
-            var hit = Physics2D.OverlapPoint(worldPoint);
-            if (hit == null)
+            if (!TryGetLeftButtonPressable(worldPoint, out var clickable))
                 return;
 
-            if (hit.TryGetComponent<ILeftButtonPressable>(out var clickable))
-                clickable.OnLeftButtonPressed(worldPoint);
+            clickable.OnLeftButtonPressed(worldPoint);
         }
 
         private void HandleLeftMouseReleased(InputAction.CallbackContext _)
@@ -93,6 +92,39 @@ namespace Core.Input.Clickable
 
             worldPoint = wp;
             return true;
+        }
+
+        private bool TryGetLeftButtonPressable(Vector2 worldPoint, out ILeftButtonPressable pressable)
+        {
+            pressable = null;
+
+            var hitCount = Physics2D.OverlapPoint(worldPoint, new ContactFilter2D(), _hitBuffer);
+            if (hitCount == 0)
+                return false;
+
+            var itemLayer = LayerMask.NameToLayer(Layers.Item);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                var hit = _hitBuffer[i];
+                if (!hit || hit.gameObject.layer != itemLayer)
+                    continue;
+
+                if (hit.TryGetComponent(out pressable))
+                    return true;
+            }
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                var hit = _hitBuffer[i];
+                if (!hit)
+                    continue;
+
+                if (hit.TryGetComponent(out pressable))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

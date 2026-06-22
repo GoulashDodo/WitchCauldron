@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 150549895947134220}
   - component: {fileID: 1713992672031278442}
   - component: {fileID: 8569542966456939234}
+  - component: {fileID: 6605538276524359001}
   - component: {fileID: 2160956080032967411}
   m_Layer: 8
   m_Name: Turret_BossChild
@@ -71,7 +72,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.05}
+  m_Offset: {x: 0.06, y: 0.34}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -81,7 +82,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9, y: 1.15}
+  m_Size: {x: 1.44, y: 2.19}
   m_EdgeRadius: 0
 --- !u!114 &8569542966456939234
 MonoBehaviour:
@@ -97,9 +98,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Turrets.Turret
   _projectilePrefab: {fileID: 6907257185053291798, guid: dde471118d8305f4482f0c010e5c5563, type: 3}
   _shootingPoint: {fileID: 5315238896467853233}
-  _maxHealth: 15
-  _attackRange: 3
+  _attackRange: 2.64
   _attackCooldown: 5
+--- !u!114 &6605538276524359001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454096943791008133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ac89ef1a795b649ab585c7746b1863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Core.FriendlyAttackableEntity
+  _maxHealth: 15
 --- !u!114 &2160956080032967411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +208,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2063138111
+  m_SortingLayerID: -1180833051
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
@@ -235,7 +248,7 @@ Transform:
   m_GameObject: {fileID: 3917393418943009368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.045, y: -0.423, z: 0}
+  m_LocalPosition: {x: -0.045, y: -0.4, z: 0}
   m_LocalScale: {x: 1.2144427, y: 0.3492857, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -377,7 +390,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2063138111
+  m_SortingLayerID: -1180833051
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
