@@ -16,7 +16,6 @@ namespace Hut.UI.UISelectItems
         private RunState _runState;
         private SceneLoader _sceneLoader;
         private SelectedItemsRuntime _selectedItemsRuntime;
-        private SelectedFamiliarRuntime _selectedFamiliarRuntime;
 
         private const string StartNextLevelText = "Start: ";
 
@@ -24,13 +23,11 @@ namespace Hut.UI.UISelectItems
         public void Initialize(
             RunState runState,
             SceneLoader sceneLoader,
-            SelectedItemsRuntime selectedItemsRuntime,
-            SelectedFamiliarRuntime selectedFamiliarRuntime)
+            SelectedItemsRuntime selectedItemsRuntime)
         {
             _runState = runState;
             _sceneLoader = sceneLoader;
             _selectedItemsRuntime = selectedItemsRuntime;
-            _selectedFamiliarRuntime = selectedFamiliarRuntime;
             RefreshState();
 
             if (isActiveAndEnabled)
@@ -97,8 +94,8 @@ namespace Hut.UI.UISelectItems
 
             var gameplayEntryPoint = new GameplayEntryParameters(
                 _runState.CurrentLevelId,
-                _selectedItemsRuntime.GetSelectedItemsIds(),
-                _selectedFamiliarRuntime.SelectedFamiliarId);
+                _selectedItemsRuntime.GetSelectedItemsIds()
+                );
             
             _sceneLoader.LoadGameplay(gameplayEntryPoint);
         }

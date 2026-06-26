@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 1420648441}
   - component: {fileID: 1420648440}
   m_Layer: 0
-  m_Name: foni-papik-pro-1tds-p-kartinki-kletka-na-prozrachnom-fone-3_0
+  m_Name: Cage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

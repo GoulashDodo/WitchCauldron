@@ -15,7 +15,6 @@ namespace Hut.UI
         [SerializeField] private UINextLevel _nextLevel;
         [SerializeField] private UIRunCompleted _runCompleted;   
         [SerializeField] private UISelectItemParent _selectItemParent;
-        [SerializeField] private UISelectFamiliarParent _selectFamiliarParent;
         [SerializeField] private UIShowSelectItemsButton _showSelectItemsButton;
         
         [Inject]
@@ -23,19 +22,16 @@ namespace Hut.UI
             UIRootView view,
             RunState runState,
             SceneLoader sceneLoader,
-            SelectedItemsRuntime selectedItemsRuntime,
-            SelectedFamiliarRuntime selectedFamiliarRuntime)
+            SelectedItemsRuntime selectedItemsRuntime)
         {
 
             view.AttachSceneUI(gameObject);
             
-            _nextLevel.Initialize(runState, sceneLoader, selectedItemsRuntime, selectedFamiliarRuntime);
+            _nextLevel.Initialize(runState, sceneLoader, selectedItemsRuntime);
             _showSelectItemsButton.Initialize(runState);
             _runCompleted.Initialize(runState);
             _selectItemParent.Initialize(selectedItemsRuntime, runState);
 
-            if (_selectFamiliarParent != null)
-                _selectFamiliarParent.Initialize(selectedFamiliarRuntime);
         }
         
     }
