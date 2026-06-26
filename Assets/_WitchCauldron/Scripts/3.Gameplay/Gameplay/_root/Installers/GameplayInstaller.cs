@@ -14,6 +14,7 @@ using Gameplay.Items.Usable.Commands.Effect;
 using Gameplay.Items.Usable.Commands.Handler;
 using Gameplay.Items.Usable.Commands.Preview;
 using Gameplay.Items.Usable.Commands.Processor;
+using Gameplay.Items.Usable.Commands.Ricochet;
 using Gameplay.Items.Usable.Commands.Spawn;
 using Gameplay.Level;
 using Gameplay.Level.SO;
@@ -111,6 +112,7 @@ namespace Gameplay._root.Installers
             Container.Bind<IUseCommandHandler>().To<DamageCommandHandler>().AsSingle();
             Container.Bind<IUseCommandHandler>().To<SpawnCommandHandler>().AsSingle();
             Container.Bind<IUseCommandHandler>().To<EffectCommandHandler>().AsSingle();
+            Container.Bind<IUseCommandHandler>().To<RicochetCommandHandler>().AsSingle();
         }
         
       

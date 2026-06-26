@@ -19,8 +19,11 @@ namespace Gameplay.Battle.Effects
 
         public EffectRuntime AddEffect(EffectData effectData)
         {
-            if (_isDisposed)
+            if (_isDisposed || effectData == null)
                 return null;
+
+            if (TryGetActiveEffectOfType(effectData.GetType(), out var existingEffect))
+                return existingEffect;
 
             var runtime = effectData.CreateRuntime();
 
@@ -32,6 +35,25 @@ namespace Gameplay.Battle.Effects
                 _effectAdded.OnNext(runtime);
             
             return runtime;
+        }
+
+        private bool TryGetActiveEffectOfType(System.Type effectDataType, out EffectRuntime effect)
+        {
+            for (var i = 0; i < _effects.Count; i++)
+            {
+                var activeEffect = _effects[i];
+                if (activeEffect?.EffectData == null)
+                    continue;
+
+                if (activeEffect.EffectData.GetType() != effectDataType)
+                    continue;
+
+                effect = activeEffect;
+                return true;
+            }
+
+            effect = null;
+            return false;
         }
 
         public void RemoveEffect(EffectRuntime effect)

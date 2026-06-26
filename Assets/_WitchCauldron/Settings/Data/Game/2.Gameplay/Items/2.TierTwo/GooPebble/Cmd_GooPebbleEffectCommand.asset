@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc3e758e21d4379a8cb7c7ca368c11b, type: 3}
   m_Name: Cmd_GooPebbleEffectCommand
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.Usable.Commands.Effect.EffectCommandParameters
-  <EffectToApply>k__BackingField: {fileID: 11400000, guid: c092564efe8a9ff4c8fa186fa4994d89, type: 2}
+  <EffectToApply>k__BackingField: {fileID: 11400000, guid: 0c27335e0f5efdc4d908e2c5df854b86, type: 2}
   <Radius>k__BackingField: 0.7
   <IsArea>k__BackingField: 0

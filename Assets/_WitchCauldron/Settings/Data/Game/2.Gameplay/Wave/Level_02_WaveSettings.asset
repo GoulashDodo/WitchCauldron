@@ -23,7 +23,7 @@ MonoBehaviour:
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
-      <Count>k__BackingField: 1
+      <Count>k__BackingField: 2
       <Weight>k__BackingField: 1
       <MinCount>k__BackingField: 0
       <MaxCount>k__BackingField: 0
@@ -49,6 +49,37 @@ MonoBehaviour:
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 3
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <StartTime>k__BackingField: 0
+    <SpawnInterval>k__BackingField: 3
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 2
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 1
+    <StartTime>k__BackingField: 4
+    <SpawnInterval>k__BackingField: 0.5
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 3
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
       <Count>k__BackingField: 2
       <Weight>k__BackingField: 1
       <MinCount>k__BackingField: 0
@@ -62,12 +93,25 @@ MonoBehaviour:
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
-      <Count>k__BackingField: 1
+      <Count>k__BackingField: 3
+      <Weight>k__BackingField: 1
+      <MinCount>k__BackingField: 0
+      <MaxCount>k__BackingField: 0
+  - <Type>k__BackingField: 0
+    <StartTime>k__BackingField: 0
+    <SpawnInterval>k__BackingField: 3
+    <SpawnMode>k__BackingField: 0
+    <PointBudget>k__BackingField: 0
+    <SpawnPositionMode>k__BackingField: 0
+    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <Enemies>k__BackingField:
+    - <EnemyTypeId>k__BackingField: Enemy_Dummy
+      <Count>k__BackingField: 3
       <Weight>k__BackingField: 1
       <MinCount>k__BackingField: 0
       <MaxCount>k__BackingField: 0
   - <Type>k__BackingField: 2
-    <StartTime>k__BackingField: 10
+    <StartTime>k__BackingField: 4
     <SpawnInterval>k__BackingField: 0.5
     <SpawnMode>k__BackingField: 0
     <PointBudget>k__BackingField: 0
@@ -75,12 +119,12 @@ MonoBehaviour:
     <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
-      <Count>k__BackingField: 1
+      <Count>k__BackingField: 3
       <Weight>k__BackingField: 1
       <MinCount>k__BackingField: 0
       <MaxCount>k__BackingField: 0
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
-      <Count>k__BackingField: 2
+      <Count>k__BackingField: 4
       <Weight>k__BackingField: 1
       <MinCount>k__BackingField: 0
       <MaxCount>k__BackingField: 0

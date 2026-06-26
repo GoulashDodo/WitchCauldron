@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
   <LevelId>k__BackingField: level_01
   <LevelName>k__BackingField: Tutorial
-  <BaseHealth>k__BackingField: 100
+  <BaseHealth>k__BackingField: 30
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: 3563d8e46ccd5134fa4f46039d2a5fb7, type: 2}
   <CompletionRewards>k__BackingField:
   - <Type>k__BackingField: 0

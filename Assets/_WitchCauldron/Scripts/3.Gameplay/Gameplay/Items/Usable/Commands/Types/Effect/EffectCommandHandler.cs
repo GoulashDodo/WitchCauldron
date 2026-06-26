@@ -13,6 +13,15 @@ namespace Gameplay.Items.Usable.Commands.Effect
         
         public override bool Handle(EffectCommandParameters p, Vector2 pos, UseCommandContext context = null)
         {
+            if (context?.TargetEnemy != null)
+            {
+                if (!context.TargetEnemy.TryGetComponent(out EffectReceiver receiver))
+                    return false;
+
+                ApplyEffect(p, pos, receiver);
+                return true;
+            }
+
             var radius = Mathf.Max(0f, p.Radius);
             var hitCount = Physics2D.OverlapCircle(pos, radius, _contactFilter, _buffer);
 
@@ -27,7 +36,7 @@ namespace Gameplay.Items.Usable.Commands.Effect
             }
 
             if (applied)
-                context?.FxPlayer?.PlayImpactFx(pos, context.ItemSettings, context.ItemWorldScale);
+                context?.PlayImpactFxOnce(pos);
 
             return applied;
         }

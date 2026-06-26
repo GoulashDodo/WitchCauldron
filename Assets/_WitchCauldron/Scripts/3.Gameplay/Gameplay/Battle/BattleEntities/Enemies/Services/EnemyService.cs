@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay._root.SO;
 using Gameplay.Battle.BattleEntities.Enemies.Core;
 using Gameplay.Battle.BattleEntities.Enemies.SO;
@@ -69,6 +70,36 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
         {
             var enemy = _allExistingEnemies[enemyId];
             enemy.TakeDamage(new BattleDamage(damage, DamageType.Physical));
+        }
+
+        public bool TryFindNearestEnemy(
+            Vector2 position,
+            float radius,
+            IReadOnlyCollection<Enemy> ignoredEnemies,
+            out Enemy nearestEnemy)
+        {
+            nearestEnemy = null;
+
+            var sqrRadius = radius * radius;
+            var nearestSqrDistance = float.MaxValue;
+
+            foreach (var enemy in _allExistingEnemies.Values)
+            {
+                if (enemy == null || enemy.IsDead || !enemy.gameObject.activeInHierarchy)
+                    continue;
+
+                if (ignoredEnemies != null && ignoredEnemies.Contains(enemy))
+                    continue;
+
+                var sqrDistance = ((Vector2)enemy.transform.position - position).sqrMagnitude;
+                if (sqrDistance > sqrRadius || sqrDistance >= nearestSqrDistance)
+                    continue;
+
+                nearestSqrDistance = sqrDistance;
+                nearestEnemy = enemy;
+            }
+
+            return nearestEnemy != null;
         }
 
 

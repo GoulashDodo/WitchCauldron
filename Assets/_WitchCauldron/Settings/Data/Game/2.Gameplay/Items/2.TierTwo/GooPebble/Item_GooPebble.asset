@@ -16,13 +16,16 @@ MonoBehaviour:
   <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: b5ae933e6481aca44ba49461098f0252, type: 3}
   <TitleLid>k__BackingField: Goo Pebble
   <OnUseCommands>k__BackingField:
-  - {fileID: 11400000, guid: c4f9b53e8699d7942a334171ebb05e6d, type: 2}
-  - {fileID: 11400000, guid: b6e866212ab401e428817f7dcaae8837, type: 2}
+  - {fileID: 11400000, guid: 9246e950e44d4454297b391366f60261, type: 2}
   <UseVisuals>k__BackingField:
-    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <ImpactParticlePrefab>k__BackingField: {fileID: 2707920961467566476, guid: cc3ad5c54e1209640875d36c8cc9984a, type: 3}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
     <FallbackImpactParticleLifetime>k__BackingField: 1.1
     <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleRandomVelocity>k__BackingField: {x: 2.2, y: 1.2}
+    <FallbackImpactParticleGravity>k__BackingField: 16
+    <FallbackImpactParticleBounceCount>k__BackingField: 2
+    <FallbackImpactParticleBounceDamping>k__BackingField: 0.48
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7359590830e47309c462beac1ced267, type: 3}
   m_Name: All Enemy Settings
   m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO.AllEnemySettings
-  <SpawnMinDistance>k__BackingField: 0.2
+  <SpawnMinDistance>k__BackingField: 0.4
   <SpawnPositionAttempts>k__BackingField: 10
   <SpawnSpeedMultiplierRange>k__BackingField: {x: 0.9, y: 1.1}
   <AllSettings>k__BackingField:
