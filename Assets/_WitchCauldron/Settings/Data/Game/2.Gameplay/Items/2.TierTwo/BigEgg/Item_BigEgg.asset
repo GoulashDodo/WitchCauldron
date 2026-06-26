@@ -22,8 +22,12 @@ MonoBehaviour:
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
     <FallbackImpactParticleLifetime>k__BackingField: 1.1
     <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleRandomVelocity>k__BackingField: {x: 2.2, y: 1.2}
+    <FallbackImpactParticleGravity>k__BackingField: 16
+    <FallbackImpactParticleBounceCount>k__BackingField: 2
+    <FallbackImpactParticleBounceDamping>k__BackingField: 0.48
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}
   <SpawnCooldown>k__BackingField: 5
-  <Icon>k__BackingField: {fileID: 4249389816323573555, guid: 34579cedb13db7944b1a5826a27ebcdb, type: 3}
+  <Icon>k__BackingField: {fileID: -763438560, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

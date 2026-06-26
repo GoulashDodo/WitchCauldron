@@ -7,8 +7,8 @@ namespace WitchCauldronEditorTools.Editor
 {
     internal static class GameplayResultEditorUtility
     {
-        private const string InstantWinMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Win";
-        private const string InstantLoseMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Lose";
+        private const string InstantWinMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Win _F9";
+        private const string InstantLoseMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Lose _F8";
 
         [MenuItem(InstantWinMenuPath, priority = 100)]
         private static void InstantWin()

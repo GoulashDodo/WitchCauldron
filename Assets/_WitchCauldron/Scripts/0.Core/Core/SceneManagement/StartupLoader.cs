@@ -16,13 +16,11 @@ namespace Core.SceneManagement
         
         public void Initialize()
         {
-            
 #if UNITY_EDITOR
             _sceneLoader.LoadScene(EditorStartSceneCache.RequestedSceneName);
-            return;
-#endif
-            
+#else
             _sceneLoader.LoadScene(Scenes.MainMenu);
+#endif
         }
     }
 }

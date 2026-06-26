@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da844da0b21c4b8a888f4630e47fceca, type: 3}
   m_Name: Gameplay Settings
   m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay._root.SO.GameplaySettings
+  <VictoryDelay>k__BackingField: 5
   <AllEnemiesSettings>k__BackingField: {fileID: 11400000, guid: 10ae4c37751a3e0469ca8fc2397226da, type: 2}
   <AllItemsSettings>k__BackingField: {fileID: 11400000, guid: 3449e20e15fcccf4489cd77679ab494c, type: 2}
   <AllLevelSettings>k__BackingField: {fileID: 11400000, guid: 0c20c7f8df2b9f34f86b96723bff3ad2, type: 2}

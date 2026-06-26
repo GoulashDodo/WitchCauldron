@@ -12,6 +12,7 @@ namespace Gameplay.Items.MonoBehaviours
         public string TypeId { get; private set; }
         public ItemSettings Settings { get; private set; }
         public bool IsDragging { get; private set; }
+        public Vector3 LastDragStartPosition { get; private set; }
 
         protected ItemService ItemService;
 
@@ -81,12 +82,21 @@ namespace Gameplay.Items.MonoBehaviours
             if (IsDragging)
                 return;
 
+            LastDragStartPosition = Transform.position;
             IsDragging = true;
             _pickedUp.OnNext(Unit.Default);
         }
         
         protected virtual void OnDrop()
         {
+            CompleteDrop();
+        }
+
+        protected void CompleteDrop()
+        {
+            if (!IsDragging)
+                return;
+
             _dropped.OnNext(Unit.Default);
             IsDragging = false;
         }

@@ -11,6 +11,7 @@ namespace Core.Input.Clickable
     {
         private readonly GameInput _gameInput;
         private Camera _camera;
+        private ILeftButtonReleasable _activeReleasable;
 
         private readonly ReactiveProperty<Vector2> _mouseToWorldPosition = new();
         public Observable<Vector2> MouseToWorldPosition => _mouseToWorldPosition;
@@ -21,6 +22,11 @@ namespace Core.Input.Clickable
         public MouseClickHandler(GameInput gameInput)
         {
             _gameInput = gameInput;
+        }
+
+        public void CaptureRelease(ILeftButtonReleasable releasable)
+        {
+            _activeReleasable = releasable;
         }
 
         public void Initialize()
@@ -56,12 +62,22 @@ namespace Core.Input.Clickable
                 return;
 
             clickable.OnLeftButtonPressed(worldPoint);
+
+            if (clickable is ILeftButtonReleasable releasable)
+                _activeReleasable = releasable;
         }
 
         private void HandleLeftMouseReleased(InputAction.CallbackContext _)
         {
             if (!TryGetMouseWorldPoint(out var worldPoint))
                 return;
+
+            if (_activeReleasable != null)
+            {
+                _activeReleasable.OnLeftButtonReleased(worldPoint);
+                _activeReleasable = null;
+                return;
+            }
 
             var hitCount = Physics2D.OverlapPoint(worldPoint, new ContactFilter2D(), _hitBuffer);
 

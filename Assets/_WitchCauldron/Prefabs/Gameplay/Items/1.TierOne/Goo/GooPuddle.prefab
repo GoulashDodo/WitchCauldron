@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c908638604ca0b4ab3cfeb1f0baaa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Puddle.EffectPuddle
-  _effectData: {fileID: 11400000, guid: 3d896e38ca0e0094282e14a62aec0c27, type: 2}
+  _effectData: {fileID: 11400000, guid: 41e72cd65d983de4c8ae0bda61531a17, type: 2}
 --- !u!58 &6447059932908474215
 CircleCollider2D:
   m_ObjectHideFlags: 0

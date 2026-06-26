@@ -154,7 +154,7 @@ Transform:
   - {fileID: 838282326}
   - {fileID: 1752585636}
   - {fileID: 1420648441}
-  - {fileID: 706443456}
+  - {fileID: 1196324135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &109975215
@@ -462,11 +462,11 @@ Transform:
   m_GameObject: {fileID: 706443455}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.73, y: -3.87, z: 0}
-  m_LocalScale: {x: 3.3414998, y: 0.90809995, z: 1}
+  m_LocalPosition: {x: 0.03, y: -5.33, z: 0}
+  m_LocalScale: {x: 2.5171375, y: 0.6840678, z: 0.7532957}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 109975211}
+  m_Father: {fileID: 1420648441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &706443457
 SpriteRenderer:
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 1196324135}
   - component: {fileID: 1196324134}
   m_Layer: 0
-  m_Name: DarkForest_0
+  m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,12 +734,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196324133}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.35755816, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 109975211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1238592032
 GameObject:
@@ -861,7 +861,8 @@ Transform:
   m_LocalPosition: {x: -5.85, y: 3.38, z: 0}
   m_LocalScale: {x: 1.3275, y: 1.3275, z: 1.3275}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 706443456}
   m_Father: {fileID: 109975211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752585635
@@ -962,4 +963,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1238592033}
   - {fileID: 109975211}
-  - {fileID: 1196324135}

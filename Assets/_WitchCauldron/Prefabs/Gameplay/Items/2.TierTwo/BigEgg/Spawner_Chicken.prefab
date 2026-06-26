@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4126374026883374621}
   - component: {fileID: 6808865914562568827}
   - component: {fileID: 2949953793278059355}
+  - component: {fileID: -2252258025580347845}
+  - component: {fileID: 5969938803603527400}
   m_Layer: 0
   m_Name: Spawner_Chicken
   m_TagString: Untagged
@@ -80,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2063138111
-  m_SortingLayer: 0
+  m_SortingLayerID: -1180833051
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -763438560, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
@@ -126,6 +128,37 @@ MonoBehaviour:
   _lifetime: 12
   _blinkDuration: 0.6
   _blinkInterval: 0.1
+--- !u!114 &-2252258025580347845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233135279174922799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ac89ef1a795b649ab585c7746b1863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Core.FriendlyAttackableEntity
+  _maxHealth: 5
+--- !u!114 &5969938803603527400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233135279174922799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbee849648eeca341b2c16955f3346b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Core.FriendlyAttackableDamageFlash
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashAmount: 0.5
+  _flashInDuration: 0.035
+  _flashHoldDuration: 0.025
+  _flashOutDuration: 0.06
+  _flashCount: 2
 --- !u!1 &8553630278666678703
 GameObject:
   m_ObjectHideFlags: 0

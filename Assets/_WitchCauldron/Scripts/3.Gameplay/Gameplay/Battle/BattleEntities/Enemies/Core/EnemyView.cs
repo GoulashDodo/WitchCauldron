@@ -19,6 +19,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         private EnemyAttack _attack;
         private Animator _animator;
         private bool _hasAttackSpeedMultiplier;
+        private bool _isDeathStarted;
 
         
         
@@ -56,6 +57,11 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         
         private void OnDied()
         {
+            if (_isDeathStarted)
+                return;
+
+            _isDeathStarted = true;
+
             if (!_hasDeathAnimation)
             {
                 _enemy.CompleteDeath();

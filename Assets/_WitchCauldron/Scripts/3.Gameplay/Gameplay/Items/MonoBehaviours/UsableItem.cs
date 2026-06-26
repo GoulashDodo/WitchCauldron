@@ -1,58 +1,43 @@
-using System;
-using Core.Data;
-using Gameplay.Battle.Base.Core;
+using R3;
 using UnityEngine;
 
 namespace Gameplay.Items.MonoBehaviours
 {
     public class UsableItem : CombinableItem
     {
+        private readonly Subject<Unit> _useMissed = new();
+
+        public Observable<Unit> UseMissed => _useMissed;
         
         protected override void OnDrop()
         {
-            if (CanUseAtCurrentPosition())
+            if (IsInCombineZone())
             {
-                ItemService.UseItem(this, transform.position);
+                base.OnDrop();
+                return;
             }
-    
-            base.OnDrop();
+
+            if (!CanUseAtCurrentPosition())
+            {
+                CompleteDrop();
+                _useMissed.OnNext(Unit.Default);
+                return;
+            }
+
+            if (ItemService.TryUseItem(this, transform.position))
+            {
+                CompleteDrop();
+                return;
+            }
+
+            CompleteDrop();
+            _useMissed.OnNext(Unit.Default);
         }
 
         public bool CanUseAtCurrentPosition()
         {
-            var contactFilter = new ContactFilter2D
-            {
-                useLayerMask = true,
-                layerMask = LayerMask.GetMask(Layers.Battleground),
-                useTriggers = true
-            };
-            
-            int count = Collider.Overlap(contactFilter, OverlapBuffer);
-    
-            BattlegroundView best = null;
-            float bestSqr = float.MaxValue;
-    
-            for (int i = 0; i < count; i++)
-            {
-                var c = OverlapBuffer[i];
-                if (c == null) continue;
-    
-                if (c.transform == Transform) continue;
-    
-                if (!c.TryGetComponent(out BattlegroundView other)) continue;
-    
-                Vector2 closest = c.ClosestPoint(Transform.position);
-                float sqr = ((Vector2)Transform.position - closest).sqrMagnitude;
-    
-                if (sqr < bestSqr)
-                {
-                    bestSqr = sqr;
-                    best = other;
-                }
-            }
-    
-            Array.Clear(OverlapBuffer, 0, count);
-            return best != null;
+            return ItemPlacementQuery.CanUseOnBattleground(Collider, Transform, OverlapBuffer);
         }
+
     }
 }   

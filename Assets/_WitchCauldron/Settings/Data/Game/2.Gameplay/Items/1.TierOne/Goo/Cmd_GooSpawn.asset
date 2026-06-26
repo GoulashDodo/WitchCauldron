@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3923e60af0cf486ebd16893bc29f7e99, type: 3}
-  m_Name: Cmd_BigEggSpawn
-  m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.Usable.Commands.Spawn.SpawnCommandParameters
-  <Prefab>k__BackingField: {fileID: 3233135279174922799, guid: 781140cbac9dfe344adec2f056f6afb6, type: 3}
+  m_Name: Cmd_GooSpawn
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.Usable.Commands.Spawn.SpawnCommandParameters
+  <Prefab>k__BackingField: {fileID: 3582414326804973503, guid: 9d19331b0257117408b1bfd6feaceef3, type: 3}

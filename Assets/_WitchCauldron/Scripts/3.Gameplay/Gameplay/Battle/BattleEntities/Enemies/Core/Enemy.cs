@@ -47,11 +47,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
                 .AddTo(_disposables);
 
             _health.Died
-                .Subscribe(deathInfo =>
-                {
-                    Events.RaiseDied(deathInfo);
-                    Die(deathInfo);
-                })
+                .Subscribe(Die)
                 .AddTo(_disposables);
 
 
@@ -65,6 +61,9 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         
         public void TakeDamage(BattleDamage battleDamage)
         {
+            if (IsDead)
+                return;
+
             Debug.Log($"Taking damage {battleDamage.Amount}");
             _health.TakeDamage(battleDamage);
         }
@@ -77,6 +76,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
             IsDead = true;
 
+            Events.RaiseDied(deathInfo);
             _enemyService.UnregisterEnemy(this);
         }
 

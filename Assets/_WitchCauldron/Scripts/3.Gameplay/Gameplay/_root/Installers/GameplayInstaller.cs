@@ -40,7 +40,7 @@ namespace Gameplay._root.Installers
             
          
 
-            Container.Bind<G>().AsSingle();
+            Container.BindInterfacesAndSelfTo<G>().AsSingle();
 
             BindEntryParameters();
             BindLevelData();

@@ -16,14 +16,18 @@ MonoBehaviour:
   <ItemPf>k__BackingField: {fileID: 414867050383060528, guid: 4b3c53433a32e454c9c837b0324e1b92, type: 3}
   <TitleLid>k__BackingField: Goo
   <OnUseCommands>k__BackingField:
-  - {fileID: 11400000, guid: b37beb702f0395347ae2a40bde6e37c6, type: 2}
+  - {fileID: 11400000, guid: 4470cac269494ff4fa684328f72712b4, type: 2}
   <UseVisuals>k__BackingField:
     <ImpactParticlePrefab>k__BackingField: {fileID: 0}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
     <FallbackImpactParticleLifetime>k__BackingField: 1.1
     <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleRandomVelocity>k__BackingField: {x: 2.2, y: 1.2}
+    <FallbackImpactParticleGravity>k__BackingField: 16
+    <FallbackImpactParticleBounceCount>k__BackingField: 2
+    <FallbackImpactParticleBounceDamping>k__BackingField: 0.48
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
-    <UseSfx>k__BackingField: {fileID: 0}
+    <UseSfx>k__BackingField: {fileID: 8300000, guid: 0d9753548bc58934b8516036e1331b35, type: 3}
     <ImpactSfx>k__BackingField: {fileID: 0}
   <SpawnCooldown>k__BackingField: 7
   <Icon>k__BackingField: {fileID: 6147683696072545769, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

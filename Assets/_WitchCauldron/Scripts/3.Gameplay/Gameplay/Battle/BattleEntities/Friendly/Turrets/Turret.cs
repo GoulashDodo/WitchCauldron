@@ -1,9 +1,10 @@
 using Gameplay.Battle.BattleEntities.Enemies.Core;
+using Gameplay.Items.Usable.Commands.Preview;
 using UnityEngine;
 
 namespace Gameplay.Battle.BattleEntities.Friendly.Turrets
 {
-    public class Turret : MonoBehaviour
+    public class Turret : MonoBehaviour, IPlacementRadiusPreviewSource
     {
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _shootingPoint;
@@ -15,6 +16,9 @@ namespace Gameplay.Battle.BattleEntities.Friendly.Turrets
         
         private ContactFilter2D _contactFilter;
         private float _nextAttackTime;
+
+        public float PreviewRadius => Mathf.Max(0f, _attackRange);
+        public Transform PreviewOrigin => _shootingPoint ? _shootingPoint : transform;
 
         private void Awake()
         {
@@ -78,7 +82,7 @@ namespace Gameplay.Battle.BattleEntities.Friendly.Turrets
         private void Shoot(Enemy target)
         {
             var projectile = Instantiate(_projectilePrefab, _shootingPoint.position, Quaternion.identity);
-            projectile.Launch(target);
+            projectile.Launch(target.transform.position - _shootingPoint.position);
         }
 
         private void OnDrawGizmosSelected()

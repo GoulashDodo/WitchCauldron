@@ -18,6 +18,7 @@ namespace Gameplay.UI.SpawnButtons
         private ItemService _itemService;
 
         private bool _isOnCooldown;
+        private bool _isPlacementPending;
         private float _cooldownTimer;
 
         private void Awake()
@@ -40,13 +41,45 @@ namespace Gameplay.UI.SpawnButtons
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (_isOnCooldown)
+            if (_isOnCooldown || _isPlacementPending)
                 return;
 
-            var position = eventData.position;
-            _itemService.SpawnDraggableItem(_itemSettings.TypeId, position, true);
+            if (!TryGetWorldPosition(eventData.position, out var worldPosition))
+                return;
 
-            StartCooldown();
+            if (!_itemService.TrySpawnPlacementGhost(_itemSettings.TypeId, worldPosition, OnPlacementCompleted))
+                return;
+
+            _isPlacementPending = true;
+            _button.interactable = false;
+        }
+
+        private void OnPlacementCompleted(bool accepted)
+        {
+            _isPlacementPending = false;
+
+            if (accepted)
+            {
+                StartCooldown();
+                return;
+            }
+
+            if (!_isOnCooldown)
+                _button.interactable = true;
+        }
+
+        private static bool TryGetWorldPosition(Vector2 screenPosition, out Vector3 worldPosition)
+        {
+            var camera = Camera.main;
+            if (camera == null)
+            {
+                worldPosition = default;
+                return false;
+            }
+
+            worldPosition = camera.ScreenToWorldPoint(screenPosition);
+            worldPosition.z = 0f;
+            return true;
         }
 
         private void Update()
@@ -66,10 +99,13 @@ namespace Gameplay.UI.SpawnButtons
         private void StartCooldown()
         {
             var cooldown = _itemSettings.SpawnCooldown;
-            _button.interactable = false;
             if (cooldown <= 0f)
+            {
+                _button.interactable = true;
                 return;
+            }
 
+            _button.interactable = false;
             _isOnCooldown = true;
             _cooldownTimer = 0f;
             _cooldownFill.fillAmount = 1f;

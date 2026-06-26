@@ -11,6 +11,8 @@ namespace Gameplay._root.SO
     [CreateAssetMenu(fileName = "Gameplay Settings", menuName = "Game/Settings/Gameplay Settings")]
     public class GameplaySettings : ScriptableObject
     {
+        [field: SerializeField, Min(0f)] public float VictoryDelay { get; private set; }
+
         [field: SerializeField] public AllEnemySettings AllEnemiesSettings  { get; private set; }
         [field: SerializeField] public AllItemSettings AllItemsSettings { get; private set; }
         [field: SerializeField] public AllLevelSettings AllLevelSettings  { get; private set; }

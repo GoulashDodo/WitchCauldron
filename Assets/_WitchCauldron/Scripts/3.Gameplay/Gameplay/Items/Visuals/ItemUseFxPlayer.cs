@@ -36,11 +36,24 @@ namespace Gameplay.Items.Visuals
             renderer.flipX = sourceRenderer.flipX;
             renderer.flipY = sourceRenderer.flipY;
 
+            var velocity = visuals.FallbackImpactParticleVelocity;
+            velocity.y = Mathf.Max(3.5f, velocity.y);
+            velocity += new Vector2(
+                Random.Range(-visuals.FallbackImpactParticleRandomVelocity.x, visuals.FallbackImpactParticleRandomVelocity.x),
+                Random.Range(0f, visuals.FallbackImpactParticleRandomVelocity.y));
+
+            var angularSpeed = visuals.FallbackImpactParticleAngularSpeed;
+            if (velocity.x < 0f)
+                angularSpeed *= -1f;
+
             var controller = particle.AddComponent<FallingItemParticle>();
             controller.Initialize(
-                visuals.FallbackImpactParticleVelocity,
-                visuals.FallbackImpactParticleAngularSpeed,
-                visuals.FallbackImpactParticleLifetime);
+                velocity,
+                angularSpeed,
+                visuals.FallbackImpactParticleLifetime,
+                visuals.FallbackImpactParticleGravity,
+                visuals.FallbackImpactParticleBounceCount,
+                visuals.FallbackImpactParticleBounceDamping);
         }
     }
 }

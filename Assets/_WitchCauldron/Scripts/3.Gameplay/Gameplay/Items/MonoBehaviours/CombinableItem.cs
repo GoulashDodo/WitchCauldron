@@ -31,7 +31,7 @@ namespace Gameplay.Items.MonoBehaviours
 
         private void Update()
         {
-            if (!IsDragging)
+            if (!IsDragging || !IsInCombineZone())
             {
                 SetCurrentCombineTarget(null, false);
                 return;
@@ -46,7 +46,9 @@ namespace Gameplay.Items.MonoBehaviours
         
         protected override void OnDrop()
         {
-            var best = FindBestOverlappedCombinableItem(out var count);
+            var isInCombineZone = IsInCombineZone();
+            var count = 0;
+            var best = isInCombineZone ? FindBestOverlappedCombinableItem(out count) : null;
 
             if (best != null)
             { 
@@ -63,41 +65,13 @@ namespace Gameplay.Items.MonoBehaviours
             
         }
 
-        private CombinableItem FindBestOverlappedCombinableItem(out int count)
+        protected bool IsInCombineZone()
         {
-            var contactFilter = new ContactFilter2D
-            {
-                useLayerMask = true,
-                layerMask = LayerMask.GetMask(Layers.Item),
-                useTriggers = true
-            };
-
-            count = Collider.Overlap(contactFilter, OverlapBuffer);
-
-            CombinableItem best = null;
-            float bestSqr = float.MaxValue;
-
-            for (int i = 0; i < count; i++)
-            {
-                var c = OverlapBuffer[i];
-                if (c == null) continue;
-
-                if (c.transform == Transform) continue;
-
-                if (!c.TryGetComponent(out CombinableItem other)) continue;
-
-                Vector2 closest = c.ClosestPoint(Transform.position);
-                float sqr = ((Vector2)Transform.position - closest).sqrMagnitude;
-
-                if (sqr < bestSqr)
-                {
-                    bestSqr = sqr;
-                    best = other;
-                }
-            }
-
-            return best;
+            return ItemPlacementQuery.IsInCombineZone(Collider, Transform, OverlapBuffer);
         }
+
+        private CombinableItem FindBestOverlappedCombinableItem(out int count)
+            => ItemPlacementQuery.FindBestOverlappedCombinableItem(Collider, Transform, OverlapBuffer, out count);
 
         private void SetCurrentCombineTarget(CombinableItem target, bool canCombine)
         {

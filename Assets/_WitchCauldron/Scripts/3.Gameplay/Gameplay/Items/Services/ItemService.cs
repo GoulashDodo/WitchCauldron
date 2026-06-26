@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Input.Clickable;
 using Gameplay._root.SO;
@@ -56,13 +57,18 @@ namespace Gameplay.Items.Services
             var itemSettings = _allItemSettings[itemTypeId];
             
             var itemPf = itemSettings.ItemPf;
-            var item = Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
+            var item = UnityEngine.Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
             
             item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition);
             InitializeUsePreviewFx(item);
 
             if (startDragging)
+            {
                 item.StartDragging();
+
+                if (item is ILeftButtonReleasable releasable)
+                    _mouseClickHandler.CaptureRelease(releasable);
+            }
             
             return item;
         }  
@@ -86,6 +92,44 @@ namespace Gameplay.Items.Services
             }
 
             item = SpawnDraggableItem(itemTypeId, initialPosition, startDragging);
+            return true;
+        }
+
+        public bool TrySpawnPlacementGhost(string itemTypeId, Vector3 initialPosition, Action<bool> completed)
+        {
+            if (string.IsNullOrWhiteSpace(itemTypeId) || !_allItemSettings.TryGetValue(itemTypeId, out var itemSettings))
+            {
+                Debug.LogWarning($"[Item service]: Item settings with type id '{itemTypeId}' were not found.");
+                return false;
+            }
+
+            var sourceRenderer = itemSettings.ItemPf != null
+                ? itemSettings.ItemPf.GetComponentInChildren<SpriteRenderer>()
+                : null;
+
+            if (sourceRenderer == null || sourceRenderer.sprite == null)
+                return false;
+
+            var ghostObject = new GameObject($"{itemSettings.TypeId}_PlacementGhost");
+            ghostObject.transform.position = initialPosition;
+            ghostObject.transform.localScale = sourceRenderer.transform.lossyScale;
+
+            var renderer = ghostObject.AddComponent<SpriteRenderer>();
+            renderer.sprite = sourceRenderer.sprite;
+            renderer.color = new Color(sourceRenderer.color.r, sourceRenderer.color.g, sourceRenderer.color.b, 0.55f);
+            renderer.sortingLayerID = sourceRenderer.sortingLayerID;
+            renderer.sortingOrder = Mathf.Max(sourceRenderer.sortingOrder, 1000);
+            renderer.flipX = sourceRenderer.flipX;
+            renderer.flipY = sourceRenderer.flipY;
+
+            var collider = ghostObject.AddComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+            collider.size = sourceRenderer.sprite.bounds.size;
+
+            var ghost = ghostObject.AddComponent<ItemSpawnGhost>();
+            ghost.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, _previewProcessor, completed);
+            _mouseClickHandler.CaptureRelease(ghost);
+
             return true;
         }
         
@@ -115,7 +159,7 @@ namespace Gameplay.Items.Services
                 
                 if (_combineSuccessParticlePf != null)
                 {
-                    Object.Instantiate(_combineSuccessParticlePf, midPoint, Quaternion.identity);
+                    UnityEngine.Object.Instantiate(_combineSuccessParticlePf, midPoint, Quaternion.identity);
                 }
 
                 var resultItem = SpawnDraggableItem(result.TypeId, midPoint);
@@ -143,20 +187,33 @@ namespace Gameplay.Items.Services
             return _combinationService.TryCombine(selfSettings, otherSettings) != null;
         }
 
-        public void UseItem(UsableItem usableItem, Vector2 position)
+        public bool TryUseItem(UsableItem usableItem, Vector2 position)
         {
+            if (usableItem == null)
+                return false;
+
             var itemWorldScale = usableItem.transform.lossyScale;
-            DespawnDraggableItem(usableItem);
-            
             var itemSettings = _allItemSettings[usableItem.TypeId];
+            if (itemSettings.OnUseCommands == null || itemSettings.OnUseCommands.Length == 0)
+                return false;
+
             Debug.Log($"[Item service]: Using {usableItem.TypeId}");
 
             var context = new UseCommandContext(itemSettings, _fxPlayer, itemWorldScale);
+            var used = false;
 
             foreach (var commandParameters in itemSettings.OnUseCommands)
             {
-                _useCommandProcessor.Process(commandParameters, position, context);
+                used |= _useCommandProcessor.Process(commandParameters, position, context);
             }
+
+            if (!used)
+            {
+                _fxPlayer.PlayImpactFx(position, itemSettings, itemWorldScale);
+            }
+
+            DespawnDraggableItem(usableItem);
+            return true;
         }
         
         public ItemSettings GetItemSettings(string itemTypeId)
@@ -173,6 +230,9 @@ namespace Gameplay.Items.Services
                 previewFx = usableItem.gameObject.AddComponent<UsableItemPreviewFx>();
 
             previewFx.Initialize(_previewProcessor);
+
+            if (!usableItem.TryGetComponent<UsableItemMissFx>(out _))
+                usableItem.gameObject.AddComponent<UsableItemMissFx>();
         }
 
     }

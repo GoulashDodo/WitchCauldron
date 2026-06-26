@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ac89ef1a795b649ab585c7746b1863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.Core.FriendlyAttackableEntity
-  _maxHealth: 100
+  _maxHealth: 44
 --- !u!114 &2001433319074814759
 MonoBehaviour:
   m_ObjectHideFlags: 0
