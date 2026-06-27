@@ -10,6 +10,7 @@ namespace Gameplay._root
         private readonly RunState _runState;
         private readonly SceneLoader _sceneLoader;
         private readonly LevelSettings _levelSettings;
+        private bool _levelCompleted;
 
         public GameplayRunFlowController(RunState runState, SceneLoader sceneLoader, LevelSettings levelSettings)
         {
@@ -30,6 +31,13 @@ namespace Gameplay._root
 
         private void CompleteLevelAndLoadScene(string sceneName)
         {
+            if (_levelCompleted)
+                return;
+
+            _levelCompleted = true;
+            
+            _runState.Progress.MarkLevelCompleted(_runState.CurrentLevelIndex);
+            _runState.Wallet.Add(_levelSettings.CompletionMoneyReward);
             _runState.ApplyUnlockRewards(_levelSettings.CompletionRewards);
             _runState.TrySetNextLevel();
             _sceneLoader.LoadScene(sceneName);

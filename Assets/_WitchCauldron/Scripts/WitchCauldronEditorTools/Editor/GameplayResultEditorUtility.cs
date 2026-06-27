@@ -1,4 +1,5 @@
 using Gameplay.Level;
+using Core.Run;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,8 @@ namespace WitchCauldronEditorTools.Editor
     {
         private const string InstantWinMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Win _F9";
         private const string InstantLoseMenuPath = "Tools/Witch Cauldron/Gameplay/Instant Lose _F8";
+        private const string AddMoneyMenuPath = "Tools/Witch Cauldron/Run/Add 9999 Money";
+        private const int MoneyAmount = 9999;
 
         [MenuItem(InstantWinMenuPath, priority = 100)]
         private static void InstantWin()
@@ -32,6 +35,31 @@ namespace WitchCauldronEditorTools.Editor
         private static bool CanInstantLose()
         {
             return CanExecute();
+        }
+
+        [MenuItem(AddMoneyMenuPath, priority = 200)]
+        private static void AddMoney()
+        {
+            if (!EditorApplication.isPlaying)
+            {
+                Debug.LogWarning("Cannot add money: enter Play Mode first.");
+                return;
+            }
+
+            if (!TryGetRunState(out var runState))
+            {
+                Debug.LogWarning("Cannot add money: run state was not found.");
+                return;
+            }
+
+            runState.Wallet.Add(MoneyAmount);
+            Debug.Log($"Added {MoneyAmount} money. Current balance: {runState.Wallet.Balance}.");
+        }
+
+        [MenuItem(AddMoneyMenuPath, true)]
+        private static bool CanAddMoney()
+        {
+            return EditorApplication.isPlaying && TryGetRunState(out _);
         }
 
         private static bool CanExecute()
@@ -75,6 +103,37 @@ namespace WitchCauldronEditorTools.Editor
 
             game = null;
             return false;
+        }
+
+        private static bool TryGetRunState(out RunState runState)
+        {
+            if (ProjectContext.HasInstance && TryResolve(ProjectContext.Instance, out runState))
+                return true;
+
+            foreach (var sceneContext in Resources.FindObjectsOfTypeAll<SceneContext>())
+            {
+                if (TryResolve(sceneContext, out runState))
+                    return true;
+            }
+
+            runState = null;
+            return false;
+        }
+
+        private static bool TryResolve<T>(Context context, out T resolved)
+            where T : class
+        {
+            if (context == null ||
+                context.Container == null ||
+                EditorUtility.IsPersistent(context) ||
+                !context.gameObject.scene.isLoaded)
+            {
+                resolved = null;
+                return false;
+            }
+
+            resolved = context.Container.TryResolve<T>();
+            return resolved != null;
         }
     }
 }

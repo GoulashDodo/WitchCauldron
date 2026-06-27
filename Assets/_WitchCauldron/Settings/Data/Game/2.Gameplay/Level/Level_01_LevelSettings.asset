@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326f3dac98e84494956859d8b19a60a0, type: 3}
   m_Name: Level_01_LevelSettings
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
-  <LevelId>k__BackingField: level_01
+  <LevelId>k__BackingField: Level_01
   <LevelName>k__BackingField: Tutorial
   <BaseHealth>k__BackingField: 30
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: 3563d8e46ccd5134fa4f46039d2a5fb7, type: 2}
+  <CompletionMoneyReward>k__BackingField: 10
   <CompletionRewards>k__BackingField:
   - <Type>k__BackingField: 0
     <UnlockId>k__BackingField: Item_Goo

@@ -22,6 +22,8 @@ namespace Gameplay.Level.SO
         [field:SerializeField] public WaveSettings WaveSettings { get; private set; } 
 
         [field: Space(10)]
+        [field: SerializeField] public int CompletionMoneyReward { get; private set; } = 10;
+        
         [field: SerializeField] public UnlockReward[] CompletionRewards { get; private set; }
         
    

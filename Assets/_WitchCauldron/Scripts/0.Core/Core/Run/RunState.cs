@@ -33,10 +33,17 @@ namespace Core.Run
 
         private readonly UnlockedSelectableItems _unlockedSelectableItems;
         private readonly UnlockedRecipes _unlockedRecipes;
+        private readonly Wallet _wallet;
+        private readonly PurchasedShopUpgrades _purchasedShopUpgrades;
+        private readonly BaseUpgradeState _baseUpgrades;
+        private readonly RunProgress _progress;
 
         public UnlockedSelectableItems UnlockedSelectableItems => _unlockedSelectableItems;
         public UnlockedRecipes UnlockedRecipes => _unlockedRecipes;
-        
+        public Wallet Wallet => _wallet;
+        public PurchasedShopUpgrades PurchasedShopUpgrades => _purchasedShopUpgrades;
+        public BaseUpgradeState BaseUpgrades => _baseUpgrades;
+        public RunProgress Progress => _progress;
         
         public RunState(GameSettings settings)
         {
@@ -46,6 +53,10 @@ namespace Core.Run
             var macroSettings = settings.HutSettings != null ? settings.HutSettings.MacroSettings : null;
             _unlockedSelectableItems = new UnlockedSelectableItems(macroSettings?.InitialSelectableItemsIds);
             _unlockedRecipes = new UnlockedRecipes(macroSettings?.InitialRecipeIds);
+            _wallet = new Wallet(macroSettings != null ? macroSettings.InitialMoney : 0);
+            _purchasedShopUpgrades = new PurchasedShopUpgrades();
+            _baseUpgrades = new BaseUpgradeState();
+            _progress = new RunProgress();
         }
 
         public void ApplyUnlockRewards(UnlockReward[] rewards)

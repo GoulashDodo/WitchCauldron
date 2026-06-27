@@ -14,7 +14,10 @@ namespace Gameplay.UI
         private readonly CompositeDisposable _disposables = new();
 
         [SerializeField] private GameObject _panel;
-    
+        [SerializeField] private Animator _animator;
+
+        private static readonly int LosePanelAppearStateHash = Animator.StringToHash("Anim_LosePanelAppear");
+
         
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _exitButton;
@@ -48,12 +51,25 @@ namespace Gameplay.UI
             RequestPause();
 
             _panel.SetActive(true);
+            PlayAppearAnimation();
         }
 
         private void HidePanel()
         {
             _panel.SetActive(false);
             ReleasePause();
+        }
+
+        private void PlayAppearAnimation()
+        {
+            if (_animator == null)
+                _animator = GetComponent<Animator>();
+
+            if (_animator == null)
+                return;
+
+            _animator.Play(LosePanelAppearStateHash, 0, 0f);
+            _animator.Update(0f);
         }
 
         private void SubscribeToButtons()

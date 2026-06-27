@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: HutSettings
   m_EditorClassIdentifier: Assembly-CSharp::Hut.SO.HutSettings
   <MacroSettings>k__BackingField: {fileID: 11400000, guid: ad94ba089001fef4993e578bc9dbbab4, type: 2}
+  <ShopUpgrades>k__BackingField: {fileID: 11400000, guid: c417335bcc9c43b6ba835db467177781, type: 2}

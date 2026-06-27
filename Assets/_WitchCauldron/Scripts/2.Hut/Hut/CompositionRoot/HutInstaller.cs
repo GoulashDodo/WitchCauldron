@@ -1,4 +1,5 @@
 using Hut.SelectedItems;
+using Hut.Shop;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace Hut.CompositionRoot
         {
             Container.Bind<SelectedItemsRuntime>().AsSingle().NonLazy();
             Container.Bind<SelectedFamiliarRuntime>().AsSingle().NonLazy();
+            Container.Bind<ShopService>().AsSingle().NonLazy();
         }
     }
 }

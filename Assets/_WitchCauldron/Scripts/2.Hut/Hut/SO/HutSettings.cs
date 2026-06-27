@@ -1,3 +1,4 @@
+using Hut.Shop.SO;
 using UnityEngine;
 
 namespace Hut.SO
@@ -6,5 +7,6 @@ namespace Hut.SO
     public class HutSettings : ScriptableObject
     {
         [field: SerializeField] public GameMacroSettings MacroSettings { get; private set; }
+        [field: SerializeField] public AllShopUpgrades ShopUpgrades { get; private set; }
     }
 }
