@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6589278446743610409, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
+  m_Sprite: {fileID: -8576123297257446984, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 4128799391024465509}
   - component: {fileID: 929682272644745665}
   m_Layer: 6
-  m_Name: Item_Mushroom
+  m_Name: Item_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

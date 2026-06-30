@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3df5567aca4943689385f5c8b3def39b, type: 3}
-  m_Name: Effect_
+  m_Name: Effect_Fire
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.Effects.Damage.DamageEffectData
-  <EffectName>k__BackingField: Poisoned
+  <EffectName>k__BackingField: Burning
   <Duration>k__BackingField: 4
   <IsPermanent>k__BackingField: 0
-  <EffectIcon>k__BackingField: {fileID: 1983648830452213227, guid: 634a93b04784d2b418c74c39365ba44f, type: 3}
+  <EffectIcon>k__BackingField: {fileID: -8576123297257446984, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
   <Damage>k__BackingField: 2
-  <DamageType>k__BackingField: 2
+  <DamageType>k__BackingField: 1
   <Periodicity>k__BackingField: 1

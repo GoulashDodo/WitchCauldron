@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdc3e758e21d4379a8cb7c7ca368c11b, type: 3}
-  m_Name: "\u0421md_MushroomPoison"
+  m_Name: Cmd_Fire
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.Usable.Commands.Effect.EffectCommandParameters
   <EffectToApply>k__BackingField: {fileID: 11400000, guid: 36656943e4c77804a84b07a15737371d, type: 2}
   <Radius>k__BackingField: 0.7
