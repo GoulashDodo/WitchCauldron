@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.SO.ItemSettings
   <TypeId>k__BackingField: Item_Egg
   <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 96c2dddcf6acb9842bbb4e70afd32caa, type: 3}
-  <TitleLid>k__BackingField: Egg!
+  <TitleLid>k__BackingField: Egg
+  <DescriptionLid>k__BackingField: Egg. Spawns a tough defender
+  <Price>k__BackingField: 0
+  <Tier>k__BackingField: 1
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: bc04e92b630037a42a3ed3ca5b676224, type: 2}
   <UseVisuals>k__BackingField:
@@ -22,6 +25,10 @@ MonoBehaviour:
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
     <FallbackImpactParticleLifetime>k__BackingField: 1.1
     <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}
+    <FallbackImpactParticleRandomVelocity>k__BackingField: {x: 2.2, y: 1.2}
+    <FallbackImpactParticleGravity>k__BackingField: 16
+    <FallbackImpactParticleBounceCount>k__BackingField: 2
+    <FallbackImpactParticleBounceDamping>k__BackingField: 0.48
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}

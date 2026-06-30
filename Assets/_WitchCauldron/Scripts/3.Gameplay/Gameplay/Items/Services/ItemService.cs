@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.Input.Clickable;
+using Core.Run;
 using Gameplay._root.SO;
 using Gameplay.Items.Combination.Service;
 using Gameplay.Items.MonoBehaviours;
@@ -23,6 +24,7 @@ namespace Gameplay.Items.Services
         
         private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
+        private readonly RunState _runState;
         
         private readonly Dictionary<string, ItemSettings> _allItemSettings = new();
         private readonly GameObject _combineSuccessParticlePf;
@@ -30,11 +32,13 @@ namespace Gameplay.Items.Services
         public ItemService(MouseClickHandler mouseClickHandler, 
             CombinationService combinationService, 
             GameplaySettings gameplaySettings, 
+            RunState runState,
             IUseCommandProcessor useCommandProcessor,
             IUseCommandPreviewProcessor previewProcessor)
         {
             _mouseClickHandler = mouseClickHandler;
             _combinationService = combinationService;
+            _runState = runState;
             _useCommandProcessor = useCommandProcessor;
             _previewProcessor = previewProcessor;
 
@@ -55,6 +59,7 @@ namespace Gameplay.Items.Services
         {
             
             var itemSettings = _allItemSettings[itemTypeId];
+            _runState.DiscoveredItems.DiscoverItem(itemTypeId);
             
             var itemPf = itemSettings.ItemPf;
             var item = UnityEngine.Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            

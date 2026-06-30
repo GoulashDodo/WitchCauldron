@@ -13,12 +13,6 @@ namespace Gameplay.Level.SO
         [field: SerializeField] public string LevelName { get; private set; }
         
         
-        [field:SerializeField] public float BaseHealth { get; private set; }
-        
-        
-        
-        
-        
         [field:SerializeField] public WaveSettings WaveSettings { get; private set; } 
 
         [field: Space(10)]

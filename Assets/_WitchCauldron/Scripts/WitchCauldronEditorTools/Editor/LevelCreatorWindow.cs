@@ -12,7 +12,6 @@ namespace WitchCauldronEditorTools.Editor
         private const string DefaultWaveFolder = "Assets/_WitchCauldron/Settings/Data/Game/Gameplay/Wave";
 
         [SerializeField] private string _levelId = "level_01";
-        [SerializeField] private float _baseHealth = 100f;
         [SerializeField] private float _waveStartDelay = 2f;
         [SerializeField] private float _waveStartTime;
         [SerializeField] private float _spawnInterval = 1f;
@@ -46,8 +45,6 @@ namespace WitchCauldronEditorTools.Editor
         {
             EditorGUILayout.LabelField("Level", EditorStyles.boldLabel);
             _levelId = EditorGUILayout.TextField("Level Id", _levelId);
-            _baseHealth = EditorGUILayout.FloatField("Base Health", _baseHealth);
-
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Wave", EditorStyles.boldLabel);
             _waveStartDelay = EditorGUILayout.FloatField("Start Delay", _waveStartDelay);
@@ -98,7 +95,6 @@ namespace WitchCauldronEditorTools.Editor
         {
             return !string.IsNullOrWhiteSpace(_levelId) &&
                    !string.IsNullOrWhiteSpace(_enemyTypeId) &&
-                   _baseHealth > 0f &&
                    _spawnInterval > 0f &&
                    (_spawnMode != WaveSpawnMode.ManualCount || _enemyCount > 0) &&
                    (_spawnMode != WaveSpawnMode.PointBudget || _pointBudget > 0) &&
@@ -174,7 +170,6 @@ namespace WitchCauldronEditorTools.Editor
 
             var serialized = new SerializedObject(levelSettings);
             serialized.FindProperty("<LevelId>k__BackingField").stringValue = _levelId.Trim();
-            serialized.FindProperty("<BaseHealth>k__BackingField").floatValue = Mathf.Max(1f, _baseHealth);
             serialized.FindProperty("<WaveSettings>k__BackingField").objectReferenceValue = waveSettings;
             serialized.ApplyModifiedPropertiesWithoutUndo();
 

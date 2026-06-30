@@ -84,12 +84,16 @@ namespace Hut.Shop
             {
                 case ShopUpgradeEffectType.UnlockSelectableItem:
                     _runState.UnlockedSelectableItems.UnlockNewItem(effect.TargetId);
+                    _runState.DiscoveredItems.DiscoverItem(effect.TargetId);
                     break;
                 case ShopUpgradeEffectType.UnlockRecipe:
                     _runState.UnlockedRecipes.UnlockCombination(effect.TargetId);
                     break;
                 case ShopUpgradeEffectType.IncreaseBaseMaxHealth:
-                    _runState.BaseUpgrades.AddMaxHealth(effect.Amount);
+                    _runState.BaseHealth.AddMaxHealth(effect.Amount);
+                    break;
+                case ShopUpgradeEffectType.IncreaseSelectedItemsCapacity:
+                    _runState.SelectedItemsCapacity.AddCapacity(effect.Amount);
                     break;
             }
         }

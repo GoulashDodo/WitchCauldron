@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2474920a752b40ecb93009bd5d4e62bd, type: 3}
-  m_Name: Item_BigEgg
+  m_Name: Item_Mushroom
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.SO.ItemSettings
-  <TypeId>k__BackingField: Item_BigEgg
-  <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 20f38ef99070e7649bd1840096d14fe2, type: 3}
-  <TitleLid>k__BackingField: Big Egg
+  <TypeId>k__BackingField: Item_Mushroom
+  <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: 2f0cb09cf23a4f24cb65b54c490e27e2, type: 3}
+  <TitleLid>k__BackingField: Mushroom
+  <DescriptionLid>k__BackingField: Yuck. Deals poison damage over time.
+  <Price>k__BackingField: 0
+  <Tier>k__BackingField: 1
   <OnUseCommands>k__BackingField:
-  - {fileID: 11400000, guid: f11ba4032f45f9540bb05fb6f621160f, type: 2}
+  - {fileID: 11400000, guid: e68ed042d4fa8ca47abdcd35d57036e0, type: 2}
   <UseVisuals>k__BackingField:
     <ImpactParticlePrefab>k__BackingField: {fileID: 0}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
@@ -30,4 +33,4 @@ MonoBehaviour:
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}
   <SpawnCooldown>k__BackingField: 5
-  <Icon>k__BackingField: {fileID: -763438560, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
+  <Icon>k__BackingField: {fileID: -7387130223961111088, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

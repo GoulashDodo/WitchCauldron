@@ -46,7 +46,7 @@ namespace Gameplay._root.Installers
             BindEntryParameters();
             BindLevelData();
             
-            Container.Bind<IBaseHealthProvider>().To<LevelSettingsBaseHealthProvider>().AsSingle();
+            Container.Bind<IBaseHealthProvider>().To<RunStateBaseHealthProvider>().AsSingle();
             
             BindServices();
             

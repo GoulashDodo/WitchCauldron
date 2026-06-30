@@ -33,16 +33,22 @@ namespace Core.Run
 
         private readonly UnlockedSelectableItems _unlockedSelectableItems;
         private readonly UnlockedRecipes _unlockedRecipes;
+        private readonly DiscoveredItems _discoveredItems;
+        private readonly AlmanacViewedItems _almanacViewedItems;
         private readonly Wallet _wallet;
         private readonly PurchasedShopUpgrades _purchasedShopUpgrades;
-        private readonly BaseUpgradeState _baseUpgrades;
+        private readonly BaseHealthRuntime _baseHealth;
+        private readonly SelectedItemsCapacityRuntime _selectedItemsCapacity;
         private readonly RunProgress _progress;
 
         public UnlockedSelectableItems UnlockedSelectableItems => _unlockedSelectableItems;
         public UnlockedRecipes UnlockedRecipes => _unlockedRecipes;
+        public DiscoveredItems DiscoveredItems => _discoveredItems;
+        public AlmanacViewedItems AlmanacViewedItems => _almanacViewedItems;
         public Wallet Wallet => _wallet;
         public PurchasedShopUpgrades PurchasedShopUpgrades => _purchasedShopUpgrades;
-        public BaseUpgradeState BaseUpgrades => _baseUpgrades;
+        public BaseHealthRuntime BaseHealth => _baseHealth;
+        public SelectedItemsCapacityRuntime SelectedItemsCapacity => _selectedItemsCapacity;
         public RunProgress Progress => _progress;
         
         public RunState(GameSettings settings)
@@ -53,9 +59,16 @@ namespace Core.Run
             var macroSettings = settings.HutSettings != null ? settings.HutSettings.MacroSettings : null;
             _unlockedSelectableItems = new UnlockedSelectableItems(macroSettings?.InitialSelectableItemsIds);
             _unlockedRecipes = new UnlockedRecipes(macroSettings?.InitialRecipeIds);
+            _discoveredItems = new DiscoveredItems(macroSettings?.InitialDiscoveredItemIds);
+            _almanacViewedItems = new AlmanacViewedItems();
+            
+            foreach (var itemId in _unlockedSelectableItems.UnlockedItems)
+                _discoveredItems.DiscoverItem(itemId);
+
             _wallet = new Wallet(macroSettings != null ? macroSettings.InitialMoney : 0);
             _purchasedShopUpgrades = new PurchasedShopUpgrades();
-            _baseUpgrades = new BaseUpgradeState();
+            _baseHealth = new BaseHealthRuntime(macroSettings != null ? macroSettings.InitialBaseHealth : 1f);
+            _selectedItemsCapacity = new SelectedItemsCapacityRuntime();
             _progress = new RunProgress();
         }
 
@@ -74,6 +87,7 @@ namespace Core.Run
             {
                 case UnlockRewardType.SelectableItem:
                     _unlockedSelectableItems.UnlockNewItem(reward.UnlockId);
+                    _discoveredItems.DiscoverItem(reward.UnlockId);
                     break;
                 case UnlockRewardType.Recipe:
                     _unlockedRecipes.UnlockCombination(reward.UnlockId);

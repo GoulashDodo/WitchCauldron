@@ -15,6 +15,10 @@ MonoBehaviour:
   <TypeId>k__BackingField: Item_Goo
   <ItemPf>k__BackingField: {fileID: 414867050383060528, guid: 4b3c53433a32e454c9c837b0324e1b92, type: 3}
   <TitleLid>k__BackingField: Goo
+  <DescriptionLid>k__BackingField: Slows down enemies. Might jump between enemies,
+    if they are close enouh
+  <Price>k__BackingField: 0
+  <Tier>k__BackingField: 1
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 09cac7e1291a4a6a8cf9196773fe9e56, type: 2}
   <UseVisuals>k__BackingField:

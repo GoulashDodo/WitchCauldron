@@ -7,8 +7,9 @@ using Gameplay.Battle.Base.Interfaces;
 using Gameplay.Battle.Waves.Service;
 using Gameplay.Level;
 using Gameplay.Level.SO;
-using Gameplay.UI.Recipes;
+using Hut.UI.UIAlmanac;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Gameplay.UI
@@ -21,11 +22,18 @@ namespace Gameplay.UI
         [SerializeField] private UIProgressBar _uiProgressBar;
         [SerializeField] private UIWaveAlert _uiWaveAlert;
 
-        [SerializeField] private UIReceiptParent _uiReceiptPrent;
         
         
         [SerializeField] private UILose _uiLose;
         [SerializeField] private UIWin _uiWin;
+        [SerializeField] private UIAlmanacRoot _almanacRoot;
+        [SerializeField] private Button _showAlmanacButton;
+
+        private void OnDestroy()
+        {
+            if (_showAlmanacButton != null && _almanacRoot != null)
+                _showAlmanacButton.onClick.RemoveListener(_almanacRoot.Show);
+        }
     
         
         [Inject]
@@ -56,12 +64,17 @@ namespace Gameplay.UI
             _uiBaseHealth.Initialize(baseHealthProvider);
             _uiProgressBar.Initialize(waveService);
 
-            _uiReceiptPrent.Initialize(runState);
             
             _uiWaveAlert.Initialize(waveService);
             
             _uiLose.Initialize(game, sceneLoader, pauseService);
             _uiWin.Initialize(game, runFlowController, pauseService, levelSettings, gameplaySettings);
+
+            if (_almanacRoot != null)
+                _almanacRoot.Initialize(gameplaySettings, runState);
+
+            if (_showAlmanacButton != null && _almanacRoot != null)
+                _showAlmanacButton.onClick.AddListener(_almanacRoot.Show);
             
         }
         

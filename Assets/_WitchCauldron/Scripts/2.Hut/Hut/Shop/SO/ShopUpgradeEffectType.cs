@@ -4,6 +4,7 @@ namespace Hut.Shop.SO
     {
         UnlockSelectableItem = 0,
         UnlockRecipe = 1,
-        IncreaseBaseMaxHealth = 2
+        IncreaseBaseMaxHealth = 2,
+        IncreaseSelectedItemsCapacity = 3
     }
 }

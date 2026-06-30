@@ -25,6 +25,10 @@ MonoBehaviour:
     _itemA: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
     _itemB: {fileID: 11400000, guid: 6421e641e2cdf954eb94eb9a017be506, type: 2}
     _result: {fileID: 11400000, guid: ae6bb992e3a68534098c9a0fc169c240, type: 2}
+  - _recipeId: Combination_Boulder
+    _itemA: {fileID: 11400000, guid: 9aea7fe048a245c4ba3a4fe5331456a6, type: 2}
+    _itemB: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+    _result: {fileID: 11400000, guid: 9c6bf5494b0f4624788f54ac198c4d35, type: 2}
   - _recipeId: Combination_GooPebble
     _itemA: {fileID: 11400000, guid: 9eddd15c581aabd439b73e6a6831925f, type: 2}
     _itemB: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
@@ -33,7 +37,3 @@ MonoBehaviour:
     _itemA: {fileID: 11400000, guid: 9eddd15c581aabd439b73e6a6831925f, type: 2}
     _itemB: {fileID: 11400000, guid: 6421e641e2cdf954eb94eb9a017be506, type: 2}
     _result: {fileID: 11400000, guid: afc929e479672784c8030bbd77409dee, type: 2}
-  - _recipeId: Combination_Boulder
-    _itemA: {fileID: 11400000, guid: 9aea7fe048a245c4ba3a4fe5331456a6, type: 2}
-    _itemB: {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
-    _result: {fileID: 11400000, guid: 9c6bf5494b0f4624788f54ac198c4d35, type: 2}

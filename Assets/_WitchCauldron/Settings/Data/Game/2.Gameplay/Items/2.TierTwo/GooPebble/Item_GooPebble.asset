@@ -15,6 +15,9 @@ MonoBehaviour:
   <TypeId>k__BackingField: Item_GooPebble
   <ItemPf>k__BackingField: {fileID: 929682272644745665, guid: b5ae933e6481aca44ba49461098f0252, type: 3}
   <TitleLid>k__BackingField: Goo Pebble
+  <DescriptionLid>k__BackingField: Damages, slows, and bounces. What's else you need?
+  <Price>k__BackingField: 0
+  <Tier>k__BackingField: 2
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 9246e950e44d4454297b391366f60261, type: 2}
   <UseVisuals>k__BackingField:

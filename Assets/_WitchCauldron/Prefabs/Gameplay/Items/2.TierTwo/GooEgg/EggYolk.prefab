@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2063138111
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4016478160230727852, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
@@ -215,4 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd46a37aef9f4a069ee97505e39d35cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.BattleEntities.Friendly.LifetimeController
-  _lifetime: 10
+  _lifetime: 25
+  _blinkDuration: 0.6
+  _blinkInterval: 0.1

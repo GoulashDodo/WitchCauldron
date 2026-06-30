@@ -13,6 +13,9 @@ namespace Gameplay.Items.SO
         
         [field: Space(10)]
         [field: SerializeField] public string TitleLid { get; private set; }
+        [field: SerializeField] public string DescriptionLid { get; private set; }
+        [field: SerializeField, Min(0)] public int Price { get; private set; }
+        [field: SerializeField, Min(1)] public int Tier { get; private set; } = 1;
 
         [field: Space(10)][Header("On Item use")]
         [field: SerializeField] public UseCommandParameters[] OnUseCommands { get; private set; }

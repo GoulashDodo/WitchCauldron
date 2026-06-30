@@ -15,6 +15,9 @@ MonoBehaviour:
   <TypeId>k__BackingField: Item_Boulder
   <ItemPf>k__BackingField: {fileID: 8232789034652950297, guid: d932f8df1c1085f409d408091a63148e, type: 3}
   <TitleLid>k__BackingField: Boulder!
+  <DescriptionLid>k__BackingField: 
+  <Price>k__BackingField: 0
+  <Tier>k__BackingField: 3
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: 26fa294b5347314448e9d05a453c65e2, type: 2}
   <UseVisuals>k__BackingField:

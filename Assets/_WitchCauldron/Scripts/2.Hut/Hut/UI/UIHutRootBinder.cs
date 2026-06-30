@@ -1,12 +1,15 @@
 using Core.Run;
 using Core.SceneManagement;
 using Core.UI;
+using Gameplay._root.SO;
 using Hut.SelectedItems;
 using Hut.SO;
 using Hut.Shop;
+using Hut.UI.UIAlmanac;
 using Hut.UI.UIShop;
 using Hut.UI.UISelectItems;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Hut.UI
@@ -20,6 +23,14 @@ namespace Hut.UI
         [SerializeField] private UIShowSelectItemsButton _showSelectItemsButton;
         [SerializeField] private UIWalletView _walletView;
         [SerializeField] private UIShopParent _shopParent;
+        [SerializeField] private UIAlmanacRoot _almanacRoot;
+        [SerializeField] private Button _showAlmanacButton;
+
+        private void OnDestroy()
+        {
+            if (_showAlmanacButton != null && _almanacRoot != null)
+                _showAlmanacButton.onClick.RemoveListener(_almanacRoot.Show);
+        }
         
         [Inject]
         public void Construct(
@@ -28,7 +39,8 @@ namespace Hut.UI
             SceneLoader sceneLoader,
             SelectedItemsRuntime selectedItemsRuntime,
             ShopService shopService,
-            HutSettings hutSettings)
+            HutSettings hutSettings,
+            GameplaySettings gameplaySettings)
         {
 
             view.AttachSceneUI(gameObject);
@@ -45,6 +57,12 @@ namespace Hut.UI
 
             if (_shopParent != null)
                 _shopParent.Initialize(hutSettings.ShopUpgrades, shopService, runState);
+
+            if (_almanacRoot != null)
+                _almanacRoot.Initialize(gameplaySettings, runState);
+
+            if (_showAlmanacButton != null && _almanacRoot != null)
+                _showAlmanacButton.onClick.AddListener(_almanacRoot.Show);
         }
         
     }

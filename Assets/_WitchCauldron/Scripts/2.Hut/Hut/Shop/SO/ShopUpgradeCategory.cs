@@ -4,6 +4,7 @@ namespace Hut.Shop.SO
     {
         SelectableItem = 0,
         Recipe = 1,
-        Base = 2
+        Base = 2,
+        SelectedItems = 3
     }
 }

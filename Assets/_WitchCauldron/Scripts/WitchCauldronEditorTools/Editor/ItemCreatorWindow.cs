@@ -15,6 +15,9 @@ namespace WitchCauldronEditorTools.Editor
 
         [SerializeField] private string _typeId = "Item_New";
         [SerializeField] private string _titleLid = "New Item";
+        [SerializeField] private string _descriptionLid = "";
+        [SerializeField] private int _price;
+        [SerializeField] private int _tier = 1;
         [SerializeField] private float _spawnCooldown = 5f;
         [SerializeField] private Sprite _icon;
 
@@ -52,6 +55,9 @@ namespace WitchCauldronEditorTools.Editor
             EditorGUILayout.LabelField("Identity", EditorStyles.boldLabel);
             _typeId = EditorGUILayout.TextField("Type Id", _typeId);
             _titleLid = EditorGUILayout.TextField("Title Lid", _titleLid);
+            _descriptionLid = EditorGUILayout.TextField("Description Lid", _descriptionLid);
+            _price = EditorGUILayout.IntField("Price", _price);
+            _tier = EditorGUILayout.IntField("Tier", _tier);
             _spawnCooldown = EditorGUILayout.FloatField("Spawn Cooldown", _spawnCooldown);
             _icon = (Sprite)EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false);
 
@@ -119,6 +125,8 @@ namespace WitchCauldronEditorTools.Editor
             return !string.IsNullOrWhiteSpace(_typeId) &&
                    (!_createPrefabFromTemplate || _templateItemPrefab != null) &&
                    (_createPrefabFromTemplate || _itemPrefab != null) &&
+                   _price >= 0 &&
+                   _tier >= 1 &&
                    _spawnCooldown >= 0f;
         }
 
@@ -187,6 +195,9 @@ namespace WitchCauldronEditorTools.Editor
             serialized.FindProperty("<TypeId>k__BackingField").stringValue = _typeId.Trim();
             serialized.FindProperty("<ItemPf>k__BackingField").objectReferenceValue = prefab;
             serialized.FindProperty("<TitleLid>k__BackingField").stringValue = string.IsNullOrWhiteSpace(_titleLid) ? _typeId.Trim() : _titleLid.Trim();
+            serialized.FindProperty("<DescriptionLid>k__BackingField").stringValue = _descriptionLid?.Trim() ?? string.Empty;
+            serialized.FindProperty("<Price>k__BackingField").intValue = Mathf.Max(0, _price);
+            serialized.FindProperty("<Tier>k__BackingField").intValue = Mathf.Max(1, _tier);
             serialized.FindProperty("<SpawnCooldown>k__BackingField").floatValue = Mathf.Max(0f, _spawnCooldown);
             serialized.FindProperty("<Icon>k__BackingField").objectReferenceValue = _icon;
 

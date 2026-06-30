@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3923e60af0cf486ebd16893bc29f7e99, type: 3}
-  m_Name: Cmd_BigEggSpawn
+  m_Name: Cmd_ChickenSpawn
   m_EditorClassIdentifier: Assembly-CSharp::Feature.Gameplay.Items.Usable.Commands.Spawn.SpawnCommandParameters
   <Prefab>k__BackingField: {fileID: 3233135279174922799, guid: 781140cbac9dfe344adec2f056f6afb6, type: 3}

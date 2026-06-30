@@ -528,6 +528,8 @@ MonoBehaviour:
   _showSelectItemsButton: {fileID: 5570381174743432887}
   _walletView: {fileID: 2899741082783727070}
   _shopParent: {fileID: 601206303270985334}
+  _almanacRoot: {fileID: 3976403457570153076}
+  _showAlmanacButton: {fileID: 4958567551895030541}
 --- !u!1 &1081836676528998564
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +543,7 @@ GameObject:
   - component: {fileID: 4681187294829413883}
   - component: {fileID: 4958567551895030541}
   m_Layer: 5
-  m_Name: UiShowRecepiesButton
+  m_Name: UIShowAlmanac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,7 +650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 570156823579496574}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1082,7 +1084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec216258fea4617874794ca5b3bb50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hut.UI.UIShop.UIShopParent
-  _allShopUpgrades: {fileID: 11400000, guid: c417335bcc9c43b6ba835db467177781, type: 2}
   _content: {fileID: 4428763523903480437}
   _itemPrefab: {fileID: 5258313938129778052, guid: cd4fc147a46919e4faa3be6f7e5d22d2, type: 3}
 --- !u!1 &2454236711350031127
@@ -1948,6 +1949,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8446727198223377449}
+  - {fileID: 2483652000689056603}
   - {fileID: 7232512397465432046}
   - {fileID: 2163971245989547875}
   m_Father: {fileID: 4891677059761060661}
@@ -3158,13 +3160,121 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8832c90ff7287f45b33bf77c8476d6b, type: 3}
---- !u!1 &570156823579496574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 494152564013423735, guid: b8832c90ff7287f45b33bf77c8476d6b, type: 3}
-  m_PrefabInstance: {fileID: 86148659064261641}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8446727198223377449 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8361709091900024864, guid: b8832c90ff7287f45b33bf77c8476d6b, type: 3}
   m_PrefabInstance: {fileID: 86148659064261641}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2967565470358258761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 802878109046770465}
+    m_Modifications:
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757260990257404741, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+      propertyPath: m_Name
+      value: UIAlmanac
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+--- !u!224 &2483652000689056603 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 817787368523771666, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+  m_PrefabInstance: {fileID: 2967565470358258761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3976403457570153076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2162269824409003581, guid: 76248c8442714624a9437a1be4d9f9f1, type: 3}
+  m_PrefabInstance: {fileID: 2967565470358258761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9036ccf5809c4e60b7f8043d05ca31b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hut.UI.UIAlmanac.UIAlmanacRoot

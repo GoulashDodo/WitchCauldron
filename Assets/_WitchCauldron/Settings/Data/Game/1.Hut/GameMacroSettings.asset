@@ -15,6 +15,7 @@ MonoBehaviour:
   <MinimumSelectedItemsCount>k__BackingField: 1
   <InitialSelectedItemsCount>k__BackingField: 4
   <InitialMoney>k__BackingField: 0
+  <InitialBaseHealth>k__BackingField: 10
   <InitialSelectableItemsIds>k__BackingField:
   - Item_MoonPebble
   - Item_Egg
@@ -23,3 +24,4 @@ MonoBehaviour:
   - Combination_BigEgg
   - Combination_PebbleSpitter
   - Combination_Boulder
+  <InitialDiscoveredItemIds>k__BackingField: []
