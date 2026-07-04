@@ -1,3 +1,4 @@
+using Core.Audio;
 using Gameplay.Items.SO;
 using UnityEngine;
 
@@ -5,12 +6,22 @@ namespace Gameplay.Items.Visuals
 {
     public class ItemUseFxPlayer
     {
+        private readonly AudioService _audioService;
+
+        public ItemUseFxPlayer(AudioService audioService)
+        {
+            _audioService = audioService;
+        }
+
         public void PlayImpactFx(Vector2 position, ItemSettings itemSettings, Vector3 itemWorldScale)
         {
             if (itemSettings?.UseVisuals == null)
                 return;
 
             var visuals = itemSettings.UseVisuals;
+            if (visuals.ImpactSfx != null)
+                _audioService?.PlaySfx(visuals.ImpactSfx, position);
+
             if (visuals.ImpactParticlePrefab != null)
             {
                 Object.Instantiate(visuals.ImpactParticlePrefab, position, Quaternion.identity);

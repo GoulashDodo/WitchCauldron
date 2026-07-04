@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: Level_01_LevelSettings
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
   <LevelId>k__BackingField: Level_01
-  <LevelName>k__BackingField: Tutorial
-  <BaseHealth>k__BackingField: 30
+  <LevelName>k__BackingField: Night 1 - Basic Tutorial
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: 3563d8e46ccd5134fa4f46039d2a5fb7, type: 2}
-  <CompletionMoneyReward>k__BackingField: 10
+  <CompletionMoneyReward>k__BackingField: 100
+  <MaxBaseHealthBonus>k__BackingField: 30
+  <MaxTimeBonus>k__BackingField: 20
+  <TargetCompletionTime>k__BackingField: 90
   <CompletionRewards>k__BackingField:
   - <Type>k__BackingField: 0
     <UnlockId>k__BackingField: Item_Goo
   - <Type>k__BackingField: 1
-    <UnlockId>k__BackingField: Combination_GooPebble
+    <UnlockId>k__BackingField: Combination_GooPuddle
   - <Type>k__BackingField: 1
-    <UnlockId>k__BackingField: Combination_GooEgg
+    <UnlockId>k__BackingField: Combination_GooPebble

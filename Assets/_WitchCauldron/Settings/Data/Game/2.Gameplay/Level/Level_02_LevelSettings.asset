@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Level_02_LevelSettings
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
   <LevelId>k__BackingField: Level_02
-  <LevelName>k__BackingField: 'Tutorial: Knock'
-  <BaseHealth>k__BackingField: 30
+  <LevelName>k__BackingField: Night 2 - Fast Enemy Control
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: 6a074518df374554ab76da766f3b3446, type: 2}
-  <CompletionMoneyReward>k__BackingField: 10
-  <CompletionRewards>k__BackingField: []
+  <CompletionMoneyReward>k__BackingField: 120
+  <MaxBaseHealthBonus>k__BackingField: 30
+  <MaxTimeBonus>k__BackingField: 20
+  <TargetCompletionTime>k__BackingField: 120
+  <CompletionRewards>k__BackingField:
+  - <Type>k__BackingField: 1
+    <UnlockId>k__BackingField: Combination_GooEgg

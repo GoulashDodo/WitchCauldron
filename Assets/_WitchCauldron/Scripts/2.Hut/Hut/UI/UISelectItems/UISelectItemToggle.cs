@@ -1,3 +1,4 @@
+using Core.Audio;
 using Gameplay.Items.SO;
 using Hut.SelectedItems;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Hut.UI.UISelectItems
         [SerializeField] private Image _image;
         private Toggle _toggle;
         private SelectedItemsRuntime _selectedItemsRuntime;
+        private AudioService _audioService;
         
         public bool IsSelected => _toggle.isOn;
         public string SettingsTypeId { get; private set; }
@@ -29,7 +31,7 @@ namespace Hut.UI.UISelectItems
                 _toggle.onValueChanged.RemoveListener(OnValueChanged);
         }
 
-        public void Initialize(ItemSettings itemSettings, SelectedItemsRuntime selectedItemsRuntime)
+        public void Initialize(ItemSettings itemSettings, SelectedItemsRuntime selectedItemsRuntime, AudioService audioService)
         {
             if (_toggle == null)
                 _toggle = GetComponent<Toggle>();
@@ -41,6 +43,7 @@ namespace Hut.UI.UISelectItems
             }
 
             _selectedItemsRuntime = selectedItemsRuntime;
+            _audioService = audioService;
             SettingsTypeId = itemSettings.TypeId;
 
             if (_image != null)
@@ -57,7 +60,10 @@ namespace Hut.UI.UISelectItems
                 return;
 
             if (_selectedItemsRuntime.SetSelected(SettingsTypeId, isOn))
+            {
+                _audioService?.PlayUi(AudioId.Item_Select);
                 return;
+            }
 
             _toggle.SetIsOnWithoutNotify(false);
         }

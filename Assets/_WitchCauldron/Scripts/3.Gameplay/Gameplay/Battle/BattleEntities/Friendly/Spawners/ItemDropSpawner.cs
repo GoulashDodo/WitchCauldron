@@ -1,3 +1,4 @@
+using Core.Audio;
 using Gameplay.Items.MonoBehaviours.View;
 using Gameplay.Items.Services;
 using UnityEngine;
@@ -14,12 +15,14 @@ namespace Gameplay.Battle.BattleEntities.Friendly.Spawners
         [SerializeField] private Vector2 _dropYOffsetRange = new(0.1f, 0.45f);
 
         private ItemService _itemService;
+        private AudioService _audioService;
         private float _nextSpawnTime;
 
         [Inject]
-        public void Initialize(ItemService itemService)
+        public void Initialize(ItemService itemService, AudioService audioService)
         {
             _itemService = itemService;
+            _audioService = audioService;
         }
 
         private void OnEnable()
@@ -47,6 +50,8 @@ namespace Gameplay.Battle.BattleEntities.Friendly.Spawners
             var startPosition = transform.position;
             if (!_itemService.TrySpawnDraggableItem(_itemToSpawnTypeId, startPosition, out var item))
                 return;
+
+            _audioService?.PlaySfx(AudioId.Chicken_EggProduced, startPosition);
 
             var dropFx = item.GetComponent<LootDropFx>();
             if (dropFx == null)

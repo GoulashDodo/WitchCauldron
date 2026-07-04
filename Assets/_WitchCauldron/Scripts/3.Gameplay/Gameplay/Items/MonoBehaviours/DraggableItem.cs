@@ -1,4 +1,5 @@
 using System;
+using Core.Audio;
 using Core.Input.Clickable;
 using Gameplay.Items.Services;
 using Gameplay.Items.SO;
@@ -15,6 +16,7 @@ namespace Gameplay.Items.MonoBehaviours
         public Vector3 LastDragStartPosition { get; private set; }
 
         protected ItemService ItemService;
+        private AudioService _audioService;
 
 
         private IDisposable _positionSubscription;
@@ -41,12 +43,14 @@ namespace Gameplay.Items.MonoBehaviours
             ItemSettings itemSettings,
             ItemService itemService,
             Observable<Vector2> grabbedPosition,
+            AudioService audioService = null,
             bool startDragging = false
         )
         {
             Settings = itemSettings;
             TypeId = itemSettings.TypeId;
             ItemService = itemService;
+            _audioService = audioService;
             
             _positionSubscription = grabbedPosition.Subscribe(position =>
             {
@@ -77,6 +81,17 @@ namespace Gameplay.Items.MonoBehaviours
             Drag();
         }
 
+        public bool TryTransformTo(string itemTypeId, bool preserveDragging = false)
+        {
+            if (ItemService == null)
+            {
+                Debug.LogWarning($"{nameof(DraggableItem)} '{name}' cannot transform before initialization.");
+                return false;
+            }
+
+            return ItemService.TryReplaceDraggableItem(this, itemTypeId, preserveDragging && IsDragging);
+        }
+
         private void Drag()
         {
             if (IsDragging)
@@ -84,6 +99,7 @@ namespace Gameplay.Items.MonoBehaviours
 
             LastDragStartPosition = Transform.position;
             IsDragging = true;
+            _audioService?.PlaySfx(AudioId.Item_Select, Transform.position);
             _pickedUp.OnNext(Unit.Default);
         }
         
@@ -92,12 +108,14 @@ namespace Gameplay.Items.MonoBehaviours
             CompleteDrop();
         }
 
-        protected void CompleteDrop()
+        protected void CompleteDrop(bool playDropAudio = true)
         {
             if (!IsDragging)
                 return;
 
             _dropped.OnNext(Unit.Default);
+            if (playDropAudio)
+                _audioService?.PlaySfx(AudioId.Item_Drop, Transform.position);
             IsDragging = false;
         }
         

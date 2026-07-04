@@ -26,7 +26,7 @@ namespace Gameplay.Items.MonoBehaviours
 
             if (ItemService.TryUseItem(this, transform.position))
             {
-                CompleteDrop();
+                CompleteDrop(false);
                 return;
             }
 
@@ -36,7 +36,9 @@ namespace Gameplay.Items.MonoBehaviours
 
         public bool CanUseAtCurrentPosition()
         {
-            return ItemPlacementQuery.CanUseOnBattleground(Collider, Transform, OverlapBuffer);
+            return ItemPlacementQuery.CanUseOnBattleground(Collider, Transform, OverlapBuffer) &&
+                   ItemService != null &&
+                   ItemService.CanUseItemAt(Settings, Transform.position);
         }
 
     }

@@ -1,6 +1,5 @@
 using Core.Run;
 using Gameplay.Battle.Waves.SO;
-using Gameplay.Items.SO;
 using UnityEngine;
 
 namespace Gameplay.Level.SO
@@ -17,6 +16,12 @@ namespace Gameplay.Level.SO
 
         [field: Space(10)]
         [field: SerializeField] public int CompletionMoneyReward { get; private set; } = 10;
+
+        [field: SerializeField] public int MaxBaseHealthBonus { get; private set; }
+
+        [field: SerializeField] public int MaxTimeBonus { get; private set; }
+
+        [field: SerializeField] public float TargetCompletionTime { get; private set; }
         
         [field: SerializeField] public UnlockReward[] CompletionRewards { get; private set; }
         

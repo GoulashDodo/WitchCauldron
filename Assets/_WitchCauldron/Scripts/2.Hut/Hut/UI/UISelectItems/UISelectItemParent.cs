@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Core.Audio;
 using Core.Run;
 using Hut.SO;
 using Hut.SelectedItems;
@@ -18,7 +19,7 @@ namespace Hut.UI.UISelectItems
         private SelectedItemsRuntime _selectedItemsRuntime;
         private RunState _runState;
 
-        public void Initialize(SelectedItemsRuntime selectedItemsRuntime, RunState runState)
+        public void Initialize(SelectedItemsRuntime selectedItemsRuntime, RunState runState, AudioService audioService)
         {
             _selectedItemsRuntime = selectedItemsRuntime;
             _runState = runState;
@@ -37,7 +38,7 @@ namespace Hut.UI.UISelectItems
                     continue;
 
                 var toggle = Instantiate(_togglePf, gameObject.transform, false);
-                toggle.Initialize(setting, _selectedItemsRuntime);
+                toggle.Initialize(setting, _selectedItemsRuntime, audioService);
                 _toggles.Add(toggle);
             }
         }

@@ -73,7 +73,10 @@ namespace Hut.UI.UIShop
                 _lockObject.SetActive(!unlocked);
 
             if (_buyButton != null)
+            {
+                // TODO: If the shop later allows clicking disabled/locked upgrades for feedback, play Shop_Failed there.
                 _buyButton.interactable = canBuy;
+            }
 
             if (_buyButtonText != null)
                 _buyButtonText.text = GetButtonText(unlocked, purchased, canBuy);

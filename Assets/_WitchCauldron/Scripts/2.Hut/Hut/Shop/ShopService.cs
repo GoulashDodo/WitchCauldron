@@ -1,3 +1,4 @@
+using Core.Audio;
 using Core.Run;
 using Hut.Shop.SO;
 
@@ -6,10 +7,12 @@ namespace Hut.Shop
     public class ShopService
     {
         private readonly RunState _runState;
+        private readonly AudioService _audioService;
 
-        public ShopService(RunState runState)
+        public ShopService(RunState runState, AudioService audioService)
         {
             _runState = runState;
+            _audioService = audioService;
         }
 
         public bool IsPurchased(ShopUpgradeDefinition upgrade)
@@ -46,13 +49,20 @@ namespace Hut.Shop
         public bool TryBuy(ShopUpgradeDefinition upgrade)
         {
             if (!CanBuy(upgrade))
+            {
+                _audioService.PlayUi(AudioId.Shop_Failed);
                 return false;
+            }
 
             if (!_runState.Wallet.TrySpend(upgrade.Price))
+            {
+                _audioService.PlayUi(AudioId.Shop_Failed);
                 return false;
+            }
 
             _runState.PurchasedShopUpgrades.MarkPurchased(upgrade.UpgradeId);
             ApplyEffects(upgrade.Effects);
+            _audioService.PlayUi(AudioId.Shop_Buy);
             return true;
         }
 
@@ -85,9 +95,11 @@ namespace Hut.Shop
                 case ShopUpgradeEffectType.UnlockSelectableItem:
                     _runState.UnlockedSelectableItems.UnlockNewItem(effect.TargetId);
                     _runState.DiscoveredItems.DiscoverItem(effect.TargetId);
+                    _audioService.PlayUi(AudioId.Unlock_Item);
                     break;
                 case ShopUpgradeEffectType.UnlockRecipe:
                     _runState.UnlockedRecipes.UnlockCombination(effect.TargetId);
+                    _audioService.PlayUi(AudioId.Unlock_Recipe);
                     break;
                 case ShopUpgradeEffectType.IncreaseBaseMaxHealth:
                     _runState.BaseHealth.AddMaxHealth(effect.Amount);

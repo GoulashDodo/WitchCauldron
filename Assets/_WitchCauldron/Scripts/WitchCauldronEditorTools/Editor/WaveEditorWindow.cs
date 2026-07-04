@@ -19,7 +19,7 @@ namespace WitchCauldronEditorTools.Editor
         private static readonly string SpawnModeProperty = "<SpawnMode>k__BackingField";
         private static readonly string PointBudgetProperty = "<PointBudget>k__BackingField";
         private static readonly string SpawnPositionModeProperty = "<SpawnPositionMode>k__BackingField";
-        private static readonly string SpecificSpawnPositionProperty = "<SpecificSpawnPosition>k__BackingField";
+        private static readonly string SpecificSpawnYProperty = "<SpecificSpawnY>k__BackingField";
         private static readonly string EnemiesProperty = "<Enemies>k__BackingField";
         private static readonly string EnemyTypeIdProperty = "<EnemyTypeId>k__BackingField";
         private static readonly string CountProperty = "<Count>k__BackingField";
@@ -236,7 +236,7 @@ namespace WitchCauldronEditorTools.Editor
             EditorGUILayout.PropertyField(spawnPositionMode, new GUIContent("Spawn Position"));
 
             using (new EditorGUI.DisabledScope(spawnPositionMode.enumValueIndex != (int)SpawnPositionMode.SpecificPosition))
-                EditorGUILayout.PropertyField(wave.FindPropertyRelative(SpecificSpawnPositionProperty), new GUIContent("Specific Position"));
+                EditorGUILayout.PropertyField(wave.FindPropertyRelative(SpecificSpawnYProperty), new GUIContent("Specific Y Position"));
         }
 
         private void DrawEnemies(SerializedObject serialized, SerializedProperty enemies, int spawnMode)
@@ -371,7 +371,7 @@ namespace WitchCauldronEditorTools.Editor
             wave.FindPropertyRelative(SpawnModeProperty).enumValueIndex = (int)WaveSpawnMode.ManualCount;
             wave.FindPropertyRelative(PointBudgetProperty).intValue = 10;
             wave.FindPropertyRelative(SpawnPositionModeProperty).enumValueIndex = (int)SpawnPositionMode.RandomInArea;
-            wave.FindPropertyRelative(SpecificSpawnPositionProperty).vector3Value = Vector3.zero;
+            wave.FindPropertyRelative(SpecificSpawnYProperty).floatValue = 0f;
 
             var enemies = wave.FindPropertyRelative(EnemiesProperty);
             enemies.arraySize = 1;

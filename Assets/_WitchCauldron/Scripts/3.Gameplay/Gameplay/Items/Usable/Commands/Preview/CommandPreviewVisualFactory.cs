@@ -6,10 +6,14 @@ namespace Gameplay.Items.Usable.Commands.Preview
     public static class CommandPreviewVisualFactory
     {
         private const int CircleSegments = 96;
-        private const float RadiusCoreLineWidth = 0.035f;
-        private const float RadiusGlowLineWidth = 0.16f;
-        private static readonly Color RadiusCoreColor = new(1f, 1f, 1f, 0.65f);
-        private static readonly Color RadiusGlowColor = new(1f, 1f, 1f, 0.16f);
+        private const int RadiusSortingOrder = 997;
+        private const float RadiusInnerFill = 0.995f;
+        private const float RadiusEdgeLineWidth = 0.035f;
+        private static readonly Color RadiusCenterColor = new(0.05f, 0.05f, 0.05f, 0.28f);
+        private static readonly Color RadiusEdgeFadeColor = new(0.05f, 0.05f, 0.05f, 0f);
+        private static readonly Color RadiusEdgeColor = new(0.03f, 0.03f, 0.03f, 0.5f);
+        private static readonly Color BoxFillColor = new(0.05f, 0.05f, 0.05f, 0.28f);
+        private static readonly Color BoxEdgeColor = new(0.03f, 0.03f, 0.03f, 0.5f);
 
         public static GameObject CreateSpriteGhost(GameObject prefab, Vector2 position, float alpha)
         {
@@ -76,6 +80,19 @@ namespace Gameplay.Items.Usable.Commands.Preview
                     radiusSource.PreviewRadius);
             }
 
+            foreach (var boxSource in prefab.GetComponentsInChildren<IPlacementBoxPreviewSource>())
+            {
+                if (boxSource.PreviewSize.x <= 0f || boxSource.PreviewSize.y <= 0f)
+                    continue;
+
+                CreateBoxPreview(
+                    preview.transform,
+                    prefab.transform,
+                    boxSource.PreviewOrigin,
+                    boxSource.PreviewSize,
+                    boxSource.PreviewOffset);
+            }
+
             return preview;
         }
 
@@ -89,41 +106,214 @@ namespace Gameplay.Items.Usable.Commands.Preview
             circle.transform.SetParent(previewRoot, false);
             CopyLocalTransform(prefabRoot, origin ? origin : prefabRoot, circle.transform);
 
-            CreateRadiusLine(circle, radius, RadiusGlowLineWidth, RadiusGlowColor, 998);
-            CreateRadiusLine(circle, radius, RadiusCoreLineWidth, RadiusCoreColor, 999);
+            CreateSoftRadiusFill(circle, radius);
+            CreateRadiusEdge(circle, radius);
         }
 
-        private static void CreateRadiusLine(
-            GameObject parent,
-            float radius,
-            float width,
-            Color color,
-            int sortingOrder)
+        private static void CreateBoxPreview(
+            Transform previewRoot,
+            Transform prefabRoot,
+            Transform origin,
+            Vector2 size,
+            Vector2 offset)
         {
-            var lineObject = new GameObject("RadiusLine");
-            lineObject.transform.SetParent(parent.transform, false);
+            var box = new GameObject("PlacementBoxPreview");
+            box.transform.SetParent(previewRoot, false);
+            CopyLocalTransform(prefabRoot, origin ? origin : prefabRoot, box.transform);
+            box.transform.localPosition += (Vector3)offset;
 
-            var line = lineObject.AddComponent<LineRenderer>();
-            line.useWorldSpace = false;
-            line.loop = true;
-            line.positionCount = CircleSegments;
-            line.startWidth = width;
-            line.endWidth = width;
-            line.startColor = color;
-            line.endColor = color;
-            line.numCapVertices = 4;
-            line.numCornerVertices = 4;
-            line.sortingOrder = sortingOrder;
+            CreateBoxFill(box, size);
+            CreateBoxEdge(box, size);
+        }
+
+        private static void CreateSoftRadiusFill(GameObject parent, float radius)
+        {
+            var fillObject = new GameObject("SoftRadiusFill");
+            fillObject.transform.SetParent(parent.transform, false);
+
+            var meshFilter = fillObject.AddComponent<MeshFilter>();
+            meshFilter.sharedMesh = CreateSoftCircleMesh(radius);
+
+            var renderer = fillObject.AddComponent<MeshRenderer>();
+            renderer.sortingOrder = RadiusSortingOrder;
 
             var shader = Shader.Find("Sprites/Default");
             if (shader != null)
-                line.sharedMaterial = new Material(shader);
+            {
+                renderer.sharedMaterial = new Material(shader)
+                {
+                    color = Color.white
+                };
+            }
+        }
+
+        private static void CreateRadiusEdge(GameObject parent, float radius)
+        {
+            var edgeObject = new GameObject("RadiusEdge");
+            edgeObject.transform.SetParent(parent.transform, false);
+
+            var line = edgeObject.AddComponent<LineRenderer>();
+            line.useWorldSpace = false;
+            line.loop = true;
+            line.positionCount = CircleSegments;
+            line.startWidth = RadiusEdgeLineWidth;
+            line.endWidth = RadiusEdgeLineWidth;
+            line.startColor = RadiusEdgeColor;
+            line.endColor = RadiusEdgeColor;
+            line.numCapVertices = 4;
+            line.numCornerVertices = 4;
+            line.sortingOrder = RadiusSortingOrder;
+
+            var shader = Shader.Find("Sprites/Default");
+            if (shader != null)
+            {
+                line.sharedMaterial = new Material(shader)
+                {
+                    color = RadiusEdgeColor
+                };
+            }
 
             for (var i = 0; i < CircleSegments; i++)
             {
                 var angle = i * Mathf.PI * 2f / CircleSegments;
                 line.SetPosition(i, new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0f));
             }
+        }
+
+        private static Mesh CreateSoftCircleMesh(float radius)
+        {
+            var innerRadius = radius * RadiusInnerFill;
+            var vertices = new Vector3[CircleSegments * 2 + 1];
+            var colors = new Color[vertices.Length];
+            var triangles = new int[CircleSegments * 9];
+
+            vertices[0] = Vector3.zero;
+            colors[0] = RadiusCenterColor;
+
+            for (var i = 0; i < CircleSegments; i++)
+            {
+                var angle = i * Mathf.PI * 2f / CircleSegments;
+                var direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+                var innerIndex = i + 1;
+                var outerIndex = i + CircleSegments + 1;
+
+                vertices[innerIndex] = direction * innerRadius;
+                vertices[outerIndex] = direction * radius;
+                colors[innerIndex] = RadiusCenterColor;
+                colors[outerIndex] = RadiusEdgeFadeColor;
+            }
+
+            for (var i = 0; i < CircleSegments; i++)
+            {
+                var next = i == CircleSegments - 1 ? 0 : i + 1;
+                var inner = i + 1;
+                var nextInner = next + 1;
+                var outer = i + CircleSegments + 1;
+                var nextOuter = next + CircleSegments + 1;
+
+                var triangleIndex = i * 9;
+                triangles[triangleIndex] = 0;
+                triangles[triangleIndex + 1] = inner;
+                triangles[triangleIndex + 2] = nextInner;
+
+                triangles[triangleIndex + 3] = inner;
+                triangles[triangleIndex + 4] = outer;
+                triangles[triangleIndex + 5] = nextOuter;
+
+                triangles[triangleIndex + 6] = inner;
+                triangles[triangleIndex + 7] = nextOuter;
+                triangles[triangleIndex + 8] = nextInner;
+            }
+
+            var mesh = new Mesh
+            {
+                name = "SoftRadiusPreviewMesh",
+                vertices = vertices,
+                colors = colors,
+                triangles = triangles
+            };
+            mesh.RecalculateBounds();
+            return mesh;
+        }
+
+        private static void CreateBoxFill(GameObject parent, Vector2 size)
+        {
+            var fillObject = new GameObject("BoxFill");
+            fillObject.transform.SetParent(parent.transform, false);
+
+            var meshFilter = fillObject.AddComponent<MeshFilter>();
+            meshFilter.sharedMesh = CreateBoxMesh(size);
+
+            var renderer = fillObject.AddComponent<MeshRenderer>();
+            renderer.sortingOrder = RadiusSortingOrder;
+
+            var shader = Shader.Find("Sprites/Default");
+            if (shader != null)
+            {
+                renderer.sharedMaterial = new Material(shader)
+                {
+                    color = Color.white
+                };
+            }
+        }
+
+        private static void CreateBoxEdge(GameObject parent, Vector2 size)
+        {
+            var edgeObject = new GameObject("BoxEdge");
+            edgeObject.transform.SetParent(parent.transform, false);
+
+            var line = edgeObject.AddComponent<LineRenderer>();
+            line.useWorldSpace = false;
+            line.loop = true;
+            line.positionCount = 4;
+            line.startWidth = RadiusEdgeLineWidth;
+            line.endWidth = RadiusEdgeLineWidth;
+            line.startColor = BoxEdgeColor;
+            line.endColor = BoxEdgeColor;
+            line.numCapVertices = 4;
+            line.numCornerVertices = 4;
+            line.sortingOrder = RadiusSortingOrder;
+
+            var shader = Shader.Find("Sprites/Default");
+            if (shader != null)
+            {
+                line.sharedMaterial = new Material(shader)
+                {
+                    color = BoxEdgeColor
+                };
+            }
+
+            var halfSize = size * 0.5f;
+            line.SetPosition(0, new Vector3(-halfSize.x, -halfSize.y, 0f));
+            line.SetPosition(1, new Vector3(-halfSize.x, halfSize.y, 0f));
+            line.SetPosition(2, new Vector3(halfSize.x, halfSize.y, 0f));
+            line.SetPosition(3, new Vector3(halfSize.x, -halfSize.y, 0f));
+        }
+
+        private static Mesh CreateBoxMesh(Vector2 size)
+        {
+            var halfSize = size * 0.5f;
+            var mesh = new Mesh
+            {
+                name = "BoxPreviewMesh",
+                vertices = new[]
+                {
+                    new Vector3(-halfSize.x, -halfSize.y, 0f),
+                    new Vector3(-halfSize.x, halfSize.y, 0f),
+                    new Vector3(halfSize.x, halfSize.y, 0f),
+                    new Vector3(halfSize.x, -halfSize.y, 0f)
+                },
+                colors = new[]
+                {
+                    BoxFillColor,
+                    BoxFillColor,
+                    BoxFillColor,
+                    BoxFillColor
+                },
+                triangles = new[] { 0, 1, 2, 0, 2, 3 }
+            };
+            mesh.RecalculateBounds();
+            return mesh;
         }
 
         private static void CopyLocalTransform(Transform root, Transform source, Transform target)

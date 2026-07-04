@@ -8,6 +8,7 @@ namespace Gameplay.Battle.Waves.SpawnArea
     public class BoxSpawnArea : MonoBehaviour,  ISpawnArea
     {
         private BoxCollider2D _box;
+        public Vector3 CenterPosition => _box != null ? _box.bounds.center : transform.position;
 
         private void Awake()
         {

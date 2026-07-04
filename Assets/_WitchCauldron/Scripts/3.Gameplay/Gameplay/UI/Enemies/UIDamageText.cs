@@ -93,7 +93,7 @@ namespace Gameplay.UI.Enemies
 
         private static float GetFallbackFontSize(float damage)
         {
-            return Mathf.Lerp(18f, 42f, Mathf.InverseLerp(1f, 20f, damage));
+            return Mathf.Lerp(18f, 42f, Mathf.InverseLerp(10f, 200f, damage));
         }
     }
 }

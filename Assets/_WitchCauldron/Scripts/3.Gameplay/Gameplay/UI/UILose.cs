@@ -1,4 +1,5 @@
 using System;
+using Core.Audio;
 using Core.Data;
 using Core.SceneManagement;
 using Gameplay._root;
@@ -24,12 +25,14 @@ namespace Gameplay.UI
         
         private SceneLoader _sceneLoader;
         private GameplayPauseService _pauseService;
+        private AudioService _audioService;
         private IDisposable _pauseHandle;
 
-        public void Initialize(G game, SceneLoader sceneLoader, GameplayPauseService pauseService)
+        public void Initialize(G game, SceneLoader sceneLoader, GameplayPauseService pauseService, AudioService audioService)
         {
             _sceneLoader = sceneLoader;
             _pauseService = pauseService;
+            _audioService = audioService;
 
             HidePanel();
             SubscribeToButtons();
@@ -49,6 +52,7 @@ namespace Gameplay.UI
         private void ShowPanel()
         {
             RequestPause();
+            _audioService?.PlayUi(AudioId.Defeat);
 
             _panel.SetActive(true);
             PlayAppearAnimation();

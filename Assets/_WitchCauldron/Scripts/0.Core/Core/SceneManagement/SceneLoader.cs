@@ -12,6 +12,8 @@ namespace Core.SceneManagement
 {
     public class SceneLoader
     {
+        private const float LoadingFadeInTimeout = 0.6f;
+        private const float MinimumLoadingDuration = 0.45f;
 
         private readonly Coroutines _coroutines;
         
@@ -19,6 +21,7 @@ namespace Core.SceneManagement
         private readonly Subject<Unit> _onSceneLoadingEnded = new();
         private readonly SceneParametersPayload _sceneParametersPayload;
         private readonly RunState _runState;
+        private bool _isLoadingScreenFadeInCompleted;
 
         public Observable<Unit> OnSceneLoadingStarted => _onSceneLoadingStarted;
         public Observable<Unit> OnSceneLoadingEnded => _onSceneLoadingEnded;        
@@ -64,11 +67,19 @@ namespace Core.SceneManagement
         {
             _coroutines.StartCoroutine(LoadAndStartGameplay(gameplayEntryParameters));
         }
+
+        public void NotifyLoadingScreenFadeInCompleted()
+        {
+            _isLoadingScreenFadeInCompleted = true;
+        }
         
         private IEnumerator LoadAndStartMainMenu()
         {
 
+            var loadingStartedAt = Time.realtimeSinceStartup;
+            _isLoadingScreenFadeInCompleted = false;
             _onSceneLoadingStarted.OnNext(Unit.Default);
+            yield return WaitForLoadingScreenFadeIn();
             
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.MainMenu);
@@ -76,7 +87,8 @@ namespace Core.SceneManagement
             var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
             
             sceneEntryPoint.Run();
-            
+
+            yield return WaitForMinimumLoadingTime(loadingStartedAt);
             _onSceneLoadingEnded.OnNext(Unit.Default);
 
         }
@@ -84,7 +96,10 @@ namespace Core.SceneManagement
         private IEnumerator LoadAndStartHut()
         {
 
+            var loadingStartedAt = Time.realtimeSinceStartup;
+            _isLoadingScreenFadeInCompleted = false;
             _onSceneLoadingStarted.OnNext(Unit.Default);
+            yield return WaitForLoadingScreenFadeIn();
             
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.Hut);
@@ -92,8 +107,8 @@ namespace Core.SceneManagement
 
             var sceneEntryPoint = Object.FindFirstObjectByType<SceneContext>();
             sceneEntryPoint.Run();
-            
-    
+
+            yield return WaitForMinimumLoadingTime(loadingStartedAt);
             _onSceneLoadingEnded.OnNext(Unit.Default);
 
         }
@@ -101,7 +116,10 @@ namespace Core.SceneManagement
         private IEnumerator LoadAndStartGameplay(GameplayEntryParameters gameplayEntryParameters)
         {
 
+            var loadingStartedAt = Time.realtimeSinceStartup;
+            _isLoadingScreenFadeInCompleted = false;
             _onSceneLoadingStarted.OnNext(Unit.Default);
+            yield return WaitForLoadingScreenFadeIn();
             
             yield return LoadSceneAsync(Scenes.Boot);
             yield return LoadSceneAsync(Scenes.Gameplay);
@@ -111,8 +129,8 @@ namespace Core.SceneManagement
             _sceneParametersPayload.SetGameplayEntryParameters(gameplayEntryParameters);
             
             sceneEntryPoint.Run();
-            
-    
+
+            yield return WaitForMinimumLoadingTime(loadingStartedAt);
             _onSceneLoadingEnded.OnNext(Unit.Default);
 
         }
@@ -120,6 +138,26 @@ namespace Core.SceneManagement
         private static IEnumerator LoadSceneAsync(string sceneName)
         {
             yield return SceneManager.LoadSceneAsync(sceneName);
+        }
+
+        private IEnumerator WaitForLoadingScreenFadeIn()
+        {
+            var startedAt = Time.realtimeSinceStartup;
+
+            while (!_isLoadingScreenFadeInCompleted &&
+                   Time.realtimeSinceStartup - startedAt < LoadingFadeInTimeout)
+            {
+                yield return null;
+            }
+        }
+
+        private static IEnumerator WaitForMinimumLoadingTime(float loadingStartedAt)
+        {
+            var elapsed = Time.realtimeSinceStartup - loadingStartedAt;
+            var remaining = MinimumLoadingDuration - elapsed;
+
+            if (remaining > 0f)
+                yield return new WaitForSecondsRealtime(remaining);
         }
         
     }

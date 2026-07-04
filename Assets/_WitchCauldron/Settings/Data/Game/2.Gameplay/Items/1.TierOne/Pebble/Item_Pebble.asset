@@ -15,7 +15,7 @@ MonoBehaviour:
   <TypeId>k__BackingField: Item_MoonPebble
   <ItemPf>k__BackingField: {fileID: 3727037310572803791, guid: 99eef5e0e4477604fae54f679a52b043, type: 3}
   <TitleLid>k__BackingField: Peeble
-  <DescriptionLid>k__BackingField: Simple, yet effective. Deal 5 damage to a single
+  <DescriptionLid>k__BackingField: Simple, yet effective. Deal 50 damage to a single
     enemy.
   <Price>k__BackingField: 0
   <Tier>k__BackingField: 1

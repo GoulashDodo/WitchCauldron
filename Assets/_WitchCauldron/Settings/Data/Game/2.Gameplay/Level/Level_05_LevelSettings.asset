@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326f3dac98e84494956859d8b19a60a0, type: 3}
+  m_Name: Level_05_LevelSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
+  <LevelId>k__BackingField: Level_05
+  <LevelName>k__BackingField: Night 5 - Demo Finale
+  <WaveSettings>k__BackingField: {fileID: 11400000, guid: 9dbf9b7089ba96d4289f597fbc262f80, type: 2}
+  <CompletionMoneyReward>k__BackingField: 200
+  <MaxBaseHealthBonus>k__BackingField: 100
+  <MaxTimeBonus>k__BackingField: 60
+  <TargetCompletionTime>k__BackingField: 200
+  <CompletionRewards>k__BackingField: []

@@ -17,7 +17,7 @@ MonoBehaviour:
   <Description>k__BackingField: Increase amount of Items you can take on a level
     by one
   <Icon>k__BackingField: {fileID: 8411710296317648254, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
-  <Price>k__BackingField: 10
+  <Price>k__BackingField: 150
   <Category>k__BackingField: 3
   <HideUntilUnlocked>k__BackingField: 0
   <Effects>k__BackingField:
@@ -27,4 +27,4 @@ MonoBehaviour:
   <UnlockConditions>k__BackingField:
   - <Type>k__BackingField: 0
     <TargetId>k__BackingField: 
-    <Amount>k__BackingField: 2
+    <Amount>k__BackingField: 1

@@ -155,9 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db8174ceca3d7d4da0b7f4211ea3440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boulder
-  _damage: 10
+  _damage: 100
   _damageType: 0
-  _speed: 4
+  _speed: 4.5
 --- !u!58 &365942043150399435
 CircleCollider2D:
   m_ObjectHideFlags: 0

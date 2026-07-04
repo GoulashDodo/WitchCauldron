@@ -12,6 +12,7 @@ namespace Hut.CompositionRoot
             Container.BindInterfacesAndSelfTo<SelectedItemsRuntime>().AsSingle().NonLazy();
             Container.Bind<SelectedFamiliarRuntime>().AsSingle().NonLazy();
             Container.Bind<ShopService>().AsSingle().NonLazy();
+            Container.Bind<IInitializable>().To<HutAudioBootstrap>().AsSingle().NonLazy();
         }
     }
 }

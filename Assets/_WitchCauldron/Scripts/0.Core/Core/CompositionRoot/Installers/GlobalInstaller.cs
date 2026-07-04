@@ -1,3 +1,4 @@
+using Core.Audio;
 using Core.Input.Clickable;
 using Core.Run;
 using Core.SceneManagement;
@@ -17,6 +18,10 @@ namespace Core.CompositionRoot.Installers
             Container.Bind<SceneParametersPayload>().AsSingle();
             
             Container.Bind<SceneLoader>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<AudioService>()
+                .AsSingle()
+                .NonLazy();
 
             Container.Bind<GameInput>()
                 .FromMethod(_ =>
@@ -53,7 +58,8 @@ namespace Core.CompositionRoot.Installers
                 .OnInstantiated<UIRootView>((ctx, ui) =>
                 {
                     var sceneLoader = ctx.Container.Resolve<SceneLoader>();
-                    ui.Initialize(sceneLoader);
+                    var audioService = ctx.Container.Resolve<AudioService>();
+                    ui.Initialize(sceneLoader, audioService);
 
                 })
                 .NonLazy();

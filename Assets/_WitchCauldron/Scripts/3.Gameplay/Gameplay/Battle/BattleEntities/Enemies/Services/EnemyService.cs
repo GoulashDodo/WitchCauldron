@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core.Audio;
 using Gameplay._root.SO;
 using Gameplay.Battle.BattleEntities.Enemies.Core;
 using Gameplay.Battle.BattleEntities.Enemies.SO;
@@ -12,6 +13,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
     public class EnemyService
     {
         private readonly AllEnemySettings _allEnemySettings;
+        private readonly AudioService _audioService;
         private readonly Dictionary<string, EnemySettings> _allEnemies = new();
         
         private readonly Dictionary<int, Enemy> _allExistingEnemies = new();
@@ -30,8 +32,9 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
 
 
 
-        public EnemyService(GameplaySettings settings)
+        public EnemyService(GameplaySettings settings, AudioService audioService)
         {
+            _audioService = audioService;
             var allEnemySettings = settings.AllEnemiesSettings;
             _allEnemySettings = allEnemySettings;
             
@@ -54,7 +57,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Services
             if (enemy.TryGetComponent(out EnemyMotor motor))
                 motor.SetSpeedMultiplier(_allEnemySettings.GetRandomSpawnSpeedMultiplier());
 
-            enemy.Construct(this, enemySettings);
+            enemy.Construct(this, enemySettings, _audioService);
             
             
             

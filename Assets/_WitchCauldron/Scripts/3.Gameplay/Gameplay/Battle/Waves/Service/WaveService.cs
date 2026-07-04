@@ -30,8 +30,10 @@ namespace Gameplay.Battle.Waves.Service
 
         public Observable<Unit> WavesCompleted => _wavesCompleted;
         private readonly Subject<Unit> _wavesCompleted = new();
+        public float ElapsedTime => _lastElapsedTime;
 
         private float _levelStartTime;
+        private float _lastElapsedTime;
         private float _nextWaveStartTime;
         private int _currentWaveIndex;
         private WaveRuntimeState _currentWave;
@@ -64,6 +66,7 @@ namespace Gameplay.Battle.Waves.Service
             }
 
             _levelStartTime = Time.time;
+            _lastElapsedTime = 0f;
             _nextWaveStartTime = _waveSettings.StartDelay + Mathf.Max(0f, _waves[0].StartTime);
             _currentWaveIndex = -1;
             _currentWave = null;
@@ -73,6 +76,9 @@ namespace Gameplay.Battle.Waves.Service
 
         public void StopWaves()
         {
+            if (_isRunning)
+                _lastElapsedTime = Mathf.Max(0f, Time.time - _levelStartTime);
+
             _isRunning = false;
             ClearCurrentWave();
             _waves.Clear();
@@ -84,6 +90,7 @@ namespace Gameplay.Battle.Waves.Service
                 return;
 
             var elapsedTime = Time.time - _levelStartTime;
+            _lastElapsedTime = elapsedTime;
 
             if (_currentWave == null)
             {
@@ -235,7 +242,7 @@ namespace Gameplay.Battle.Waves.Service
         private Vector3 GetSpawnPosition(WaveDefinition wave)
         {
             if (wave.SpawnPositionMode == SpawnPositionMode.SpecificPosition)
-                return wave.SpecificSpawnPosition;
+                return GetSpecificSpawnPosition(wave);
 
             var position = _spawnArea.GetRandomPosition();
 
@@ -255,6 +262,12 @@ namespace Gameplay.Battle.Waves.Service
             }
 
             return position;
+        }
+
+        private Vector3 GetSpecificSpawnPosition(WaveDefinition wave)
+        {
+            var areaCenter = _spawnArea.CenterPosition;
+            return new Vector3(areaCenter.x, wave.SpecificSpawnY, areaCenter.z);
         }
 
         private sealed class WaveRuntimeState : IDisposable

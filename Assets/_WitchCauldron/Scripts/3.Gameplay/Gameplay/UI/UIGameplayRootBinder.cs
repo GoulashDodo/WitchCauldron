@@ -1,3 +1,4 @@
+using Core.Audio;
 using Core.Run;
 using Core.SceneManagement;
 using Core.UI;
@@ -7,6 +8,7 @@ using Gameplay.Battle.Base.Interfaces;
 using Gameplay.Battle.Waves.Service;
 using Gameplay.Level;
 using Gameplay.Level.SO;
+using Gameplay.Rewards;
 using Hut.UI.UIAlmanac;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,11 +45,13 @@ namespace Gameplay.UI
             GameplayRunFlowController runFlowController,
             GameplayPauseService pauseService,
             LevelSettings levelSettings,
-            GameplaySettings gameplaySettings)
+            GameplaySettings gameplaySettings,
+            AudioService audioService,
+            VictoryRewardCalculator rewardCalculator)
         {
             view.AttachSceneUI(gameObject);
             
-            InitializeUI(baseHealthProvider, waveService, game, sceneLoader, runState, runFlowController, pauseService, levelSettings, gameplaySettings);
+            InitializeUI(baseHealthProvider, waveService, game, sceneLoader, runState, runFlowController, pauseService, levelSettings, gameplaySettings, audioService, rewardCalculator);
             
         }
 
@@ -58,7 +62,9 @@ namespace Gameplay.UI
             GameplayRunFlowController runFlowController,
             GameplayPauseService pauseService,
             LevelSettings levelSettings,
-            GameplaySettings gameplaySettings)
+            GameplaySettings gameplaySettings,
+            AudioService audioService,
+            VictoryRewardCalculator rewardCalculator)
         {
             
             _uiBaseHealth.Initialize(baseHealthProvider);
@@ -67,8 +73,8 @@ namespace Gameplay.UI
             
             _uiWaveAlert.Initialize(waveService);
             
-            _uiLose.Initialize(game, sceneLoader, pauseService);
-            _uiWin.Initialize(game, runFlowController, pauseService, levelSettings, gameplaySettings);
+            _uiLose.Initialize(game, sceneLoader, pauseService, audioService);
+            _uiWin.Initialize(game, runFlowController, pauseService, levelSettings, gameplaySettings, audioService, baseHealthProvider, waveService, rewardCalculator);
 
             if (_almanacRoot != null)
                 _almanacRoot.Initialize(gameplaySettings, runState);

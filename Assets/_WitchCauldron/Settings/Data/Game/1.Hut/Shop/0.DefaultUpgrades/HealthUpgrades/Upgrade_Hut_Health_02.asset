@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hut.Shop.SO.ShopUpgradeDefinition
   <UpgradeId>k__BackingField: Upgrade_Hut_Health_02
   <DisplayName>k__BackingField: Tougher Defence
-  <Description>k__BackingField: Add 10 more health to your hut
+  <Description>k__BackingField: Add 100 more health to your hut
   <Icon>k__BackingField: {fileID: -4877817706105918434, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
-  <Price>k__BackingField: 10
+  <Price>k__BackingField: 125
   <Category>k__BackingField: 2
   <HideUntilUnlocked>k__BackingField: 0
   <Effects>k__BackingField:
   - <Type>k__BackingField: 2
     <TargetId>k__BackingField: 
-    <Amount>k__BackingField: 10
+    <Amount>k__BackingField: 100
   <UnlockConditions>k__BackingField:
   - <Type>k__BackingField: 1
     <TargetId>k__BackingField: Upgrade_Hut_Health_01

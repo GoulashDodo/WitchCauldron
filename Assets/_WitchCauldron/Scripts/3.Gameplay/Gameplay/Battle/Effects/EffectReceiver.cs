@@ -1,5 +1,9 @@
 using System.Collections.Generic;
+using Core.Audio;
 using Gameplay.Battle.Effects.Base;
+using Gameplay.Battle.Effects.Damage;
+using Gameplay.Battle.Effects.Slow;
+using Gameplay.Battle.HealthSystem.Structs;
 using R3;
 using UnityEngine;
 
@@ -33,8 +37,32 @@ namespace Gameplay.Battle.Effects
             _effects.Add(runtime);
             if (!_isDisposed)
                 _effectAdded.OnNext(runtime);
+
+            PlayEffectAudio(runtime);
             
             return runtime;
+        }
+
+        private void PlayEffectAudio(EffectRuntime runtime)
+        {
+            if (runtime == null)
+                return;
+
+            var audioService = AudioService.Current;
+            if (audioService == null)
+                return;
+
+            if (runtime.EffectData is SlowEffectData)
+            {
+                audioService.PlaySfx(AudioId.Slime_Slow, transform.position);
+                return;
+            }
+
+            if (runtime.EffectData is DamageEffectData damageEffectData &&
+                damageEffectData.DamageType == DamageType.Fire)
+            {
+                audioService.PlaySfx(AudioId.Fire_Burn, transform.position);
+            }
         }
 
         private bool TryGetActiveEffectOfType(System.Type effectDataType, out EffectRuntime effect)

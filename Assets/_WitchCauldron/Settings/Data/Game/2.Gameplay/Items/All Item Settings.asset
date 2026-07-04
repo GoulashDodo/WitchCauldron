@@ -23,4 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3320cfe5a71f82d4f91d51d45de06f2c, type: 2}
   - {fileID: 11400000, guid: 72479a1a17ccd914bb6caf347bce76c4, type: 2}
   - {fileID: 11400000, guid: 9c6bf5494b0f4624788f54ac198c4d35, type: 2}
+  - {fileID: 11400000, guid: 73d1544cc8169d4469ca5b7458a8d54f, type: 2}
+  - {fileID: 11400000, guid: 693b1e0919d78cb488778b279606ee17, type: 2}
+  - {fileID: 11400000, guid: 72eaf2e5cad185c48a3c3475d9067871, type: 2}
   <CombineSuccessPrefab>k__BackingField: {fileID: 7862261977410953971, guid: 2cef471cdf50cff4b968e932fc57c9ed, type: 3}

@@ -26,7 +26,7 @@ namespace Gameplay.Battle.Waves.SO.Structures
         public SpawnPositionMode SpawnPositionMode { get; private set; }
 
         [field: SerializeField]
-        public Vector3 SpecificSpawnPosition { get; private set; }
+        public float SpecificSpawnY { get; private set; }
 
         [field: SerializeField]
         public EnemySpawnDefinition[] Enemies { get; private set; }

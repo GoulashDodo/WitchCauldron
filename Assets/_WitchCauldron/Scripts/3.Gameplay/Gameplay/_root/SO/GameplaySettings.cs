@@ -12,6 +12,7 @@ namespace Gameplay._root.SO
     public class GameplaySettings : ScriptableObject
     {
         [field: SerializeField, Min(0f)] public float VictoryDelay { get; private set; }
+        [field: SerializeField, Min(0f)] public float SpawnedObjectMinDistance { get; private set; } = 0.65f;
 
         [field: SerializeField] public AllEnemySettings AllEnemiesSettings  { get; private set; }
         [field: SerializeField] public AllItemSettings AllItemsSettings { get; private set; }

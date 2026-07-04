@@ -49,6 +49,9 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
         private void PlayAttack()
         {
+            if (_isDeathStarted)
+                return;
+
             if (_hasAttackSpeedMultiplier)
                 _animator.SetFloat(AttackSpeedMultiplier, Mathf.Max(_enemy.Settings.AttackSpeed, 0.01f));
             

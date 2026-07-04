@@ -15,10 +15,10 @@ MonoBehaviour:
   <TypeId>k__BackingField: Enemy_Dummy
   <EnemyPf>k__BackingField: {fileID: 7923958733403220195, guid: 7b66b5d6ff47c2a4981414a4bc7ea00f, type: 3}
   <PointPrice>k__BackingField: 1
-  <MaxHealth>k__BackingField: 7
-  <MaxSpeed>k__BackingField: 0.3
+  <MaxHealth>k__BackingField: 70
+  <MaxSpeed>k__BackingField: 0.37
   <ShowHealthBar>k__BackingField: 0
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 10
   <AttackDistance>k__BackingField: 1
   <AttackSpeed>k__BackingField: 1
   <LootDefinitions>k__BackingField:

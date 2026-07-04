@@ -1,3 +1,4 @@
+using Core.Audio;
 using Gameplay.Battle.BattleEntities.Enemies.Services;
 using Gameplay.Battle.BattleEntities.Enemies.SO;
 using Gameplay.Battle.HealthSystem;
@@ -28,14 +29,16 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
         public bool IsInitialized => Settings != null;
 
         private EnemyService _enemyService;
+        private AudioService _audioService;
     
 
         
         #region CREATION
         
-        public void Construct(EnemyService enemyService, EnemySettings enemySettings)
+        public void Construct(EnemyService enemyService, EnemySettings enemySettings, AudioService audioService)
         {
             _enemyService = enemyService;
+            _audioService = audioService;
 
             Settings = enemySettings;
             
@@ -65,6 +68,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
                 return;
 
             Debug.Log($"Taking damage {battleDamage.Amount}");
+            _audioService?.PlaySfx(AudioId.Enemy_Hit, transform.position);
             _health.TakeDamage(battleDamage);
         }
 
@@ -76,6 +80,7 @@ namespace Gameplay.Battle.BattleEntities.Enemies.Core
 
             IsDead = true;
 
+            _audioService?.PlaySfx(AudioId.Enemy_Death, transform.position);
             Events.RaiseDied(deathInfo);
             _enemyService.UnregisterEnemy(this);
         }

@@ -1,3 +1,4 @@
+using Core.Audio;
 using Core.Run;
 using Core.SceneManagement;
 using Core.UI;
@@ -40,7 +41,8 @@ namespace Hut.UI
             SelectedItemsRuntime selectedItemsRuntime,
             ShopService shopService,
             HutSettings hutSettings,
-            GameplaySettings gameplaySettings)
+            GameplaySettings gameplaySettings,
+            AudioService audioService)
         {
 
             view.AttachSceneUI(gameObject);
@@ -48,7 +50,7 @@ namespace Hut.UI
             _nextLevel.Initialize(runState, sceneLoader, selectedItemsRuntime);
             _showSelectItemsButton.Initialize(runState);
             _runCompleted.Initialize(runState);
-            _selectItemParent.Initialize(selectedItemsRuntime, runState);
+            _selectItemParent.Initialize(selectedItemsRuntime, runState, audioService);
 
          
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c22cad3d5644110b6215b4cb2273abf, type: 3}
   m_Name: Cmd_DamageCommandParameter
   m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.Items.Usable.Commands.Damage.DamageCommandParameters
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 50
   <Radius>k__BackingField: 0.2
   <IsArea>k__BackingField: 0

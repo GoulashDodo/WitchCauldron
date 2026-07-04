@@ -20,7 +20,7 @@ MonoBehaviour:
     <SpawnMode>k__BackingField: 0
     <PointBudget>k__BackingField: 0
     <SpawnPositionMode>k__BackingField: 0
-    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <SpecificSpawnY>k__BackingField: 0
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
       <Count>k__BackingField: 2
@@ -33,7 +33,7 @@ MonoBehaviour:
     <SpawnMode>k__BackingField: 0
     <PointBudget>k__BackingField: 0
     <SpawnPositionMode>k__BackingField: 0
-    <SpecificSpawnPosition>k__BackingField: {x: 0, y: 0, z: 0}
+    <SpecificSpawnY>k__BackingField: 0
     <Enemies>k__BackingField:
     - <EnemyTypeId>k__BackingField: Enemy_Dummy
       <Count>k__BackingField: 3

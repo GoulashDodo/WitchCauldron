@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Core.Input.Clickable;
+using Gameplay.Battle.BattleEntities.Friendly.Core;
 using Gameplay.Items.Services;
 using Gameplay.Items.SO;
 using Gameplay.Items.Usable.Commands;
 using Gameplay.Items.Usable.Commands.Preview;
+using Gameplay.Items.Usable.Commands.Spawn;
 using R3;
 using UnityEngine;
 
@@ -25,6 +27,7 @@ namespace Gameplay.Items.MonoBehaviours
         private SpriteRenderer[] _renderers;
         private bool[] _rendererEnabledStates;
         private bool _isCompleted;
+        private bool _showingSpawnBlockedRadii;
 
         public void Initialize(
             ItemSettings settings,
@@ -79,6 +82,9 @@ namespace Gameplay.Items.MonoBehaviours
             if (!ItemPlacementQuery.CanUseOnBattleground(_collider, transform, _overlapBuffer))
                 return false;
 
+            if (!_itemService.CanUseItemAt(_settings, transform.position))
+                return false;
+
             var item = _itemService.SpawnDraggableItem(_settings.TypeId, transform.position);
             if (item is UsableItem usableItem && _itemService.TryUseItem(usableItem, transform.position))
                 return true;
@@ -125,6 +131,9 @@ namespace Gameplay.Items.MonoBehaviours
             }
 
             UpdatePreviews();
+
+            if (_previews.Count > 0 && HasSpawnCommand())
+                ShowSpawnBlockedRadii();
         }
 
         private void UpdatePreviews()
@@ -134,8 +143,12 @@ namespace Gameplay.Items.MonoBehaviours
 
             var inCombineZone = ItemPlacementQuery.IsInCombineZone(_collider, transform, _overlapBuffer);
             var canUseOnBattleground = ItemPlacementQuery.CanUseOnBattleground(_collider, transform, _overlapBuffer);
-            var visible = canUseOnBattleground && !inCombineZone;
             var position = (Vector2)transform.position;
+            var canUseHere = canUseOnBattleground &&
+                             _itemService != null &&
+                             _itemService.CanUseItemAt(_settings, position);
+            var visible = canUseHere && !inCombineZone;
+            var showGhostSprite = !visible && (!canUseOnBattleground || inCombineZone);
 
             foreach (var preview in _previews)
             {
@@ -146,7 +159,7 @@ namespace Gameplay.Items.MonoBehaviours
                 _previewProcessor.UpdatePreview(preview.GameObject, preview.Command, position, _settings);
             }
 
-            SetGhostRenderersVisible(!visible);
+            SetGhostRenderersVisible(showGhostSprite);
         }
 
         private void HidePreviews()
@@ -158,7 +171,40 @@ namespace Gameplay.Items.MonoBehaviours
             }
 
             _previews.Clear();
+            HideSpawnBlockedRadii();
             RestoreRenderers();
+        }
+
+        private bool HasSpawnCommand()
+        {
+            if (_settings?.OnUseCommands == null)
+                return false;
+
+            foreach (var command in _settings.OnUseCommands)
+            {
+                if (command is SpawnCommandParameters)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void ShowSpawnBlockedRadii()
+        {
+            if (_showingSpawnBlockedRadii)
+                return;
+
+            _showingSpawnBlockedRadii = true;
+            FriendlyAttackableEntity.BeginSpawnPlacementPreview();
+        }
+
+        private void HideSpawnBlockedRadii()
+        {
+            if (!_showingSpawnBlockedRadii)
+                return;
+
+            _showingSpawnBlockedRadii = false;
+            FriendlyAttackableEntity.EndSpawnPlacementPreview();
         }
 
         private void CacheRendererStates()

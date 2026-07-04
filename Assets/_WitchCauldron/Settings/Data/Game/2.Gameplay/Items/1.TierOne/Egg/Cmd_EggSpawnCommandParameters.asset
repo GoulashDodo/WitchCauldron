@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3923e60af0cf486ebd16893bc29f7e99, type: 3}
   m_Name: Cmd_EggSpawnCommandParameters
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.Usable.Commands.Spawn.SpawnCommandParameters
-  <Prefab>k__BackingField: {fileID: 5298818203534590916, guid: 53f8ba204919d894e8b2f5ca285613f6, type: 3}
+  <Prefab>k__BackingField: {fileID: 3233135279174922799, guid: 2aef24dbf0338ae44a2c799247ead14b, type: 3}

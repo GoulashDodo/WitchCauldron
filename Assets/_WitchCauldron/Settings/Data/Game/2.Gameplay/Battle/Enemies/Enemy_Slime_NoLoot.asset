@@ -15,10 +15,10 @@ MonoBehaviour:
   <TypeId>k__BackingField: Enemy_Slime_NoLoot
   <EnemyPf>k__BackingField: {fileID: 7923958733403220195, guid: 65160d9224168d745bf68203fe937b54, type: 3}
   <PointPrice>k__BackingField: 1
-  <MaxHealth>k__BackingField: 7
+  <MaxHealth>k__BackingField: 50
   <MaxSpeed>k__BackingField: 0.33
   <ShowHealthBar>k__BackingField: 0
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 20
   <AttackDistance>k__BackingField: 1
   <AttackSpeed>k__BackingField: 1
   <LootDefinitions>k__BackingField: []

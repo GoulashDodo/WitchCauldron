@@ -31,7 +31,7 @@ MonoBehaviour:
     <FallbackImpactParticleBounceCount>k__BackingField: 2
     <FallbackImpactParticleBounceDamping>k__BackingField: 0.48
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
-    <UseSfx>k__BackingField: {fileID: 8300000, guid: 0d9753548bc58934b8516036e1331b35, type: 3}
-    <ImpactSfx>k__BackingField: {fileID: 0}
+    <UseSfx>k__BackingField: {fileID: 0}
+    <ImpactSfx>k__BackingField: {fileID: 8300000, guid: 0d9753548bc58934b8516036e1331b35, type: 3}
   <SpawnCooldown>k__BackingField: 7
   <Icon>k__BackingField: {fileID: 6147683696072545769, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

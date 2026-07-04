@@ -21,7 +21,7 @@ MonoBehaviour:
   <OnUseCommands>k__BackingField:
   - {fileID: 11400000, guid: e68ed042d4fa8ca47abdcd35d57036e0, type: 2}
   <UseVisuals>k__BackingField:
-    <ImpactParticlePrefab>k__BackingField: {fileID: 0}
+    <ImpactParticlePrefab>k__BackingField: {fileID: 2707920961467566476, guid: 46667ef192f4788489285a6185181900, type: 3}
     <UseItemSpriteAsFallbackImpactParticle>k__BackingField: 1
     <FallbackImpactParticleLifetime>k__BackingField: 1.1
     <FallbackImpactParticleVelocity>k__BackingField: {x: 0, y: -7}

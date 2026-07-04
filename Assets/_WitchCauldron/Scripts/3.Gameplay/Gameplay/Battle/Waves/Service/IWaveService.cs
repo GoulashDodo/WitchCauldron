@@ -8,6 +8,7 @@ namespace Gameplay.Battle.Waves.Service
         ReadOnlyReactiveProperty<WaveProgress> Progress { get; }
         Observable<WaveStartedEvent> WaveStarted { get; }
         Observable<Unit> WavesCompleted { get; }
+        float ElapsedTime { get; }
 
         void StartWaves();
         void StopWaves();

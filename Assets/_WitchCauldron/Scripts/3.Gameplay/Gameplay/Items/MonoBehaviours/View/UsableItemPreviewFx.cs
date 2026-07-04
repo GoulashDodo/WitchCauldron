@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Gameplay.Battle.BattleEntities.Friendly.Core;
 using Gameplay.Items.Usable.Commands;
 using Gameplay.Items.Usable.Commands.Preview;
+using Gameplay.Items.Usable.Commands.Spawn;
 using R3;
 using UnityEngine;
 
@@ -20,6 +22,7 @@ namespace Gameplay.Items.MonoBehaviours.View
         private bool[] _itemRendererEnabledStates;
         private IUseCommandPreviewProcessor _previewProcessor;
         private bool _isPreviewActive;
+        private bool _showingSpawnBlockedRadii;
 
         public void Initialize(IUseCommandPreviewProcessor previewProcessor)
         {
@@ -99,6 +102,9 @@ namespace Gameplay.Items.MonoBehaviours.View
             }
 
             _isPreviewActive = _previews.Count > 0;
+
+            if (_isPreviewActive && HasSpawnCommand())
+                ShowSpawnBlockedRadii();
         }
 
         private void HidePreviews()
@@ -111,7 +117,40 @@ namespace Gameplay.Items.MonoBehaviours.View
 
             _previews.Clear();
             _isPreviewActive = false;
+            HideSpawnBlockedRadii();
             RestoreItemRenderers();
+        }
+
+        private bool HasSpawnCommand()
+        {
+            if (_item.Settings?.OnUseCommands == null)
+                return false;
+
+            foreach (var command in _item.Settings.OnUseCommands)
+            {
+                if (command is SpawnCommandParameters)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void ShowSpawnBlockedRadii()
+        {
+            if (_showingSpawnBlockedRadii)
+                return;
+
+            _showingSpawnBlockedRadii = true;
+            FriendlyAttackableEntity.BeginSpawnPlacementPreview();
+        }
+
+        private void HideSpawnBlockedRadii()
+        {
+            if (!_showingSpawnBlockedRadii)
+                return;
+
+            _showingSpawnBlockedRadii = false;
+            FriendlyAttackableEntity.EndSpawnPlacementPreview();
         }
 
         private void CacheItemRendererStates()

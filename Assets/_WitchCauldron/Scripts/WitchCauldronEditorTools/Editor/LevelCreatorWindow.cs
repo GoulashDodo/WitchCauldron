@@ -24,7 +24,7 @@ namespace WitchCauldronEditorTools.Editor
         [SerializeField] private int _enemyMaxCount;
         [SerializeField] private WaveType _waveType = WaveType.Normal;
         [SerializeField] private SpawnPositionMode _spawnPositionMode = SpawnPositionMode.RandomInArea;
-        [SerializeField] private Vector3 _specificSpawnPosition;
+        [SerializeField] private float _specificSpawnY;
         [SerializeField] private DefaultAsset _levelOutputFolder;
         [SerializeField] private DefaultAsset _waveOutputFolder;
         [SerializeField] private AllLevelSettings _allLevelSettings;
@@ -59,7 +59,7 @@ namespace WitchCauldronEditorTools.Editor
             _spawnPositionMode = (SpawnPositionMode)EditorGUILayout.EnumPopup("Spawn Position Mode", _spawnPositionMode);
 
             using (new EditorGUI.DisabledScope(_spawnPositionMode != SpawnPositionMode.SpecificPosition))
-                _specificSpawnPosition = EditorGUILayout.Vector3Field("Specific Position", _specificSpawnPosition);
+                _specificSpawnY = EditorGUILayout.FloatField("Specific Y Position", _specificSpawnY);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Enemy", EditorStyles.boldLabel);
@@ -143,7 +143,7 @@ namespace WitchCauldronEditorTools.Editor
             wave.FindPropertyRelative("<SpawnMode>k__BackingField").enumValueIndex = (int)_spawnMode;
             wave.FindPropertyRelative("<PointBudget>k__BackingField").intValue = Mathf.Max(0, _pointBudget);
             wave.FindPropertyRelative("<SpawnPositionMode>k__BackingField").enumValueIndex = (int)_spawnPositionMode;
-            wave.FindPropertyRelative("<SpecificSpawnPosition>k__BackingField").vector3Value = _specificSpawnPosition;
+            wave.FindPropertyRelative("<SpecificSpawnY>k__BackingField").floatValue = _specificSpawnY;
 
             var enemies = wave.FindPropertyRelative("<Enemies>k__BackingField");
             enemies.arraySize = 1;

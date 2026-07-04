@@ -1,6 +1,8 @@
 using Core.Run;
 using Gameplay._root.SO;
 using Gameplay.Items.SO;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.UI
@@ -10,6 +12,10 @@ namespace Gameplay.UI
         [SerializeField] private Transform _content;
         [SerializeField] private UIRewardCard _rewardCardPrefab;
         [SerializeField] private Sprite _recipeIcon;
+        [SerializeField] private float _cardAppearDuration = 0.16f;
+        [SerializeField] private float _cardDelay = 0.08f;
+
+        private readonly List<UIRewardCard> _cards = new();
 
         public void Initialize(UnlockReward[] rewards, GameplaySettings gameplaySettings)
         {
@@ -38,6 +44,8 @@ namespace Gameplay.UI
 
         private void Clear()
         {
+            _cards.Clear();
+
             if (_content == null)
                 return;
 
@@ -49,6 +57,19 @@ namespace Gameplay.UI
         {
             var card = Instantiate(_rewardCardPrefab, _content, false);
             card.Initialize(icon, count);
+            _cards.Add(card);
+        }
+
+        public IEnumerator PlaySequence()
+        {
+            foreach (var card in _cards)
+                card.PrepareHidden();
+
+            foreach (var card in _cards)
+            {
+                yield return card.PlayAppear(_cardAppearDuration);
+                yield return new WaitForSecondsRealtime(_cardDelay);
+            }
         }
 
         private static bool TryGetItemIcon(string itemId, GameplaySettings gameplaySettings, out Sprite icon)

@@ -167,9 +167,9 @@ MonoBehaviour:
   _canvasGroup: {fileID: 129874271695100003}
   _lifetime: 1.6
   _fadeDuration: 0.4
-  _riseDistance: 70
+  _riseDistance: 90
   _sideSpread: 12
-  _sineAmplitude: 26
+  _sineAmplitude: 23
   _sineFrequency: 0.75
   _useDamageSettingsFontSize: 1
   _fontSizeMultiplier: 1.25

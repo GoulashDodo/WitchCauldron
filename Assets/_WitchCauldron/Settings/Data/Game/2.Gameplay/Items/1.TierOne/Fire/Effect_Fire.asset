@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Effect_Fire
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Battle.Effects.Damage.DamageEffectData
   <EffectName>k__BackingField: Burning
-  <Duration>k__BackingField: 4
   <IsPermanent>k__BackingField: 0
+  <Duration>k__BackingField: 12
   <EffectIcon>k__BackingField: {fileID: -8576123297257446984, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
-  <Damage>k__BackingField: 2
+  <Damage>k__BackingField: 10
   <DamageType>k__BackingField: 1
-  <Periodicity>k__BackingField: 1
+  <Periodicity>k__BackingField: 1.25

@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Level_03_LevelSettings
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
   <LevelId>k__BackingField: Level_03
-  <LevelName>k__BackingField: 'Tutorial 3: Window'
-  <BaseHealth>k__BackingField: 30
+  <LevelName>k__BackingField: Night 3 - Heavy Slime
   <WaveSettings>k__BackingField: {fileID: 11400000, guid: a328708846f77ed4194f64d957ba61d4, type: 2}
-  <CompletionMoneyReward>k__BackingField: 10
-  <CompletionRewards>k__BackingField: []
+  <CompletionMoneyReward>k__BackingField: 140
+  <MaxBaseHealthBonus>k__BackingField: 35
+  <MaxTimeBonus>k__BackingField: 25
+  <TargetCompletionTime>k__BackingField: 150
+  <CompletionRewards>k__BackingField:
+  - <Type>k__BackingField: 0
+    <UnlockId>k__BackingField: Item_Fire
+  - <Type>k__BackingField: 1
+    <UnlockId>k__BackingField: Combination_FireStone

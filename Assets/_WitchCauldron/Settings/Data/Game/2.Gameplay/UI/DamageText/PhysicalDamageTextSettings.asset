@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.UI.Enemies.DamageTypeTextSettings
   <DamageType>k__BackingField: 0
   <TextColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <MinDamage>k__BackingField: 1
-  <MaxDamage>k__BackingField: 20
+  <MinDamage>k__BackingField: 10
+  <MaxDamage>k__BackingField: 200
   <MinFontSize>k__BackingField: 25
   <MaxFontSize>k__BackingField: 72

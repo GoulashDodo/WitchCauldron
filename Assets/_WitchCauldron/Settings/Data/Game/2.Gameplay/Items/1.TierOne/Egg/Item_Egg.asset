@@ -32,5 +32,5 @@ MonoBehaviour:
     <FallbackImpactParticleAngularSpeed>k__BackingField: 540
     <UseSfx>k__BackingField: {fileID: 0}
     <ImpactSfx>k__BackingField: {fileID: 0}
-  <SpawnCooldown>k__BackingField: 12
+  <SpawnCooldown>k__BackingField: 20
   <Icon>k__BackingField: {fileID: 3733566075561334502, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}

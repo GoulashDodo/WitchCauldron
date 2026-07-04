@@ -18,6 +18,7 @@ using Gameplay.Items.Usable.Commands.Ricochet;
 using Gameplay.Items.Usable.Commands.Spawn;
 using Gameplay.Level;
 using Gameplay.Level.SO;
+using Gameplay.Rewards;
 using UnityEngine;
 using Zenject;
 
@@ -52,6 +53,7 @@ namespace Gameplay._root.Installers
             
             
             Container.Bind<GameplayRunFlowController>().AsSingle();
+            Container.Bind<IInitializable>().To<GameplayAudioBootstrap>().AsSingle().NonLazy();
             Container.Bind<IInitializable>().To<GameplayBootstrap>().AsSingle().NonLazy();
             
         }
@@ -101,6 +103,7 @@ namespace Gameplay._root.Installers
             Container.Bind<FamiliarService>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaveService>().AsSingle();
             Container.Bind<CombinationService>().AsSingle();
+            Container.Bind<VictoryRewardCalculator>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayPauseService>().AsSingle();
             Container.BindInterfacesAndSelfTo<DropService>().AsSingle();
 

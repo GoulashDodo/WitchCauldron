@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Audio;
 using Core.Input.Clickable;
 using Core.Run;
 using Gameplay._root.SO;
@@ -10,6 +11,7 @@ using Gameplay.Items.SO;
 using Gameplay.Items.Usable.Commands;
 using Gameplay.Items.Usable.Commands.Preview;
 using Gameplay.Items.Usable.Commands.Processor;
+using Gameplay.Items.Usable.Commands.Spawn;
 using Gameplay.Items.Visuals;
 using UnityEngine;
 
@@ -20,7 +22,10 @@ namespace Gameplay.Items.Services
 
         private readonly IUseCommandProcessor _useCommandProcessor;
         private readonly IUseCommandPreviewProcessor _previewProcessor;
-        private readonly ItemUseFxPlayer _fxPlayer = new();
+        private readonly AudioService _audioService;
+        private readonly ItemUseFxPlayer _fxPlayer;
+        private readonly GameplaySettings _gameplaySettings;
+        private readonly Collider2D[] _spawnPlacementBuffer = new Collider2D[32];
         
         private readonly MouseClickHandler _mouseClickHandler;
         private readonly CombinationService _combinationService;
@@ -34,13 +39,17 @@ namespace Gameplay.Items.Services
             GameplaySettings gameplaySettings, 
             RunState runState,
             IUseCommandProcessor useCommandProcessor,
-            IUseCommandPreviewProcessor previewProcessor)
+            IUseCommandPreviewProcessor previewProcessor,
+            AudioService audioService)
         {
             _mouseClickHandler = mouseClickHandler;
             _combinationService = combinationService;
             _runState = runState;
             _useCommandProcessor = useCommandProcessor;
             _previewProcessor = previewProcessor;
+            _audioService = audioService;
+            _fxPlayer = new ItemUseFxPlayer(_audioService);
+            _gameplaySettings = gameplaySettings;
 
 
             
@@ -64,7 +73,7 @@ namespace Gameplay.Items.Services
             var itemPf = itemSettings.ItemPf;
             var item = UnityEngine.Object.Instantiate(itemPf, initialPosition, Quaternion.identity);            
             
-            item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition);
+            item.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, _audioService);
             InitializeUsePreviewFx(item);
 
             if (startDragging)
@@ -134,7 +143,25 @@ namespace Gameplay.Items.Services
             var ghost = ghostObject.AddComponent<ItemSpawnGhost>();
             ghost.Initialize(itemSettings, this, _mouseClickHandler.MouseToWorldPosition, _previewProcessor, completed);
             _mouseClickHandler.CaptureRelease(ghost);
+            _audioService.PlaySfx(AudioId.Item_Select, initialPosition);
 
+            return true;
+        }
+
+        public bool TryReplaceDraggableItem(DraggableItem item, string replacementTypeId, bool startDragging = false)
+        {
+            if (item == null)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(replacementTypeId) || !_allItemSettings.ContainsKey(replacementTypeId))
+            {
+                Debug.LogWarning($"[Item service]: Replacement item settings with type id '{replacementTypeId}' were not found.");
+                return false;
+            }
+
+            var position = item.transform.position;
+            DespawnDraggableItem(item);
+            SpawnDraggableItem(replacementTypeId, position, startDragging);
             return true;
         }
         
@@ -167,6 +194,8 @@ namespace Gameplay.Items.Services
                     UnityEngine.Object.Instantiate(_combineSuccessParticlePf, midPoint, Quaternion.identity);
                 }
 
+                _audioService.PlaySfx(AudioId.Combination_Success, midPoint);
+
                 var resultItem = SpawnDraggableItem(result.TypeId, midPoint);
                 var draggableItemFx = resultItem.GetComponentInChildren<DraggableItemFx>();
                 if (draggableItemFx != null)
@@ -177,7 +206,9 @@ namespace Gameplay.Items.Services
                 
                 return true;
             }
-            
+
+            var failPoint = (item.gameObject.transform.position + otherItem.gameObject.transform.position) / 2;
+            _audioService.PlaySfx(AudioId.Combination_Failed, failPoint);
             return false;
         }
 
@@ -202,8 +233,6 @@ namespace Gameplay.Items.Services
             if (itemSettings.OnUseCommands == null || itemSettings.OnUseCommands.Length == 0)
                 return false;
 
-            Debug.Log($"[Item service]: Using {usableItem.TypeId}");
-
             var context = new UseCommandContext(itemSettings, _fxPlayer, itemWorldScale);
             var used = false;
 
@@ -213,11 +242,32 @@ namespace Gameplay.Items.Services
             }
 
             if (!used)
-            {
-                _fxPlayer.PlayImpactFx(position, itemSettings, itemWorldScale);
-            }
+                return false;
+
+            Debug.Log($"[Item service]: Using {usableItem.TypeId}");
+            if (itemSettings.UseVisuals != null && itemSettings.UseVisuals.UseSfx != null)
+                _audioService.PlaySfx(itemSettings.UseVisuals.UseSfx, position);
+            else
+                _audioService.PlaySfx(AudioId.Item_Use, position);
 
             DespawnDraggableItem(usableItem);
+            return true;
+        }
+
+        public bool CanUseItemAt(ItemSettings itemSettings, Vector2 position)
+        {
+            if (itemSettings?.OnUseCommands == null || itemSettings.OnUseCommands.Length == 0)
+                return false;
+
+            foreach (var commandParameters in itemSettings.OnUseCommands)
+            {
+                if (commandParameters is SpawnCommandParameters &&
+                    !SpawnPlacementQuery.CanSpawnAt(position, _gameplaySettings, _spawnPlacementBuffer))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
         
