@@ -1,0 +1,17 @@
+using System;
+using UnityEngine;
+
+namespace Gameplay.Items.Usable.Commands.Handler
+{
+    public interface IUseCommandHandler
+    {
+        Type ParametersType { get; }                       
+        bool Handle(UseCommandParameters p, Vector2 pos, UseCommandContext context = null);  
+    }
+
+    public interface IUseCommandHandler<in TParameters> : IUseCommandHandler
+        where TParameters : UseCommandParameters
+    {
+        bool Handle(TParameters p, Vector2 pos, UseCommandContext context = null);
+    }
+}

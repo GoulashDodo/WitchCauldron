@@ -1,0 +1,136 @@
+using System.Collections.Generic;
+using System.Linq;
+using Core.Audio;
+using Gameplay._root.SO;
+using Gameplay.Battle.BattleEntities.Enemies.Core;
+using Gameplay.Battle.BattleEntities.Enemies.SO;
+using Gameplay.Battle.HealthSystem.Structs;
+using R3;
+using UnityEngine;
+
+namespace Gameplay.Battle.BattleEntities.Enemies.Services
+{
+    public class EnemyService
+    {
+        private readonly AllEnemySettings _allEnemySettings;
+        private readonly AudioService _audioService;
+        private readonly Dictionary<string, EnemySettings> _allEnemies = new();
+        
+        private readonly Dictionary<int, Enemy> _allExistingEnemies = new();
+        private readonly Dictionary<int, System.IDisposable> _enemyDeathSubscriptions = new();
+
+        private readonly ReactiveProperty<int> _activeEnemyCount = new(0);
+        private readonly Subject<Enemy> _enemySpawned = new();
+        private readonly Subject<Enemy> _enemyDied = new();
+
+        public ReadOnlyReactiveProperty<int> ActiveEnemyCount => _activeEnemyCount;
+        public int ActiveEnemyCountValue => _activeEnemyCount.Value;
+        public float SpawnMinDistance => _allEnemySettings.SpawnMinDistance;
+        public int SpawnPositionAttempts => _allEnemySettings.SpawnPositionAttempts;
+        public Observable<Enemy> EnemySpawned => _enemySpawned;
+        public Observable<Enemy> EnemyDied => _enemyDied;
+
+
+
+        public EnemyService(GameplaySettings settings, AudioService audioService)
+        {
+            _audioService = audioService;
+            var allEnemySettings = settings.AllEnemiesSettings;
+            _allEnemySettings = allEnemySettings;
+            
+            foreach (var enemySetting in allEnemySettings.AllSettings)
+            {
+                _allEnemies.Add(enemySetting.TypeId, enemySetting);
+            }
+        }
+        
+        
+        
+        public Enemy SpawnEnemy(string typeId, Vector3 position)
+        {
+            
+            var enemySettings = _allEnemies[typeId];
+            
+            var enemyPf = enemySettings.EnemyPf;
+            var enemy = Object.Instantiate(enemyPf, position, Quaternion.identity);
+
+            if (enemy.TryGetComponent(out EnemyMotor motor))
+                motor.SetSpeedMultiplier(_allEnemySettings.GetRandomSpawnSpeedMultiplier());
+
+            enemy.Construct(this, enemySettings, _audioService);
+            
+            
+            
+            return enemy;
+        }
+
+        public bool TryGetEnemySettings(string typeId, out EnemySettings enemySettings)
+        {
+            return _allEnemies.TryGetValue(typeId, out enemySettings);
+        }
+
+        public void DamageEnemy(int enemyId, int damage)
+        {
+            var enemy = _allExistingEnemies[enemyId];
+            enemy.TakeDamage(new BattleDamage(damage, DamageType.Physical));
+        }
+
+        public bool TryFindNearestEnemy(
+            Vector2 position,
+            float radius,
+            IReadOnlyCollection<Enemy> ignoredEnemies,
+            out Enemy nearestEnemy)
+        {
+            nearestEnemy = null;
+
+            var sqrRadius = radius * radius;
+            var nearestSqrDistance = float.MaxValue;
+
+            foreach (var enemy in _allExistingEnemies.Values)
+            {
+                if (enemy == null || enemy.IsDead || !enemy.gameObject.activeInHierarchy)
+                    continue;
+
+                if (ignoredEnemies != null && ignoredEnemies.Contains(enemy))
+                    continue;
+
+                var sqrDistance = ((Vector2)enemy.transform.position - position).sqrMagnitude;
+                if (sqrDistance > sqrRadius || sqrDistance >= nearestSqrDistance)
+                    continue;
+
+                nearestSqrDistance = sqrDistance;
+                nearestEnemy = enemy;
+            }
+
+            return nearestEnemy != null;
+        }
+
+
+
+
+        public void RegisterEnemy(Enemy enemyToRegister)
+        {
+            var enemyId = enemyToRegister.GetInstanceID();
+
+            _allExistingEnemies.Add(enemyId, enemyToRegister);
+            _enemyDeathSubscriptions.Add(enemyId, enemyToRegister.Events.Died.Subscribe(_ => _enemyDied.OnNext(enemyToRegister)));
+            _activeEnemyCount.Value = _allExistingEnemies.Count;
+            _enemySpawned.OnNext(enemyToRegister);
+
+        }
+
+
+        public void UnregisterEnemy(Enemy enemyToUnregister)
+        {
+            var enemyId = enemyToUnregister.GetInstanceID();
+
+            if (_enemyDeathSubscriptions.Remove(enemyId, out var subscription))
+                subscription.Dispose();
+
+            _allExistingEnemies.Remove(enemyId);
+            _activeEnemyCount.Value = _allExistingEnemies.Count;
+        }
+        
+        
+    }
+}

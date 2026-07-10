@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfedf0f17364af39e32b2210a4cb782, type: 3}
+  m_Name: Upgrade_Hut_Health_03
+  m_EditorClassIdentifier: Assembly-CSharp::Hut.Shop.SO.ShopUpgradeDefinition
+  <UpgradeId>k__BackingField: Upgrade_Hut_Health_03
+  <DisplayName>k__BackingField: Toughest Defence
+  <Description>k__BackingField: Add 200(!) more health to your hut
+  <Icon>k__BackingField: {fileID: -4877817706105918434, guid: 3e06510db5f84714bb70ed9948b32068, type: 3}
+  <Price>k__BackingField: 200
+  <Category>k__BackingField: 2
+  <HideUntilUnlocked>k__BackingField: 0
+  <Effects>k__BackingField:
+  - <Type>k__BackingField: 2
+    <TargetId>k__BackingField: 
+    <Amount>k__BackingField: 200
+  <UnlockConditions>k__BackingField:
+  - <Type>k__BackingField: 1
+    <TargetId>k__BackingField: Upgrade_Hut_Health_02
+    <Amount>k__BackingField: 0

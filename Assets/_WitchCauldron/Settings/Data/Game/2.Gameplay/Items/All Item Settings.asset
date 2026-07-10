@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ab52d1bd3448b816621a2970e34dc, type: 3}
+  m_Name: All Item Settings
+  m_EditorClassIdentifier: Assembly-CSharp::WitchCauldron.Scripts.Feature.Gameplay.DragAndDrop.Item.Settings.AllItemSettings
+  <ItemSettings>k__BackingField:
+  - {fileID: 11400000, guid: 33f827c7122ae0141ac8d64865fd6856, type: 2}
+  - {fileID: 11400000, guid: 9aea7fe048a245c4ba3a4fe5331456a6, type: 2}
+  - {fileID: 11400000, guid: 6421e641e2cdf954eb94eb9a017be506, type: 2}
+  - {fileID: 11400000, guid: ae6bb992e3a68534098c9a0fc169c240, type: 2}
+  - {fileID: 11400000, guid: 9eddd15c581aabd439b73e6a6831925f, type: 2}
+  - {fileID: 11400000, guid: afc929e479672784c8030bbd77409dee, type: 2}
+  - {fileID: 11400000, guid: 9e724822089d88d42986ef5e4d3f9874, type: 2}
+  - {fileID: 11400000, guid: 3320cfe5a71f82d4f91d51d45de06f2c, type: 2}
+  - {fileID: 11400000, guid: 72479a1a17ccd914bb6caf347bce76c4, type: 2}
+  - {fileID: 11400000, guid: 9c6bf5494b0f4624788f54ac198c4d35, type: 2}
+  - {fileID: 11400000, guid: 73d1544cc8169d4469ca5b7458a8d54f, type: 2}
+  - {fileID: 11400000, guid: 693b1e0919d78cb488778b279606ee17, type: 2}
+  - {fileID: 11400000, guid: 72eaf2e5cad185c48a3c3475d9067871, type: 2}
+  <CombineSuccessPrefab>k__BackingField: {fileID: 7862261977410953971, guid: 2cef471cdf50cff4b968e932fc57c9ed, type: 3}

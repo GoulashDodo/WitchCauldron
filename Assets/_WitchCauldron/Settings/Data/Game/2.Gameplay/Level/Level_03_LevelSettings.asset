@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326f3dac98e84494956859d8b19a60a0, type: 3}
+  m_Name: Level_03_LevelSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Level.SO.LevelSettings
+  <LevelId>k__BackingField: Level_03
+  <LevelName>k__BackingField: Night 3 - Heavy Slime
+  <WaveSettings>k__BackingField: {fileID: 11400000, guid: a328708846f77ed4194f64d957ba61d4, type: 2}
+  <CompletionMoneyReward>k__BackingField: 140
+  <MaxBaseHealthBonus>k__BackingField: 35
+  <MaxTimeBonus>k__BackingField: 25
+  <TargetCompletionTime>k__BackingField: 150
+  <CompletionRewards>k__BackingField:
+  - <Type>k__BackingField: 0
+    <UnlockId>k__BackingField: Item_Fire
+  - <Type>k__BackingField: 1
+    <UnlockId>k__BackingField: Combination_FireStone

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088c218e652c2ef4c9f10ace5bcab522, type: 3}
+  m_Name: Cmd_GooRicochet
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Items.Usable.Commands.Ricochet.RicochetCommandParameters
+  <StartRadius>k__BackingField: 1.5
+  <BounceCount>k__BackingField: 1
+  <BounceRange>k__BackingField: 3
+  <CanHitSameEnemy>k__BackingField: 0
+  <ProjectileVisualPrefab>k__BackingField: {fileID: 0}
+  <JumpDuration>k__BackingField: 0.3
+  <JumpHeight>k__BackingField: 0.7
+  <RotateToMoveDirection>k__BackingField: 1
+  <RotationOffset>k__BackingField: 0
+  <UseTrail>k__BackingField: 1
+  <TrailMaterial>k__BackingField: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  <TrailTime>k__BackingField: 0.18
+  <TrailStartWidth>k__BackingField: 0.24
+  <TrailEndWidth>k__BackingField: 0
+  <TrailStartColor>k__BackingField: {r: 0.55, g: 1, b: 0.35, a: 0.75}
+  <TrailEndColor>k__BackingField: {r: 0.55, g: 1, b: 0.35, a: 0.3529412}
+  <PlayImpactFxOnEachHit>k__BackingField: 1
+  <OnEachHitCommands>k__BackingField:
+  - {fileID: 11400000, guid: 02f8779ce975493e9fbeac5ec9c903e4, type: 2}

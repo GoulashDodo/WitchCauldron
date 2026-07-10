@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51a1d9c07f94f7594b5743c1e3b5fb1, type: 3}
+  m_Name: Enemy_Dummy
+  m_EditorClassIdentifier: Assembly-CSharp::_WitchCauldron.Scripts.Feature.Gameplay.Enemies.SO.EnemySettings
+  <TypeId>k__BackingField: Enemy_Dummy
+  <EnemyPf>k__BackingField: {fileID: 7923958733403220195, guid: 7b66b5d6ff47c2a4981414a4bc7ea00f, type: 3}
+  <PointPrice>k__BackingField: 1
+  <MaxHealth>k__BackingField: 70
+  <MaxSpeed>k__BackingField: 0.37
+  <ShowHealthBar>k__BackingField: 0
+  <Damage>k__BackingField: 10
+  <AttackDistance>k__BackingField: 1
+  <AttackSpeed>k__BackingField: 1
+  <LootDefinitions>k__BackingField:
+  - <DropItemTypeId>k__BackingField: Item_Goo
+    <ChanceToDropItem>k__BackingField: 0.2

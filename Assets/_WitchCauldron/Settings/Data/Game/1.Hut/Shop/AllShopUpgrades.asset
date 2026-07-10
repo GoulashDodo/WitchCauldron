@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaccb62a2b04067b687b41502f71a0d, type: 3}
+  m_Name: AllShopUpgrades
+  m_EditorClassIdentifier: Assembly-CSharp::Hut.Shop.SO.AllShopUpgrades
+  <Upgrades>k__BackingField:
+  - {fileID: 11400000, guid: f2fda9a418abd5d44bee4c29327175cb, type: 2}
+  - {fileID: 11400000, guid: 9d51cf7d5ac4c2b4db7cda1ff3ea68c9, type: 2}
+  - {fileID: 11400000, guid: 2655016333b3ac4488f6410e691771d0, type: 2}
+  - {fileID: 11400000, guid: 4c984ae1e5121fb4c999362e8ad7be62, type: 2}
